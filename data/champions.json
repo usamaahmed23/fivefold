@@ -3325,6 +3325,7 @@
         "kite_outrange"
       ],
       "roles": [
+        "jungle",
         "top",
         "support"
       ],
@@ -3543,7 +3544,9 @@
         "burst_before_heal_shield"
       ],
       "roles": [
-        "support"
+        "support",
+        "mid",
+        "bot"
       ],
       "structural_tags": {
         "range": "long",
@@ -3608,7 +3611,9 @@
       ],
       "roles": [
         "mid",
-        "top"
+        "top",
+        "bot",
+        "jungle"
       ],
       "structural_tags": {
         "range": "melee",
@@ -3881,7 +3886,7 @@
       "colors_off": [
         "B"
       ],
-      "ls_notes": null,
+      "ls_notes": "support/pillar utility back to prime levels. fasting Senna opens flex potency. items now support the kit better than before.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -3891,7 +3896,8 @@
       ],
       "roles": [
         "jungle",
-        "top"
+        "top",
+        "support"
       ],
       "structural_tags": {
         "range": "melee",
@@ -4032,7 +4038,7 @@
         "R"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "viable jungler — funny combos, better items than before. totally viable top and very flexible into jungle; no one does it.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -4041,7 +4047,8 @@
         "percent_health_damage"
       ],
       "roles": [
-        "top"
+        "top",
+        "jungle"
       ],
       "structural_tags": {
         "range": "medium",
@@ -4071,7 +4078,8 @@
         "hook_threat"
       ],
       "roles": [
-        "bot"
+        "bot",
+        "mid"
       ],
       "structural_tags": {
         "range": "long",
@@ -4703,7 +4711,8 @@
         "hard_engage_reaches_backline"
       ],
       "roles": [
-        "mid"
+        "mid",
+        "support"
       ],
       "structural_tags": {
         "range": "long",
@@ -5490,11 +5499,11 @@
       "name": "Zaahen",
       "colors_main": [
         "B",
-        "U"
+        "R"
       ],
       "colors_off": [],
       "contextual": false,
-      "ls_notes": null,
+      "ls_notes": "neo-Aatrox: base kit not strong enough to stand alone without item aid. reliant on what items are doing at a given point. such an honest champion with glaringly obvious weaknesses. B leads; R secondary like Aatrox.",
       "source": "owner",
       "counter_tags": [
         "early_lane_bully",
