@@ -1,0 +1,5489 @@
+{
+  "source": "LS / R\u00fcbezahl MTG Color Spreadsheet",
+  "conventions": {
+    "colors_main": "X in sheet \u2014 theme best expressed by the champion's kit, core items, team interaction, scaling",
+    "colors_off": "O in sheet \u2014 theme influenced by item builds, playstyle, or matchup",
+    "color_codes": {
+      "W": "White \u2014 structure, utility, anti-aggro",
+      "U": "Blue \u2014 control, scaling, denial",
+      "B": "Black \u2014 power at a cost, sacrifice, conditions",
+      "R": "Red \u2014 aggression, tempo, snowball",
+      "G": "Green \u2014 synergy, curved spikes, item timings",
+      "C": "Colorless \u2014 dedicated theme, warps draft around it"
+    }
+  },
+  "champions": [
+    {
+      "id": "aatrox",
+      "name": "Aatrox",
+      "colors_main": [
+        "R",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": "mini games, if you fuck up his combos/resets you fuck up your power",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "anti_sustain",
+        "kite_outrange",
+        "true_damage",
+        "percent_health_damage"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "anti_heal",
+        "displacement",
+        "juggernaut",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "ahri",
+      "name": "Ahri",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [
+        "B"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "sustained_tank_damage",
+        "outrange_medium_range"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "assassin",
+        "burst_mage",
+        "high_mobility",
+        "point_click_cc"
+      ]
+    },
+    {
+      "id": "akali",
+      "name": "Akali",
+      "colors_main": [
+        "R",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "sustained_tank_damage",
+        "reveal_stealth",
+        "aoe_zone_control"
+      ],
+      "roles": [
+        "mid",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "assassin",
+        "high_mobility",
+        "reset_mechanic",
+        "untargetable"
+      ]
+    },
+    {
+      "id": "alistar",
+      "name": "Alistar",
+      "colors_main": [
+        "R",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "disengage_support",
+        "kite_outrange",
+        "poke_before_engage"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "displacement",
+        "engage_support",
+        "engage_tank",
+        "knockup",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "amumu",
+      "name": "Amumu",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [
+        "W",
+        "B"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "early_invade_pressure",
+        "kite_outrange",
+        "anti_mobility"
+      ],
+      "roles": [
+        "jungle",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "engage_tank",
+        "hard_engage_cc",
+        "point_click_cc"
+      ]
+    },
+    {
+      "id": "anivia",
+      "name": "Anivia",
+      "colors_main": [
+        "U"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "assassin_dive",
+        "hard_engage_reaches_backline",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "control_mage",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "annie",
+      "name": "Annie",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "outrange_medium_range",
+        "disengage_support",
+        "sustained_poke"
+      ],
+      "roles": [
+        "mid",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "burst_mage",
+        "hard_engage_cc",
+        "point_click_cc"
+      ]
+    },
+    {
+      "id": "aphelios",
+      "name": "Aphelios",
+      "colors_main": [
+        "U",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": "dependent on the team composition",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "assassin_dive",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "hypercarry",
+        "marksman",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "ashe",
+      "name": "Ashe",
+      "colors_main": [
+        "U"
+      ],
+      "colors_off": [
+        "R",
+        "G",
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "assassin_dive",
+        "hook_threat"
+      ],
+      "roles": [
+        "bot",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "global_ult",
+        "hard_engage_cc",
+        "marksman",
+        "point_click_cc"
+      ]
+    },
+    {
+      "id": "aurelion_sol",
+      "name": "Aurelion Sol",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "assassin_dive",
+        "hard_engage_reaches_backline",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "control_mage",
+        "displacement",
+        "global_ult",
+        "knockup",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "azir",
+      "name": "Azir",
+      "colors_main": [
+        "U",
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "assassin_dive",
+        "hard_engage_before_scale",
+        "early_lane_bully",
+        "anti_dash_cc"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "control_mage",
+        "displacement",
+        "knockup",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "bard",
+      "name": "Bard",
+      "colors_main": [
+        "U"
+      ],
+      "colors_off": [
+        "R",
+        "G",
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_all_in",
+        "early_lane_bully",
+        "punish_roam"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "global_ult",
+        "hard_engage_cc",
+        "peel_support",
+        "poke_support"
+      ]
+    },
+    {
+      "id": "blitzcrank",
+      "name": "Blitzcrank",
+      "colors_main": [
+        "R",
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "spell_shield",
+        "disengage_support",
+        "long_range_poke",
+        "minion_block"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "hook_support",
+        "knockup",
+        "pick_threat"
+      ]
+    },
+    {
+      "id": "brand",
+      "name": "Brand",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "assassin_dive",
+        "outrange_medium_range"
+      ],
+      "roles": [
+        "support",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "hard_engage_cc",
+        "poke_support"
+      ]
+    },
+    {
+      "id": "braum",
+      "name": "Braum",
+      "colors_main": [
+        "U",
+        "W"
+      ],
+      "colors_off": [
+        "R",
+        "G"
+      ],
+      "ls_notes": "off color depends on how braum is used",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "poke_before_engage",
+        "sustained_damage_no_burst",
+        "anti_sustain"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "engage_tank",
+        "hard_engage_cc",
+        "knockup",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "caitlyn",
+      "name": "Caitlyn",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [
+        "R"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "hook_threat",
+        "assassin_dive"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "marksman",
+        "poke_support",
+        "self_peel"
+      ]
+    },
+    {
+      "id": "camille",
+      "name": "Camille",
+      "colors_main": [
+        "U",
+        "B",
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": "Dimir Assassin ravnica",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "anti_mobility",
+        "kite_outrange",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "backline_access",
+        "diver",
+        "hard_engage_cc",
+        "high_mobility",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "cassiopeia",
+      "name": "Cassiopeia",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "assassin_dive",
+        "outrange_medium_range"
+      ],
+      "roles": [
+        "mid",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "battle_mage",
+        "hard_engage_cc",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "chogath",
+      "name": "Cho'Gath",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [
+        "B"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "percent_health_damage",
+        "true_damage",
+        "anti_sustain"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ap",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "control_mage",
+        "engage_tank",
+        "execute",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "corki",
+      "name": "Corki",
+      "colors_main": [
+        "U",
+        "W",
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "assassin_dive",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "artillery",
+        "global_ult",
+        "marksman"
+      ]
+    },
+    {
+      "id": "darius",
+      "name": "Darius",
+      "colors_main": [
+        "R",
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "long_range_poke",
+        "anti_mobility",
+        "disengage_support"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "execute",
+        "juggernaut"
+      ]
+    },
+    {
+      "id": "diana",
+      "name": "Diana",
+      "colors_main": [
+        "G",
+        "B"
+      ],
+      "colors_off": [
+        "R"
+      ],
+      "ls_notes": "ult interaction and q/w/e. whole kit has mini quests. items spikes",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "hard_cc_on_engage",
+        "disengage_support"
+      ],
+      "roles": [
+        "jungle",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "assassin",
+        "knockup",
+        "reliable_knockup_chain"
+      ]
+    },
+    {
+      "id": "dr_mundo",
+      "name": "Dr Mundo",
+      "colors_main": [
+        "G",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "anti_sustain",
+        "percent_health_damage",
+        "true_damage",
+        "kite_outrange"
+      ],
+      "roles": [
+        "top",
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "juggernaut",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "draven",
+      "name": "Draven",
+      "colors_main": [
+        "R",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "hook_threat",
+        "outrange_pre_ult",
+        "hard_cc_on_engage"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "global_ult",
+        "high_mobility",
+        "marksman"
+      ]
+    },
+    {
+      "id": "ekko",
+      "name": "Ekko",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "sustained_tank_damage",
+        "zone_control"
+      ],
+      "roles": [
+        "jungle",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "assassin",
+        "hard_engage_cc",
+        "high_mobility"
+      ]
+    },
+    {
+      "id": "elise",
+      "name": "Elise",
+      "colors_main": [
+        "R",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "sustained_tank_damage",
+        "hard_cc_on_engage",
+        "early_invade_pressure"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "early_ganker",
+        "high_mobility"
+      ]
+    },
+    {
+      "id": "evelynn",
+      "name": "Evelynn",
+      "colors_main": [
+        "U",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "reveal_stealth",
+        "early_invade_pressure",
+        "group_deny_picks"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "assassin",
+        "burst_mage",
+        "stealth"
+      ]
+    },
+    {
+      "id": "ezreal",
+      "name": "Ezreal",
+      "colors_main": [
+        "R",
+        "U",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "sustained_tank_damage",
+        "hook_threat"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "artillery",
+        "global_ult",
+        "high_mobility",
+        "marksman"
+      ]
+    },
+    {
+      "id": "fiddlesticks",
+      "name": "Fiddlesticks",
+      "colors_main": [
+        "R",
+        "U",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "early_invade_pressure",
+        "reveal_stealth",
+        "hard_cc_on_engage",
+        "disengage_support"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "control_mage",
+        "hard_engage_cc"
+      ]
+    },
+    {
+      "id": "fiora",
+      "name": "Fiora",
+      "colors_main": [
+        "G",
+        "C"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "kite_outrange",
+        "aoe_cc_teamfight",
+        "ranged_harass"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "high_mobility",
+        "self_peel",
+        "skirmisher",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "fizz",
+      "name": "Fizz",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [
+        "G"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "sustained_tank_damage",
+        "outrange_medium_range"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "assassin",
+        "high_mobility",
+        "knockup",
+        "untargetable"
+      ]
+    },
+    {
+      "id": "galio",
+      "name": "Galio",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "sustained_damage_no_burst",
+        "split_push_outscale",
+        "kite_outrange"
+      ],
+      "roles": [
+        "mid",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ap",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "engage_tank",
+        "global_ult",
+        "hard_engage_cc",
+        "knockup",
+        "spell_shield"
+      ]
+    },
+    {
+      "id": "gangplank",
+      "name": "Gangplank",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": "controls everything, scales/ramps up, still supportive. critplank, tankplank, can accelerate, can be a menace to kill. lots of synergy with botlane, item timings [IE, sterak, trinity, lvl 9/13]",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "early_all_in",
+        "hard_engage_before_scale",
+        "dive_pre_stack"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "global_ult",
+        "scaling_hyper",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "garen",
+      "name": "Garen",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "true_damage",
+        "percent_health_damage"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "execute",
+        "juggernaut"
+      ]
+    },
+    {
+      "id": "gnar",
+      "name": "Gnar",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [
+        "U"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_before_scale",
+        "sustained_damage_no_burst",
+        "anti_mobility"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "displacement",
+        "knockup",
+        "marksman"
+      ]
+    },
+    {
+      "id": "gragas",
+      "name": "Gragas",
+      "colors_main": [
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "sustained_damage_no_burst",
+        "kite_outrange",
+        "anti_sustain"
+      ],
+      "roles": [
+        "jungle",
+        "top",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "mixed",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "battle_mage",
+        "displacement",
+        "engage_tank",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "graves",
+      "name": "Graves",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [
+        "R"
+      ],
+      "ls_notes": "lethality assassin relies on snowball, crit scales well, cleaver/ bruiser mix possibilities",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "kite_outrange",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "farming_jungler",
+        "marksman",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "hecarim",
+      "name": "Hecarim",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "disengage_support",
+        "kite_outrange"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "diver",
+        "engage_tank",
+        "hard_engage_cc",
+        "high_mobility"
+      ]
+    },
+    {
+      "id": "heimerdinger",
+      "name": "Heimerdinger",
+      "colors_main": [
+        "W"
+      ],
+      "colors_off": [
+        "U",
+        "B"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "long_range_poke",
+        "hard_engage_reaches_backline",
+        "aoe_clears_minions"
+      ],
+      "roles": [
+        "top",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "control_mage",
+        "poke_support",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "illaoi",
+      "name": "Illaoi",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "anti_mobility",
+        "long_range_poke"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "juggernaut",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "irelia",
+      "name": "Irelia",
+      "colors_main": [
+        "R",
+        "W"
+      ],
+      "colors_off": [
+        "G"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "kite_outrange",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "top",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "diver",
+        "hard_engage_cc",
+        "high_mobility",
+        "reset_mechanic",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "ivern",
+      "name": "Ivern",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "early_invade_pressure",
+        "hard_engage_all_in",
+        "anti_sustain"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "enchanter",
+        "farming_jungler",
+        "knockup",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "janna",
+      "name": "Janna",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_all_in",
+        "sustained_damage_no_burst",
+        "hook_threat"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "displacement",
+        "enchanter",
+        "knockup",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "jarvan_iv",
+      "name": "Jarvan IV",
+      "colors_main": [
+        "R",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": "likes to be aggressive, strong early/mid, tapers off late game, bad if behind. can go glass cannon ad, offtank, pure tank, knockups, long reach, containment",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "anti_dash_cc",
+        "disengage_support",
+        "kite_outrange"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "diver",
+        "early_ganker",
+        "engage_tank",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "jax",
+      "name": "Jax",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "hard_cc_on_engage",
+        "ranged_harass",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "top",
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "knockup",
+        "scaling_hyper",
+        "skirmisher",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "jayce",
+      "name": "Jayce",
+      "colors_main": [
+        "R",
+        "B"
+      ],
+      "colors_off": [
+        "U"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "sustained_tank_damage",
+        "outscale_late"
+      ],
+      "roles": [
+        "top",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "artillery",
+        "displacement",
+        "poke_support"
+      ]
+    },
+    {
+      "id": "jhin",
+      "name": "Jhin",
+      "colors_main": [
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "assassin_dive",
+        "hook_threat"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "artillery",
+        "global_ult",
+        "hard_engage_cc",
+        "marksman"
+      ]
+    },
+    {
+      "id": "jinx",
+      "name": "Jinx",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "assassin_dive",
+        "hook_threat",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "global_ult",
+        "hypercarry",
+        "marksman",
+        "reset_mechanic",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "kaisa",
+      "name": "Kai'sa",
+      "colors_main": [
+        "U",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "early_lane_bully",
+        "long_range_poke_adc"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "backline_access",
+        "high_mobility",
+        "hypercarry",
+        "marksman",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "kalista",
+      "name": "Kalista",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [
+        "G",
+        "B"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "burst_before_kite",
+        "anti_mobility"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "high_mobility",
+        "marksman",
+        "peel_support",
+        "self_peel"
+      ]
+    },
+    {
+      "id": "karma",
+      "name": "Karma",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_all_in",
+        "assassin_dive",
+        "outscale_late"
+      ],
+      "roles": [
+        "support",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "enchanter",
+        "hard_engage_cc",
+        "peel_support",
+        "poke_support"
+      ]
+    },
+    {
+      "id": "karthus",
+      "name": "Karthus",
+      "colors_main": [
+        "U",
+        "B"
+      ],
+      "colors_off": [
+        "G"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "early_invade_pressure",
+        "assassin_dive",
+        "hard_engage_before_scale"
+      ],
+      "roles": [
+        "jungle",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "control_mage",
+        "execute",
+        "farming_jungler",
+        "global_ult",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "kassadin",
+      "name": "Kassadin",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "early_lane_bully",
+        "hard_cc_on_engage",
+        "hard_engage_before_scale"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "assassin",
+        "high_mobility",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "katarina",
+      "name": "Katarina",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "sustained_tank_damage",
+        "aoe_zone_control"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "anti_heal",
+        "aoe_teamfight_ult",
+        "assassin",
+        "reset_mechanic"
+      ]
+    },
+    {
+      "id": "kayle",
+      "name": "Kayle",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "early_lane_bully",
+        "hard_engage_before_scale",
+        "dive_pre_stack",
+        "farm_denial"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "hypercarry",
+        "marksman",
+        "scaling_hyper",
+        "untargetable"
+      ]
+    },
+    {
+      "id": "kayn",
+      "name": "Kayn",
+      "colors_main": [
+        "R",
+        "B"
+      ],
+      "colors_off": [
+        "U"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "early_invade_pressure",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "assassin",
+        "diver",
+        "farming_jungler",
+        "high_mobility"
+      ]
+    },
+    {
+      "id": "kennen",
+      "name": "Kennen",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_before_scale",
+        "outrange_medium_range",
+        "disengage_support"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "burst_mage",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "khazix",
+      "name": "Kha'Zix",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [
+        "R",
+        "U"
+      ],
+      "ls_notes": "can manipulate teamfights in upgrades",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "group_deny_picks",
+        "reveal_stealth",
+        "hard_cc_on_engage",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "assassin",
+        "high_mobility",
+        "reset_mechanic"
+      ]
+    },
+    {
+      "id": "kindred",
+      "name": "Kindred",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "early_invade_pressure",
+        "hard_cc_on_engage",
+        "aoe_zone_control"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "farming_jungler",
+        "marksman",
+        "peel_support",
+        "self_peel"
+      ]
+    },
+    {
+      "id": "kled",
+      "name": "Kled",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "disengage_support",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "diver",
+        "execute",
+        "juggernaut"
+      ]
+    },
+    {
+      "id": "kogmaw",
+      "name": "Kog'Maw",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [
+        "B"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "assassin_dive",
+        "hook_threat",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "anti_frontline_on_hit",
+        "hypercarry",
+        "marksman",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "leblanc",
+      "name": "LeBlanc",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "sustained_tank_damage",
+        "outscale_late"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "assassin",
+        "burst_mage",
+        "high_mobility"
+      ]
+    },
+    {
+      "id": "lee_sin",
+      "name": "Lee Sin",
+      "colors_main": [
+        "R",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "sustained_tank_damage",
+        "outscale_late",
+        "hard_cc_on_engage"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "displacement",
+        "diver",
+        "early_ganker",
+        "hard_engage_cc"
+      ]
+    },
+    {
+      "id": "leona",
+      "name": "Leona",
+      "colors_main": [
+        "W",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "disengage_support",
+        "kite_outrange",
+        "poke_before_engage"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "engage_support",
+        "engage_tank",
+        "hard_engage_cc",
+        "point_click_cc"
+      ]
+    },
+    {
+      "id": "lissandra",
+      "name": "Lissandra",
+      "colors_main": [
+        "G",
+        "U",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "outrange_medium_range",
+        "sustained_damage_no_burst",
+        "split_push_outscale"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "control_mage",
+        "hard_engage_cc",
+        "point_click_cc",
+        "untargetable"
+      ]
+    },
+    {
+      "id": "lucian",
+      "name": "Lucian",
+      "colors_main": [
+        "R",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "outscale_late",
+        "hard_engage_on_adc",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "bot",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "high_mobility",
+        "marksman"
+      ]
+    },
+    {
+      "id": "lulu",
+      "name": "Lulu",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_all_in",
+        "assassin_dive",
+        "burst_before_heal_shield"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "enchanter",
+        "knockup",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "lux",
+      "name": "Lux",
+      "colors_main": [
+        "U"
+      ],
+      "colors_off": [
+        "G",
+        "W"
+      ],
+      "ls_notes": "green if mid full AP",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "assassin_dive",
+        "anti_dash_cc"
+      ],
+      "roles": [
+        "support",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "artillery",
+        "burst_mage",
+        "global_ult",
+        "hard_engage_cc"
+      ]
+    },
+    {
+      "id": "malphite",
+      "name": "Malphite",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "sustained_damage_no_burst",
+        "kite_outrange",
+        "split_push_outscale"
+      ],
+      "roles": [
+        "top",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ap",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "engage_tank",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "malzahar",
+      "name": "Malzahar",
+      "colors_main": [
+        "U",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "spell_shield",
+        "hard_engage_reaches_backline",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "control_mage",
+        "hard_engage_cc",
+        "point_click_cc",
+        "spell_shield"
+      ]
+    },
+    {
+      "id": "maokai",
+      "name": "Maokai",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [
+        "B"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "anti_sustain",
+        "percent_health_damage"
+      ],
+      "roles": [
+        "support",
+        "jungle",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "displacement",
+        "engage_tank",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "master_yi",
+      "name": "Master Yi",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "burst_before_kite",
+        "aoe_cc_teamfight"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "reset_mechanic",
+        "scaling_hyper",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "miss_fortune",
+      "name": "Miss Fortune",
+      "colors_main": [
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "assassin_dive",
+        "hook_threat"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "anti_heal",
+        "aoe_teamfight_ult",
+        "marksman"
+      ]
+    },
+    {
+      "id": "mordekaiser",
+      "name": "Mordekaiser",
+      "colors_main": [
+        "G",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "percent_health_damage",
+        "true_damage"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "mixed",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "battle_mage",
+        "juggernaut",
+        "pick_threat"
+      ]
+    },
+    {
+      "id": "morgana",
+      "name": "Morgana",
+      "colors_main": [
+        "U",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_all_in",
+        "sustained_damage_no_burst",
+        "displacement_support"
+      ],
+      "roles": [
+        "support",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "hard_engage_cc",
+        "point_click_cc",
+        "poke_support",
+        "spell_shield"
+      ]
+    },
+    {
+      "id": "nami",
+      "name": "Nami",
+      "colors_main": [
+        "U",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_all_in",
+        "hook_threat",
+        "assassin_dive"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "enchanter",
+        "hard_engage_cc",
+        "knockup",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "nasus",
+      "name": "Nasus",
+      "colors_main": [
+        "G",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "early_lane_bully",
+        "farm_denial",
+        "percent_health_damage"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "juggernaut",
+        "point_click_cc",
+        "scaling_hyper",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "nautilus",
+      "name": "Nautilus",
+      "colors_main": [
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "disengage_support",
+        "long_range_poke",
+        "kite_outrange"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "engage_support",
+        "engage_tank",
+        "hard_engage_cc",
+        "hook_support",
+        "knockup",
+        "point_click_cc"
+      ]
+    },
+    {
+      "id": "neeko",
+      "name": "Neeko",
+      "colors_main": [
+        "R",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "sustained_damage_no_burst",
+        "outrange_medium_range",
+        "split_push_outscale"
+      ],
+      "roles": [
+        "mid",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "burst_mage",
+        "hard_engage_cc"
+      ]
+    },
+    {
+      "id": "nidalee",
+      "name": "Nidalee",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_all_in",
+        "sustained_tank_damage",
+        "outscale_late"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "early_ganker",
+        "high_mobility",
+        "poke_support"
+      ]
+    },
+    {
+      "id": "nocturne",
+      "name": "Nocturne",
+      "colors_main": [
+        "R",
+        "B"
+      ],
+      "colors_off": [
+        "G"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "group_deny_picks",
+        "disengage_support"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "assassin",
+        "diver",
+        "global_ult",
+        "spell_shield"
+      ]
+    },
+    {
+      "id": "nunu",
+      "name": "Nunu & Willump",
+      "colors_main": [
+        "U",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "early_invade_pressure",
+        "anti_sustain",
+        "kite_outrange"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ap",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "early_ganker",
+        "engage_tank",
+        "knockup",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "olaf",
+      "name": "Olaf",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [
+        "G",
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "outscale_late",
+        "disengage_support"
+      ],
+      "roles": [
+        "jungle",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "anti_heal",
+        "cleanse_self",
+        "juggernaut",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "orianna",
+      "name": "Orianna",
+      "colors_main": [
+        "U",
+        "W",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "assassin_dive",
+        "hard_engage_reaches_backline",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "control_mage",
+        "displacement",
+        "knockup",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "ornn",
+      "name": "Ornn",
+      "colors_main": [
+        "G",
+        "U",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "percent_health_damage",
+        "true_damage",
+        "kite_outrange",
+        "sustained_damage_no_burst"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "displacement",
+        "engage_tank",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "pantheon",
+      "name": "Pantheon",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "outscale_late",
+        "sustained_tank_damage",
+        "kite_outrange"
+      ],
+      "roles": [
+        "support",
+        "mid",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "diver",
+        "global_ult",
+        "hard_engage_cc",
+        "poke_support"
+      ]
+    },
+    {
+      "id": "poppy",
+      "name": "Poppy",
+      "colors_main": [
+        "U",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "sustained_damage_no_burst",
+        "kite_outrange",
+        "outrange_medium_range"
+      ],
+      "roles": [
+        "top",
+        "jungle",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "diver",
+        "engage_tank",
+        "hard_engage_cc",
+        "self_peel"
+      ]
+    },
+    {
+      "id": "pyke",
+      "name": "Pyke",
+      "colors_main": [
+        "U",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "sustained_tank_damage",
+        "hard_cc_on_engage",
+        "group_deny_picks"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "assassin",
+        "execute",
+        "hard_engage_cc",
+        "hook_support",
+        "reset_mechanic",
+        "stealth"
+      ]
+    },
+    {
+      "id": "qiyana",
+      "name": "Qiyana",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "sustained_tank_damage",
+        "outrange_medium_range"
+      ],
+      "roles": [
+        "mid",
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "assassin",
+        "displacement",
+        "hard_engage_cc",
+        "high_mobility",
+        "knockup"
+      ]
+    },
+    {
+      "id": "quinn",
+      "name": "Quinn",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "sustained_tank_damage",
+        "outscale_late"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "global_ult",
+        "high_mobility",
+        "marksman",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "rakan",
+      "name": "Rakan",
+      "colors_main": [
+        "R",
+        "W"
+      ],
+      "colors_off": [
+        "U",
+        "C"
+      ],
+      "ls_notes": "colorless when paried with Xayah",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "disengage_support",
+        "poke_before_engage"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "enchanter",
+        "engage_support",
+        "hard_engage_cc",
+        "high_mobility",
+        "knockup"
+      ]
+    },
+    {
+      "id": "rammus",
+      "name": "Rammus",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "sustained_damage_no_burst",
+        "kite_outrange",
+        "true_damage"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "engage_tank",
+        "hard_engage_cc",
+        "point_click_cc"
+      ]
+    },
+    {
+      "id": "reksai",
+      "name": "Rek'sai",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "outscale_late",
+        "hard_cc_on_engage"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "diver",
+        "early_ganker",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "renekton",
+      "name": "Renekton",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "outscale_late",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "diver",
+        "hard_engage_cc",
+        "juggernaut"
+      ]
+    },
+    {
+      "id": "rengar",
+      "name": "Rengar",
+      "colors_main": [
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "reveal_stealth",
+        "group_deny_picks",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "jungle",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "assassin",
+        "high_mobility",
+        "reset_mechanic",
+        "stealth"
+      ]
+    },
+    {
+      "id": "riven",
+      "name": "Riven",
+      "colors_main": [
+        "G",
+        "W",
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "kite_outrange",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "diver",
+        "high_mobility",
+        "knockup",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "rumble",
+      "name": "Rumble",
+      "colors_main": [
+        "R",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "outrange_medium_range",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "top",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "mixed",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "battle_mage"
+      ]
+    },
+    {
+      "id": "ryze",
+      "name": "Ryze",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "early_lane_bully",
+        "hard_engage_before_scale",
+        "assassin_dive"
+      ],
+      "roles": [
+        "mid",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "battle_mage",
+        "global_ult",
+        "point_click_cc",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "sejuani",
+      "name": "Sejuani",
+      "colors_main": [
+        "U",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "sustained_damage_no_burst",
+        "kite_outrange",
+        "percent_health_damage"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "engage_tank",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "senna",
+      "name": "Senna",
+      "colors_main": [
+        "U",
+        "B"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "assassin_dive",
+        "hook_threat"
+      ],
+      "roles": [
+        "support",
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "enchanter",
+        "global_ult",
+        "marksman",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "sett",
+      "name": "Sett",
+      "colors_main": [
+        "R",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "true_damage",
+        "percent_health_damage"
+      ],
+      "roles": [
+        "top",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "diver",
+        "juggernaut",
+        "knockup"
+      ]
+    },
+    {
+      "id": "shaco",
+      "name": "Shaco",
+      "colors_main": [
+        "R",
+        "U",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "reveal_stealth",
+        "group_deny_picks",
+        "sustained_tank_damage",
+        "aoe_zone_control"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "assassin",
+        "early_ganker",
+        "stealth"
+      ]
+    },
+    {
+      "id": "shen",
+      "name": "Shen",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "sustained_damage_no_burst",
+        "split_push_outscale",
+        "kite_outrange"
+      ],
+      "roles": [
+        "top",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "engage_tank",
+        "global_ult",
+        "hard_engage_cc",
+        "knockup",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "shyvana",
+      "name": "Shyvana",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "hard_cc_on_engage",
+        "early_invade_pressure"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "farming_jungler",
+        "scaling_hyper",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "singed",
+      "name": "Singed",
+      "colors_main": [
+        "G",
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "long_range_poke",
+        "hard_cc_on_engage"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ap",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "juggernaut",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "sion",
+      "name": "Sion",
+      "colors_main": [
+        "G",
+        "B"
+      ],
+      "colors_off": [
+        "R",
+        "U"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "percent_health_damage",
+        "true_damage",
+        "anti_mobility"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "engage_tank",
+        "hard_engage_cc",
+        "juggernaut",
+        "knockup"
+      ]
+    },
+    {
+      "id": "sivir",
+      "name": "Sivir",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "assassin_dive",
+        "outscale_late"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "engage_support",
+        "marksman",
+        "spell_shield"
+      ]
+    },
+    {
+      "id": "skarner",
+      "name": "Skarner",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "spell_shield",
+        "disengage_support"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "displacement",
+        "engage_tank",
+        "hard_engage_cc"
+      ]
+    },
+    {
+      "id": "sona",
+      "name": "Sona",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_all_in",
+        "assassin_dive",
+        "burst_before_heal_shield"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "enchanter",
+        "hard_engage_cc",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "soraka",
+      "name": "Soraka",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "anti_sustain",
+        "hard_engage_all_in",
+        "assassin_dive",
+        "burst_before_heal_shield"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "enchanter",
+        "global_ult",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "swain",
+      "name": "Swain",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [
+        "B"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "outrange_medium_range",
+        "anti_sustain",
+        "kite_outrange"
+      ],
+      "roles": [
+        "support",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "battle_mage",
+        "displacement",
+        "hook_support"
+      ]
+    },
+    {
+      "id": "sylas",
+      "name": "Sylas",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "anti_sustain",
+        "kite_outrange"
+      ],
+      "roles": [
+        "mid",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "diver",
+        "high_mobility",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "syndra",
+      "name": "Syndra",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "assassin_dive",
+        "sustained_tank_damage"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "control_mage",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "tahm_kench",
+      "name": "Tahm Kench",
+      "colors_main": [
+        "W",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "percent_health_damage",
+        "true_damage",
+        "kite_outrange",
+        "anti_sustain"
+      ],
+      "roles": [
+        "top",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "engage_tank",
+        "global_ult",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "taliyah",
+      "name": "Taliyah",
+      "colors_main": [
+        "R",
+        "U"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "assassin_dive",
+        "anti_dash_cc"
+      ],
+      "roles": [
+        "jungle",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "control_mage",
+        "displacement",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "talon",
+      "name": "Talon",
+      "colors_main": [
+        "R",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "sustained_tank_damage",
+        "group_deny_picks"
+      ],
+      "roles": [
+        "mid",
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "assassin",
+        "high_mobility"
+      ]
+    },
+    {
+      "id": "taric",
+      "name": "Taric",
+      "colors_main": [
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "poke_before_engage",
+        "kite_outrange",
+        "burst_before_heal_shield"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "enchanter",
+        "hard_engage_cc",
+        "peel_support",
+        "untargetable"
+      ]
+    },
+    {
+      "id": "teemo",
+      "name": "Teemo",
+      "colors_main": [
+        "U",
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_all_in",
+        "sustained_tank_damage",
+        "oracle_sweep"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "marksman",
+        "poke_support",
+        "stealth"
+      ]
+    },
+    {
+      "id": "thresh",
+      "name": "Thresh",
+      "colors_main": [
+        "G",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "disengage_support",
+        "long_range_poke",
+        "spell_shield"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "engage_support",
+        "hard_engage_cc",
+        "hook_support",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "tristana",
+      "name": "Tristana",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "sustained_tank_damage",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "bot",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "displacement",
+        "marksman",
+        "reset_mechanic",
+        "self_peel"
+      ]
+    },
+    {
+      "id": "trundle",
+      "name": "Trundle",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [
+        "B"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "percent_health_damage",
+        "true_damage"
+      ],
+      "roles": [
+        "jungle",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "anti_frontline_on_hit",
+        "displacement",
+        "juggernaut"
+      ]
+    },
+    {
+      "id": "tryndamere",
+      "name": "Tryndamere",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "kite_outrange",
+        "aoe_cc_teamfight"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "scaling_hyper",
+        "skirmisher",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "twisted_fate",
+      "name": "Twisted Fate",
+      "colors_main": [
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "assassin_dive",
+        "punish_roam"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "global_ult",
+        "point_click_cc"
+      ]
+    },
+    {
+      "id": "twitch",
+      "name": "Twitch",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "reveal_stealth",
+        "hard_engage_on_adc",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "hypercarry",
+        "marksman",
+        "scaling_hyper",
+        "stealth"
+      ]
+    },
+    {
+      "id": "udyr",
+      "name": "Udyr",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "hard_cc_on_engage",
+        "disengage_support"
+      ],
+      "roles": [
+        "jungle",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "diver",
+        "juggernaut",
+        "point_click_cc"
+      ]
+    },
+    {
+      "id": "urgot",
+      "name": "Urgot",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "outrange_medium_range",
+        "percent_health_damage"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "execute",
+        "juggernaut"
+      ]
+    },
+    {
+      "id": "varus",
+      "name": "Varus",
+      "colors_main": [
+        "G",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "assassin_dive",
+        "hook_threat"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "artillery",
+        "hard_engage_cc",
+        "heal_cut",
+        "marksman"
+      ]
+    },
+    {
+      "id": "vayne",
+      "name": "Vayne",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "early_lane_bully",
+        "burst_before_kite"
+      ],
+      "roles": [
+        "bot",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "anti_frontline_on_hit",
+        "hypercarry",
+        "marksman",
+        "self_peel",
+        "untargetable"
+      ]
+    },
+    {
+      "id": "veigar",
+      "name": "Veigar",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "assassin_dive",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "mid",
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "execute",
+        "hard_engage_cc",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "velkoz",
+      "name": "Vel'koz",
+      "colors_main": [
+        "U"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "assassin_dive",
+        "anti_dash_cc"
+      ],
+      "roles": [
+        "support",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "artillery",
+        "control_mage",
+        "hard_engage_cc"
+      ]
+    },
+    {
+      "id": "vi",
+      "name": "Vi",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "disengage_support",
+        "kite_outrange",
+        "hard_cc_on_engage"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "diver",
+        "early_ganker",
+        "hard_engage_cc",
+        "knockup",
+        "point_click_cc"
+      ]
+    },
+    {
+      "id": "viktor",
+      "name": "Viktor",
+      "colors_main": [
+        "U",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "assassin_dive",
+        "hard_engage_reaches_backline",
+        "early_lane_bully"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "control_mage",
+        "hard_engage_cc",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "vladimir",
+      "name": "Vladimir",
+      "colors_main": [
+        "G",
+        "U",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "anti_sustain",
+        "hard_engage_before_scale",
+        "early_lane_bully",
+        "burst_before_heal_shield"
+      ],
+      "roles": [
+        "mid",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "mixed",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "battle_mage",
+        "scaling_hyper",
+        "untargetable"
+      ]
+    },
+    {
+      "id": "volibear",
+      "name": "Volibear",
+      "colors_main": [
+        "G",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "percent_health_damage",
+        "true_damage"
+      ],
+      "roles": [
+        "jungle",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "diver",
+        "hard_engage_cc",
+        "juggernaut"
+      ]
+    },
+    {
+      "id": "warwick",
+      "name": "Warwick",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "anti_sustain",
+        "hard_cc_on_engage"
+      ],
+      "roles": [
+        "jungle",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "diver",
+        "early_ganker",
+        "hard_engage_cc"
+      ]
+    },
+    {
+      "id": "wukong",
+      "name": "Wukong",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "kite_outrange",
+        "disengage_support"
+      ],
+      "roles": [
+        "jungle",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "displacement",
+        "diver",
+        "knockup",
+        "stealth"
+      ]
+    },
+    {
+      "id": "xayah",
+      "name": "Xayah",
+      "colors_main": [
+        "R",
+        "W"
+      ],
+      "colors_off": [
+        "C"
+      ],
+      "ls_notes": "colorless when paried with Rakan",
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "sustained_tank_damage",
+        "outrange_pre_ult"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "hard_engage_cc",
+        "marksman",
+        "self_peel",
+        "untargetable"
+      ]
+    },
+    {
+      "id": "xerath",
+      "name": "Xerath",
+      "colors_main": [
+        "U"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "assassin_dive",
+        "anti_dash_cc"
+      ],
+      "roles": [
+        "support",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "artillery",
+        "hard_engage_cc",
+        "poke_support"
+      ]
+    },
+    {
+      "id": "xin_zhao",
+      "name": "Xin Zhao",
+      "colors_main": [
+        "R",
+        "W"
+      ],
+      "colors_off": [
+        "U"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "kite_outrange",
+        "disengage_support",
+        "outscale_late"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "diver",
+        "early_ganker",
+        "knockup",
+        "self_peel"
+      ]
+    },
+    {
+      "id": "yasuo",
+      "name": "Yasuo",
+      "colors_main": [
+        "W",
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "sustained_tank_damage",
+        "non_projectile_cc"
+      ],
+      "roles": [
+        "mid",
+        "top",
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "airborne_chain",
+        "high_mobility",
+        "knockup",
+        "skirmisher",
+        "spell_shield"
+      ]
+    },
+    {
+      "id": "yorick",
+      "name": "Yorick",
+      "colors_main": [
+        "G",
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "aoe_clears_minions",
+        "hard_engage_reaches_backline",
+        "kite_outrange"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "juggernaut",
+        "splitpusher"
+      ]
+    },
+    {
+      "id": "yuumi",
+      "name": "Yuumi",
+      "colors_main": [
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_all_in",
+        "anti_sustain",
+        "burst_before_heal_shield"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "enchanter",
+        "peel_support",
+        "untargetable"
+      ]
+    },
+    {
+      "id": "zac",
+      "name": "Zac",
+      "colors_main": [
+        "G"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "anti_sustain",
+        "kite_outrange",
+        "disengage_support"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "displacement",
+        "engage_tank",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "zed",
+      "name": "Zed",
+      "colors_main": [
+        "B"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "sustained_tank_damage",
+        "group_deny_picks"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "assassin",
+        "high_mobility",
+        "reset_mechanic"
+      ]
+    },
+    {
+      "id": "ziggs",
+      "name": "Ziggs",
+      "colors_main": [
+        "U"
+      ],
+      "colors_off": [
+        "W"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_reaches_backline",
+        "assassin_dive",
+        "anti_dash_cc"
+      ],
+      "roles": [
+        "bot",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "artillery",
+        "global_ult",
+        "poke_support"
+      ]
+    },
+    {
+      "id": "zilean",
+      "name": "Zilean",
+      "colors_main": [
+        "U",
+        "W"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "anti_sustain",
+        "hard_engage_all_in",
+        "burst_before_heal_shield"
+      ],
+      "roles": [
+        "support",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "enchanter",
+        "knockup",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "zoe",
+      "name": "Zoe",
+      "colors_main": [
+        "C"
+      ],
+      "colors_off": [],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "spell_shield",
+        "sustained_tank_damage",
+        "hard_engage_reaches_backline"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "point_click_cc",
+        "poke_support"
+      ]
+    },
+    {
+      "id": "zyra",
+      "name": "Zyra",
+      "colors_main": [
+        "U",
+        "W"
+      ],
+      "colors_off": [
+        "R"
+      ],
+      "ls_notes": null,
+      "source": "ls_sheet",
+      "contextual": false,
+      "counter_tags": [
+        "hard_engage_all_in",
+        "assassin_dive",
+        "aoe_clears_minions"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "hard_engage_cc",
+        "knockup",
+        "poke_support"
+      ]
+    },
+    {
+      "id": "ksante",
+      "name": "K'Sante",
+      "colors_main": [
+        "W",
+        "G"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "true_damage",
+        "percent_health_damage",
+        "anti_mobility",
+        "sustained_damage_no_burst",
+        "split_push_outscale"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "engage_tank",
+        "hard_engage_cc",
+        "juggernaut"
+      ]
+    },
+    {
+      "id": "naafiri",
+      "name": "Naafiri",
+      "colors_main": [
+        "R",
+        "B"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "long_range_poke",
+        "hard_cc_on_engage",
+        "aoe_clears_minions",
+        "early_invade_pressure",
+        "anti_dash_cc"
+      ],
+      "roles": [
+        "mid",
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "assassin",
+        "early_ganker",
+        "high_mobility"
+      ]
+    },
+    {
+      "id": "smolder",
+      "name": "Smolder",
+      "colors_main": [
+        "B",
+        "U"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "early_lane_bully",
+        "hard_engage_before_scale",
+        "farm_denial",
+        "dive_pre_stack"
+      ],
+      "roles": [
+        "bot",
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "execute",
+        "hypercarry",
+        "marksman",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "hwei",
+      "name": "Hwei",
+      "colors_main": [
+        "U",
+        "G"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "assassin_dive",
+        "hard_engage_reaches_backline",
+        "shield_penetration",
+        "short_range_skirmisher"
+      ],
+      "roles": [
+        "mid",
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "artillery",
+        "burst_mage",
+        "control_mage"
+      ]
+    },
+    {
+      "id": "milio",
+      "name": "Milio",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "hard_engage_on_adc",
+        "hook_threat",
+        "cc_chain_before_heal",
+        "displacement_support"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "enchanter",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "nilah",
+      "name": "Nilah",
+      "colors_main": [
+        "U"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "long_range_poke_adc",
+        "kite_outrange",
+        "punish_short_range_engage"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "marksman",
+        "self_peel",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "belveth",
+      "name": "Bel'Veth",
+      "colors_main": [
+        "B",
+        "U"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "early_invade_pressure",
+        "sustained_tank_damage",
+        "objective_control",
+        "deny_void_coral",
+        "kite_mobility"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "anti_frontline_on_hit",
+        "displacement",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "akshan",
+      "name": "Akshan",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "hard_engage_burst",
+        "anti_revive_burst",
+        "sustained_frontline_absorbs_poke",
+        "short_cd_gap_close"
+      ],
+      "roles": [
+        "mid",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "global_ult",
+        "high_mobility",
+        "marksman",
+        "skirmisher",
+        "stealth"
+      ]
+    },
+    {
+      "id": "viego",
+      "name": "Viego",
+      "colors_main": [
+        "B",
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "stat_steal_counters_possession",
+        "aoe_damage_through_possession",
+        "sustained_tank_denies_snowball",
+        "anti_sustain"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "assassin",
+        "reset_mechanic",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "samira",
+      "name": "Samira",
+      "colors_main": [
+        "R",
+        "B"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "hard_cc_before_ult",
+        "hook_threat",
+        "outrange_pre_ult",
+        "non_projectile_cc"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "marksman",
+        "reset_mechanic",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "rell",
+      "name": "Rell",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "disengage_support",
+        "poke_before_engage",
+        "long_range_keeps_distance",
+        "shield_peel"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "tank",
+        "frontline": "high"
+      },
+      "kit_tags": [
+        "displacement",
+        "engage_support",
+        "engage_tank",
+        "hard_engage_cc",
+        "knockup"
+      ]
+    },
+    {
+      "id": "seraphine",
+      "name": "Seraphine",
+      "colors_main": [
+        "U",
+        "G",
+        "W"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "assassin_dive",
+        "burst_before_heal_shield",
+        "gap_close_to_backline",
+        "punish_immobile_mage"
+      ],
+      "roles": [
+        "support",
+        "mid",
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "aoe_teamfight_ult",
+        "enchanter",
+        "hard_engage_cc",
+        "poke_support"
+      ]
+    },
+    {
+      "id": "gwen",
+      "name": "Gwen",
+      "colors_main": [
+        "R",
+        "U"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "hard_cc_outside_w_range",
+        "percent_health_damage",
+        "tank_out_sustain_early",
+        "true_damage"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "anti_frontline_on_hit",
+        "skirmisher",
+        "splitpusher",
+        "untargetable"
+      ]
+    },
+    {
+      "id": "vex",
+      "name": "Vex",
+      "colors_main": [
+        "G",
+        "U"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "one_shot_burst",
+        "non_dash_gap_close",
+        "outrange_passive_range",
+        "zone_control"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "control_mage",
+        "hard_engage_cc"
+      ]
+    },
+    {
+      "id": "zeri",
+      "name": "Zeri",
+      "colors_main": [
+        "W",
+        "G"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "hard_cc_stops_charge",
+        "anti_mobility",
+        "hook_threat",
+        "aoe_cc_teamfight"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "high_mobility",
+        "hypercarry",
+        "marksman"
+      ]
+    },
+    {
+      "id": "renata_glasc",
+      "name": "Renata Glasc",
+      "colors_main": [
+        "R",
+        "U"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "spell_shield",
+        "hard_engage_all_in",
+        "burst_through_bailout",
+        "disengage_support"
+      ],
+      "roles": [
+        "support"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "enchanter",
+        "peel_support"
+      ]
+    },
+    {
+      "id": "aurora",
+      "name": "Aurora",
+      "colors_main": [
+        "G",
+        "W"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "outrange_medium_range",
+        "hard_cc_during_ult",
+        "burst_before_passive_reset",
+        "anti_mobility"
+      ],
+      "roles": [
+        "mid",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "displacement",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "ambessa",
+      "name": "Ambessa",
+      "colors_main": [
+        "R"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "anti_mobility",
+        "sustained_tank_damage",
+        "true_damage",
+        "hard_cc_on_dash"
+      ],
+      "roles": [
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "displacement",
+        "diver",
+        "high_mobility",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "mel",
+      "name": "Mel",
+      "colors_main": [
+        "W"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "non_projectile_damage",
+        "true_damage",
+        "burst_before_shield",
+        "assassin_gap_close"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ap",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "battle_mage",
+        "spell_shield"
+      ]
+    },
+    {
+      "id": "briar",
+      "name": "Briar",
+      "colors_main": [
+        "R",
+        "B"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "kite_outrange",
+        "hard_cc_on_engage",
+        "anti_sustain"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "cleanse_self",
+        "diver",
+        "early_ganker",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "lillia",
+      "name": "Lillia",
+      "colors_main": [
+        "G",
+        "R"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "hard_cc_on_engage",
+        "anti_sustain",
+        "early_invade_pressure"
+      ],
+      "roles": [
+        "jungle"
+      ],
+      "structural_tags": {
+        "range": "medium",
+        "damage_profile": "mixed",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "battle_mage",
+        "farming_jungler",
+        "high_mobility",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "yone",
+      "name": "Yone",
+      "colors_main": [
+        "R",
+        "W"
+      ],
+      "colors_off": [
+        "B"
+      ],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "long_range_poke",
+        "kite_outrange",
+        "anti_dash_cc"
+      ],
+      "roles": [
+        "mid",
+        "top"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "airborne_chain",
+        "high_mobility",
+        "knockup",
+        "skirmisher"
+      ]
+    },
+    {
+      "id": "yunara",
+      "name": "Yunara",
+      "colors_main": [
+        "R",
+        "G"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "assassin_dive",
+        "hard_cc_on_engage",
+        "kite_outrange"
+      ],
+      "roles": [
+        "bot"
+      ],
+      "structural_tags": {
+        "range": "long",
+        "damage_profile": "ad",
+        "frontline": "low"
+      },
+      "kit_tags": [
+        "hypercarry",
+        "marksman",
+        "scaling_hyper"
+      ]
+    },
+    {
+      "id": "zaahen",
+      "name": "Zaahen",
+      "colors_main": [
+        "B",
+        "U"
+      ],
+      "colors_off": [],
+      "contextual": false,
+      "ls_notes": null,
+      "source": "owner",
+      "counter_tags": [
+        "early_lane_bully",
+        "hard_engage_before_scale",
+        "anti_sustain"
+      ],
+      "roles": [
+        "mid"
+      ],
+      "structural_tags": {
+        "range": "melee",
+        "damage_profile": "ad",
+        "frontline": "medium"
+      },
+      "kit_tags": [
+        "burst_mage",
+        "control_mage"
+      ]
+    }
+  ],
+  "total_champions": 172,
+  "notes": "Color data: LS/R\u00fcbezahl spreadsheet (source='ls_sheet') + owner-tagged new releases (source='owner'). counter_tags present on owner-tagged entries; will be backfilled for ls_sheet entries via Phase 0 CLI."
+}

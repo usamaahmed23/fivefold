@@ -1,0 +1,12 @@
+{
+  "_comment": "Ordered arrays per role — index 0 is strongest. Update manually each patch. Only include genuinely strong picks. Champions not listed are playable but not meta-prioritized. IDs must match champions.json.",
+  "patch": "26.08",
+  "updated_at": "2026-04-16",
+  "tiers": {
+    "top": [],
+    "jungle": [],
+    "mid": [],
+    "bot": [],
+    "support": []
+  }
+}
