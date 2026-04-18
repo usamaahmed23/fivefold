@@ -215,9 +215,11 @@ def test_flex_bonus_scales_with_role_count():
     # More roles = more ambiguity = higher bonus on red side pick1.
     # Karma (2 roles) should score lower than a 3-role flex champion.
     state_red = _state(phase="pick1", action_to_take="pick", side_to_act="red")
-    karma = engine.score_candidate("karma", state_red, CHAMPIONS, META)      # 2 roles
+    # Use lulu (2 roles: support/mid) vs sylas (4 roles) — lulu is not in meta tiers
+    # so survivability doesn't skew the comparison.
+    lulu = engine.score_candidate("lulu", state_red, CHAMPIONS, META)        # 2 roles
     sylas = engine.score_candidate("sylas", state_red, CHAMPIONS, META)      # 4 roles
-    assert sylas.total > karma.total
+    assert sylas.total > lulu.total
 
 
 def test_b_constraint_penalises_b_lead_in_pick1():

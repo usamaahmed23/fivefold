@@ -5547,7 +5547,8 @@
         "anti_sustain"
       ],
       "roles": [
-        "mid"
+        "top",
+        "jungle"
       ],
       "structural_tags": {
         "range": "melee",
