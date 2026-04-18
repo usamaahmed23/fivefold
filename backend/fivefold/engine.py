@@ -297,11 +297,18 @@ def score_identity(
         1 for pid in our_picks
         if (ch := champions.get(pid)) and cand.id in ch.synergy_with
     )
-    # Also count from candidate's own synergy_with list matching allies
     synergy_count += sum(1 for pid in our_picks if pid in cand.synergy_with)
-    # Deduplicate: a pair only counts once
     synergy_count = min(synergy_count, len(our_picks))
     score = min(1.0, score + synergy_count * 0.04)
+
+    # weak_with partner subtracts an identity penalty (-0.05 per bad pairing, cap -0.15).
+    weak_count = sum(
+        1 for pid in our_picks
+        if (ch := champions.get(pid)) and cand.id in ch.weak_with
+    )
+    weak_count += sum(1 for pid in our_picks if pid in cand.weak_with)
+    weak_count = min(weak_count, len(our_picks))
+    score = max(0.0, score - weak_count * 0.05)
 
     return min(1.0, score)
 

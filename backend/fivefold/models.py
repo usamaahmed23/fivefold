@@ -49,6 +49,7 @@ class Champion(BaseModel):
     kit_tags: list[str] = Field(default_factory=list)
     countered_by: list[str] = Field(default_factory=list)   # champ IDs that beat this champ
     synergy_with: list[str] = Field(default_factory=list)   # champ IDs that pair well
+    weak_with: list[str] = Field(default_factory=list)      # champ IDs that pair poorly
     context_rules: list[ContextRule] = Field(default_factory=list)
 
 

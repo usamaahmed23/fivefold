@@ -283,7 +283,11 @@
       "synergy_with": [
         "rakan",
         "thresh",
-        "braum"
+        "braum",
+        "milio"
+      ],
+      "weak_with": [
+        "lulu"
       ]
     },
     {
@@ -318,6 +322,17 @@
         "hard_engage_cc",
         "marksman",
         "point_click_cc"
+      ],
+      "synergy_with": [
+        "soraka",
+        "nami",
+        "janna",
+        "milio"
+      ],
+      "weak_with": [
+        "senna",
+        "leona",
+        "nautilus"
       ]
     },
     {
@@ -418,6 +433,10 @@
         "hard_engage_cc",
         "peel_support",
         "poke_support"
+      ],
+      "synergy_with": [
+        "caitlyn",
+        "ezreal"
       ]
     },
     {
@@ -480,6 +499,9 @@
         "burst_mage",
         "hard_engage_cc",
         "poke_support"
+      ],
+      "synergy_with": [
+        "nami"
       ]
     },
     {
@@ -515,6 +537,10 @@
         "hard_engage_cc",
         "knockup",
         "peel_support"
+      ],
+      "synergy_with": [
+        "jinx",
+        "yunara"
       ]
     },
     {
@@ -547,6 +573,17 @@
         "marksman",
         "poke_support",
         "self_peel"
+      ],
+      "synergy_with": [
+        "morgana",
+        "karma",
+        "bard",
+        "milio"
+      ],
+      "weak_with": [
+        "soraka",
+        "senna",
+        "lulu"
       ]
     },
     {
@@ -805,6 +842,9 @@
         "global_ult",
         "high_mobility",
         "marksman"
+      ],
+      "synergy_with": [
+        "thresh"
       ]
     },
     {
@@ -932,6 +972,13 @@
         "global_ult",
         "high_mobility",
         "marksman"
+      ],
+      "synergy_with": [
+        "bard"
+      ],
+      "weak_with": [
+        "nautilus",
+        "yuumi"
       ]
     },
     {
@@ -1430,6 +1477,12 @@
         "enchanter",
         "knockup",
         "peel_support"
+      ],
+      "synergy_with": [
+        "ashe"
+      ],
+      "weak_with": [
+        "jinx"
       ]
     },
     {
@@ -1557,6 +1610,10 @@
         "global_ult",
         "hard_engage_cc",
         "marksman"
+      ],
+      "synergy_with": [
+        "senna",
+        "xerath"
       ]
     },
     {
@@ -1590,6 +1647,15 @@
         "marksman",
         "reset_mechanic",
         "scaling_hyper"
+      ],
+      "synergy_with": [
+        "braum",
+        "soraka",
+        "seraphine",
+        "lulu"
+      ],
+      "weak_with": [
+        "janna"
       ]
     },
     {
@@ -1622,6 +1688,11 @@
         "hypercarry",
         "marksman",
         "scaling_hyper"
+      ],
+      "weak_with": [
+        "nami",
+        "soraka",
+        "lulu"
       ]
     },
     {
@@ -1684,6 +1755,10 @@
         "hard_engage_cc",
         "peel_support",
         "poke_support"
+      ],
+      "synergy_with": [
+        "vayne",
+        "caitlyn"
       ]
     },
     {
@@ -2102,6 +2177,12 @@
         "engage_tank",
         "hard_engage_cc",
         "point_click_cc"
+      ],
+      "synergy_with": [
+        "samira"
+      ],
+      "weak_with": [
+        "ashe"
       ]
     },
     {
@@ -2164,6 +2245,9 @@
       "kit_tags": [
         "high_mobility",
         "marksman"
+      ],
+      "synergy_with": [
+        "nami"
       ]
     },
     {
@@ -2195,6 +2279,15 @@
         "enchanter",
         "knockup",
         "peel_support"
+      ],
+      "synergy_with": [
+        "jinx"
+      ],
+      "weak_with": [
+        "aphelios",
+        "caitlyn",
+        "kaisa",
+        "smolder"
       ]
     },
     {
@@ -2389,6 +2482,9 @@
         "anti_heal",
         "aoe_teamfight_ult",
         "marksman"
+      ],
+      "synergy_with": [
+        "thresh"
       ]
     },
     {
@@ -2452,6 +2548,9 @@
         "point_click_cc",
         "poke_support",
         "spell_shield"
+      ],
+      "synergy_with": [
+        "caitlyn"
       ]
     },
     {
@@ -2483,6 +2582,17 @@
         "hard_engage_cc",
         "knockup",
         "peel_support"
+      ],
+      "synergy_with": [
+        "ashe",
+        "twitch",
+        "yunara",
+        "lucian",
+        "brand",
+        "smolder"
+      ],
+      "weak_with": [
+        "kaisa"
       ]
     },
     {
@@ -2549,6 +2659,13 @@
         "hook_support",
         "knockup",
         "point_click_cc"
+      ],
+      "synergy_with": [
+        "samira"
+      ],
+      "weak_with": [
+        "ezreal",
+        "ashe"
       ]
     },
     {
@@ -3252,6 +3369,13 @@
         "global_ult",
         "marksman",
         "scaling_hyper"
+      ],
+      "synergy_with": [
+        "jhin"
+      ],
+      "weak_with": [
+        "ashe",
+        "caitlyn"
       ]
     },
     {
@@ -3579,6 +3703,14 @@
         "enchanter",
         "global_ult",
         "peel_support"
+      ],
+      "synergy_with": [
+        "ashe",
+        "jinx"
+      ],
+      "weak_with": [
+        "caitlyn",
+        "kaisa"
       ]
     },
     {
@@ -3864,6 +3996,15 @@
         "hard_engage_cc",
         "hook_support",
         "peel_support"
+      ],
+      "synergy_with": [
+        "samira",
+        "miss_fortune",
+        "xayah",
+        "draven"
+      ],
+      "weak_with": [
+        "yunara"
       ]
     },
     {
@@ -4020,6 +4161,10 @@
         "marksman",
         "scaling_hyper",
         "stealth"
+      ],
+      "synergy_with": [
+        "milio",
+        "nami"
       ]
     },
     {
@@ -4145,6 +4290,9 @@
         "marksman",
         "self_peel",
         "untargetable"
+      ],
+      "synergy_with": [
+        "karma"
       ]
     },
     {
@@ -4433,6 +4581,9 @@
         "marksman",
         "self_peel",
         "untargetable"
+      ],
+      "synergy_with": [
+        "thresh"
       ]
     },
     {
@@ -4463,6 +4614,9 @@
         "artillery",
         "hard_engage_cc",
         "poke_support"
+      ],
+      "synergy_with": [
+        "jhin"
       ]
     },
     {
@@ -4591,6 +4745,12 @@
         "enchanter",
         "peel_support",
         "untargetable"
+      ],
+      "synergy_with": [
+        "zeri"
+      ],
+      "weak_with": [
+        "ezreal"
       ]
     },
     {
@@ -4879,6 +5039,13 @@
         "hypercarry",
         "marksman",
         "scaling_hyper"
+      ],
+      "synergy_with": [
+        "seraphine",
+        "nami"
+      ],
+      "weak_with": [
+        "lulu"
       ]
     },
     {
@@ -4943,6 +5110,15 @@
         "cleanse_self",
         "enchanter",
         "peel_support"
+      ],
+      "synergy_with": [
+        "twitch",
+        "aphelios",
+        "ashe",
+        "caitlyn"
+      ],
+      "weak_with": [
+        "yunara"
       ]
     },
     {
@@ -5111,6 +5287,11 @@
         "marksman",
         "reset_mechanic",
         "skirmisher"
+      ],
+      "synergy_with": [
+        "leona",
+        "thresh",
+        "nautilus"
       ]
     },
     {
@@ -5179,6 +5360,10 @@
         "enchanter",
         "hard_engage_cc",
         "poke_support"
+      ],
+      "synergy_with": [
+        "jinx",
+        "smolder"
       ]
     },
     {
@@ -5273,6 +5458,9 @@
         "high_mobility",
         "hypercarry",
         "marksman"
+      ],
+      "synergy_with": [
+        "yuumi"
       ]
     },
     {
@@ -5528,6 +5716,14 @@
         "hypercarry",
         "marksman",
         "scaling_hyper"
+      ],
+      "synergy_with": [
+        "nami",
+        "braum"
+      ],
+      "weak_with": [
+        "thresh",
+        "milio"
       ]
     },
     {
