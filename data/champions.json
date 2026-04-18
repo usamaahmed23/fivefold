@@ -312,11 +312,11 @@
       "id": "aurelion_sol",
       "name": "Aurelion Sol",
       "colors_main": [
-        "R",
-        "G"
+        "G",
+        "U"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "G/U (reworked). G: stardust accumulation \u2014 grows permanently through the game, cosmic scaling identity. U: inevitability and map control, the breath of light as zone denial. R removed: he does not win through early aggression.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -444,10 +444,10 @@
       "name": "Brand",
       "colors_main": [
         "R",
-        "G"
+        "B"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "R/B. R: aggressive burst pressure, must win lane and snowball. B: passive stacks are condition-based \u2014 three procs for the blaze explosion. G removed: he does not scale with allies or have meaningful item timing synergy.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1096,11 +1096,10 @@
       "id": "garen",
       "name": "Garen",
       "colors_main": [
-        "R",
-        "G"
+        "R"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "Mono-R. No G identity \u2014 no ally synergy, no item timing complexity, no scaling in any G way. Pure linear aggression, same school as Darius and Olaf.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1393,11 +1392,11 @@
       "id": "janna",
       "name": "Janna",
       "colors_main": [
-        "G",
-        "U"
+        "W",
+        "G"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "W/G. W: resists aggression, binary disengage ult choice, counter-pick identity vs R comps \u2014 W vs R is the classic MTG counter. G: carry-enabling shield, accelerates ally power. U removed: control is secondary to her reactive W identity.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1617,13 +1616,11 @@
       "id": "kalista",
       "name": "Kalista",
       "colors_main": [
-        "R"
-      ],
-      "colors_off": [
-        "G",
+        "R",
         "B"
       ],
-      "ls_notes": null,
+      "colors_off": [],
+      "ls_notes": "R/B. R: aggressive laning, must build a lead early. B: the Oathsworn bond is her defining mechanic \u2014 a condition at the core of her identity. G removed: off G/B was imprecise; B is main because the bond condition defines everything about how she plays.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -2005,10 +2002,11 @@
       "id": "leblanc",
       "name": "LeBlanc",
       "colors_main": [
-        "R"
+        "R",
+        "U"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "R/U. R: must win early, assassination pressure. U: deception is core \u2014 clone, mimic, misdirection. The entire kit is built around making the enemy not know what is real.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -2066,11 +2064,11 @@
       "id": "leona",
       "name": "Leona",
       "colors_main": [
-        "W",
-        "B"
+        "R",
+        "W"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "R/W. R: all-in commit engager with no escape \u2014 she must go forward. W: binary supportive aspect, the shield and the protect-vs-engage choice. B removed: Sunlight passive is a minor condition, not her defining identity.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -2512,10 +2510,11 @@
       "id": "nautilus",
       "name": "Nautilus",
       "colors_main": [
-        "U"
+        "U",
+        "W"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "U/W. U: Riptide zone control, CC chain suppression. W: supportive binary choices \u2014 hook engage or protect, the binary tanking decision. Not mono-U: his supportive protective identity is clearly W.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -2638,11 +2637,11 @@
       "id": "nunu",
       "name": "Nunu & Willump",
       "colors_main": [
-        "U",
-        "W"
+        "G",
+        "U"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "G/U. G: the bond between Nunu and Willump \u2014 growing together, synergy-based power. U: snowball zone denial, Consume as map control. W removed: his identity is partnership growth, not binary choice support.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -3345,10 +3344,11 @@
       "id": "shyvana",
       "name": "Shyvana",
       "colors_main": [
-        "G"
+        "G",
+        "R"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "G/R. G: scales through objective stacking, item completions. R: dragon transformation is an aggressive empowerment \u2014 she shifts into an aggressive mode with her ult. Not mono-G.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -3540,10 +3540,10 @@
       "name": "Soraka",
       "colors_main": [
         "G",
-        "U"
+        "W"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "G/W. G: healing = growth and restoration, enables allies to sustain through adversity. W: binary decisions about who to heal and when \u2014 the essential Choose One of support identity. U removed: her silence is denial-adjacent but not her defining color.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -3640,10 +3640,10 @@
       "name": "Syndra",
       "colors_main": [
         "R",
-        "G"
+        "U"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "R/U. R: aggressive burst pressure, must win lane. U: sphere placement is zone control \u2014 she denies space and dictates engagement angles. G removed: she does not scale with allies or have item timing synergy.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -3954,10 +3954,11 @@
       "id": "twisted_fate",
       "name": "Twisted Fate",
       "colors_main": [
-        "W"
+        "W",
+        "U"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "W/U. W: Pick a Card is the quintessential binary Choose One mechanic. U: his Gate ult is pure U \u2014 inaction is action, you control the map without being there. Global presence with no combat required.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -5104,12 +5105,12 @@
       "id": "rell",
       "name": "Rell",
       "colors_main": [
-        "G",
+        "R",
         "W"
       ],
       "colors_off": [],
       "contextual": false,
-      "ls_notes": null,
+      "ls_notes": "R/W. R: all-in commit engage, magnetic pull forces confrontation. W: binary mount/dismount mechanic, the protective support aspect. G removed: no meaningful scaling or ally synergy in a G sense.",
       "source": "owner",
       "counter_tags": [
         "disengage_support",
