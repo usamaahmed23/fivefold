@@ -83,6 +83,39 @@ TIEBREAKER_TOLERANCE = 0.03
 
 ALL_ROLES: tuple[str, ...] = ("top", "jungle", "mid", "bot", "support")
 
+# ---------------------------------------------------------------------------
+# Phase-fit modifier — R-heavy picks are penalised in early phases.
+#
+# Because League drafts are fully face-up, anchoring pick1/ban1 with a
+# linear R (or B/R) champion telegraphs your gameplan and lets the opponent
+# sideboard in real time. LS calls this the "who's the beatdown" problem.
+# R picks are best used in pick2 to close against a greedy enemy, not to
+# define the draft identity early.
+#
+# Applied additively to the total score. Only affects pick actions — bans
+# already score from the enemy's perspective so no modifier needed there.
+# ---------------------------------------------------------------------------
+_PHASE_FIT_EARLY = {"ban1", "pick1"}
+
+
+def _phase_fit_modifier(colors_main: list[str], phase: str, action: str) -> float:
+    if action == "ban" or not colors_main:
+        return 0.0
+    is_r = "R" in colors_main
+    if not is_r:
+        return 0.0
+    only_rb = set(colors_main) <= {"R", "B"}
+    mono_r = colors_main == ["R"]
+    if phase in _PHASE_FIT_EARLY:
+        if mono_r:
+            return -0.10  # pure aggression: immediately reveals you're the beatdown
+        if only_rb:
+            return -0.06  # conditional aggression: still telegraphs a linear gameplan
+        return -0.03      # R present but other colors add flex — mild signal
+    if phase == "pick2":
+        return +0.04      # pick2 closer: rewarded for waiting
+    return 0.0
+
 
 def _unfilled_roles(picks: list[str], champions: dict[str, Champion]) -> set[str]:
     """Return the roles this side can still fill given its current picks.
@@ -349,6 +382,11 @@ def score_candidate(
         + w["structural"] * structural
         + w["survivability"] * survivability
     )
+
+    cand_r = contextual.resolve(cand, draft_state)
+    total = max(0.0, min(1.0, total + _phase_fit_modifier(
+        cand_r.colors_main, phase, draft_state.action_to_take
+    )))
 
     return CandidateScore(
         champion_id=candidate_id,

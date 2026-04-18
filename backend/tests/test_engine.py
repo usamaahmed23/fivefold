@@ -190,6 +190,34 @@ def test_ban_scoring_denial_is_threat_to_us():
     assert ashe.denial > ahri.denial
 
 
+def test_phase_fit_penalises_mono_r_in_pick1():
+    # Darius (mono-R) should score lower in pick1 than a U/W champion
+    # because anchoring aggression early telegraphs the gameplan.
+    state_pick1 = _state(phase="pick1", action_to_take="pick")
+    darius = engine.score_candidate("darius", state_pick1, CHAMPIONS, META)
+    lissandra = engine.score_candidate("lissandra", state_pick1, CHAMPIONS, META)
+    assert lissandra.total > darius.total
+
+
+def test_phase_fit_boosts_r_in_pick2():
+    # In pick2 (closing the draft), R picks get a boost — they're pick2 closers.
+    state_pick1 = _state(phase="pick1", action_to_take="pick")
+    state_pick2 = _state(phase="pick2", action_to_take="pick")
+    darius_p1 = engine.score_candidate("darius", state_pick1, CHAMPIONS, META)
+    darius_p2 = engine.score_candidate("darius", state_pick2, CHAMPIONS, META)
+    assert darius_p2.total > darius_p1.total
+
+
+def test_phase_fit_does_not_penalise_bans():
+    # Bans are scored from enemy perspective — no phase fit penalty applies.
+    state_ban1 = _state(phase="ban1", action_to_take="ban")
+    state_pick1 = _state(phase="pick1", action_to_take="pick")
+    # Banning Darius in ban1 should not be penalised (we're denying, not telegraphing).
+    darius_ban = engine.score_candidate("darius", state_ban1, CHAMPIONS, META)
+    darius_pick = engine.score_candidate("darius", state_pick1, CHAMPIONS, META)
+    assert darius_ban.total > darius_pick.total
+
+
 def test_tiebreaker_prefers_meta_tier_when_totals_close(tmp_path):
     # Fabricate a meta tiers file that places jax first in top.
     import json
