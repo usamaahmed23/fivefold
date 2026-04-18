@@ -701,13 +701,11 @@
       "id": "diana",
       "name": "Diana",
       "colors_main": [
-        "G",
-        "B"
+        "B",
+        "G"
       ],
-      "colors_off": [
-        "R"
-      ],
-      "ls_notes": "ult interaction and q/w/e. whole kit has mini quests. items spikes",
+      "colors_off": [],
+      "ls_notes": "ult interaction and q/w/e. whole kit has mini quests. items spikes. provides 0 value at even game state — needs a lead to function. R removed: aggression is conditional on the lead, not a baseline trait.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1824,17 +1822,19 @@
       "id": "kennen",
       "name": "Kennen",
       "colors_main": [
-        "R",
+        "B",
         "G"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "0 value at even game state. entirely item-completion dependent — needs two full items before he does anything. ult is a binary all-in condition (B). exhaust single-handedly neutralises his entire gameplan. not R: he is not an early aggressor, he needs the game state to come to him.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
         "hard_engage_before_scale",
         "outrange_medium_range",
-        "disengage_support"
+        "disengage_support",
+        "hard_cc_during_ult",
+        "burst_before_scale"
       ],
       "roles": [
         "top"
@@ -1855,13 +1855,13 @@
       "id": "khazix",
       "name": "Kha'Zix",
       "colors_main": [
+        "B",
         "G"
       ],
       "colors_off": [
-        "R",
         "U"
       ],
-      "ls_notes": "can manipulate teamfights in upgrades",
+      "ls_notes": "evolution quests are pure B — power unlocked through meeting conditions. 0 value at 0-0-0: needs a kill lead to snowball isolation windows. R removed from off: the aggression is gated behind the lead, not inherent. can manipulate teamfights in upgrades.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
