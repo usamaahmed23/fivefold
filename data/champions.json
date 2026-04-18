@@ -475,14 +475,14 @@
       "id": "braum",
       "name": "Braum",
       "colors_main": [
-        "U",
-        "W"
+        "W",
+        "R"
       ],
       "colors_off": [
-        "R",
-        "G"
+        "G",
+        "U"
       ],
-      "ls_notes": "off color depends on how braum is used",
+      "ls_notes": "four-color champion. primary mode is W/R: go forward, protect, engage. G (synergy/items) and U (denial) only activated in specific contexts where he plays passive enabler.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -894,12 +894,13 @@
       "id": "ezreal",
       "name": "Ezreal",
       "colors_main": [
-        "R",
         "U",
+        "R"
+      ],
+      "colors_off": [
         "W"
       ],
-      "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "U is core: poke, safe play, distance control. can flip a switch to R aggression. W off: able to do everything, adapt to any comp. white is just a trait not core identity.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1161,10 +1162,13 @@
       "id": "gragas",
       "name": "Gragas",
       "colors_main": [
-        "W"
+        "W",
+        "U"
       ],
-      "colors_off": [],
-      "ls_notes": null,
+      "colors_off": [
+        "R"
+      ],
+      "ls_notes": "can do everything (off-tank, glass cannon, pure tank). terrain shaping via E and R. little bit of blue (manipulation/terrain), little bit of red (early aggression switch). white is core.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1679,13 +1683,11 @@
       "id": "karthus",
       "name": "Karthus",
       "colors_main": [
-        "U",
-        "B"
+        "B",
+        "R"
       ],
-      "colors_off": [
-        "G"
-      ],
-      "ls_notes": null,
+      "colors_off": [],
+      "ls_notes": "black red: sacrifice/condition mechanics (passive, ult cost), global damage. B leads — power at a cost defines the kit. R is the damage output unlocked by the B conditions.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1774,11 +1776,13 @@
       "id": "kayle",
       "name": "Kayle",
       "colors_main": [
-        "G",
-        "W"
+        "W",
+        "R"
       ],
-      "colors_off": [],
-      "ls_notes": null,
+      "colors_off": [
+        "G"
+      ],
+      "ls_notes": "Boros angel archetype. extremely white and red. W leads: structure, binary invulnerability ult, resists aggression. R secondary: damage payoff. G off: components of item timings and scaling but not the core identity.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -2128,11 +2132,10 @@
       "id": "lucian",
       "name": "Lucian",
       "colors_main": [
-        "R",
-        "B"
+        "R"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "deep red. must win lane. runs hot early, tapers. no meaningful off-color identity.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [

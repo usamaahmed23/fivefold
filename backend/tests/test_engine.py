@@ -97,8 +97,8 @@ def test_denial_red_punishes_scaling_enemy():
     # Enemy = scaling Green: Jax + Kassadin + Veigar.
     state = _state(red_picks=["jax", "kassadin", "veigar"])
     darius = engine.score_candidate("darius", state, CHAMPIONS, META)  # R/C
-    kayle = engine.score_candidate("kayle", state, CHAMPIONS, META)   # G/W (outscales them, shouldn't "deny")
-    assert darius.denial > kayle.denial
+    jinx = engine.score_candidate("jinx", state, CHAMPIONS, META)     # G/W (outscales them, shouldn't "deny")
+    assert darius.denial > jinx.denial
 
 
 # ---------------------------------------------------------------------------
