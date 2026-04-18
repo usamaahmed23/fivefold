@@ -68,11 +68,11 @@ export function RecommendationPanel({
       {!result && !loading && !error && (
         <div className="rounded-lg border border-dashed border-border/60 bg-surface-2/30 p-4 text-sm text-faint">
           <p>
-            Press <kbd className="mx-0.5 rounded border-b border-border bg-surface-2 px-1 py-0.5 font-mono text-[10px] text-muted">S</kbd> or click <span className="text-fg">Suggest</span> for the top 3 candidates scored on
-            four axes: <span className="text-fg">identity</span>,{" "}
-            <span className="text-fg">denial</span>,{" "}
-            <span className="text-fg">structural</span>, and{" "}
-            <span className="text-fg">survivability</span>.
+            Press <kbd className="mx-0.5 rounded border-b border-border bg-surface-2 px-1 py-0.5 font-mono text-[10px] text-muted">S</kbd> or click <span className="text-fg">Suggest</span> for 5 diverse candidates —{" "}
+            <span className="text-amber-500">top picks</span>,{" "}
+            <span className="text-teal-500">structural fill</span>,{" "}
+            <span className="text-rose-500">best denial</span>, and{" "}
+            <span className="text-violet-500">identity anchor</span>.
           </p>
         </div>
       )}

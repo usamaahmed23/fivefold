@@ -7,7 +7,7 @@ denial scoring (see CLAUDE.md design principles).
 from __future__ import annotations
 
 from . import composition, contextual
-from .composition import COLORS, LEVEL_VALUES, OFF_COLOR_WEIGHT
+from .composition import ALL_FIELD_VALUES, COLORS, LEVEL_VALUES, OFF_COLOR_WEIGHT, RANGE_VALUES
 from .models import Archetype, CandidateScore, Champion, DraftState, MetaTiers
 
 # ---------------------------------------------------------------------------
@@ -399,8 +399,6 @@ def score_structural(
         penalty = min(0.40, ap_allies * 0.20)
 
     # Damage profile diversity: a comp should never be mono-AP or mono-AD.
-    # Count how many allies share the candidate's damage profile (ap or ad).
-    # mixed/true/tank profiles are neutral and don't trigger this.
     cand_profile = cand_st.damage_profile if cand_st else None
     if cand_profile in ("ap", "ad"):
         same_profile_allies = sum(
@@ -409,7 +407,6 @@ def score_structural(
                ch.structural_tags is not None and
                ch.structural_tags.damage_profile == cand_profile
         )
-        # 2 same-type allies → -0.10, 3 → -0.25, 4+ → -0.40
         if same_profile_allies >= 4:
             penalty += 0.40
         elif same_profile_allies == 3:
@@ -417,8 +414,25 @@ def score_structural(
         elif same_profile_allies == 2:
             penalty += 0.10
 
+    # Range diversity: a comp with 3+ melee champions needs ranged coverage.
+    cand_range = cand_st.range if cand_st else None
+    if cand_range in ("melee", "short"):
+        melee_allies = sum(
+            1 for pid in our_picks
+            if (ch := champions.get(pid)) and
+               ch.structural_tags is not None and
+               ch.structural_tags.range in ("melee", "short")
+        )
+        if melee_allies >= 4:
+            penalty += 0.35
+        elif melee_allies == 3:
+            penalty += 0.20
+        elif melee_allies == 2:
+            penalty += 0.08
+
     if comp.holes:
-        lvls = [LEVEL_VALUES.get(getattr(cand_st, f) or "none", 0.0) for f in comp.holes]
+        # Use ALL_FIELD_VALUES so range holes ("melee"/"long" values) are scored correctly.
+        lvls = [ALL_FIELD_VALUES.get(getattr(cand_st, f) or "none", 0.0) for f in comp.holes]
         coverage = sum(lvls) / len(lvls)
         return max(0.0, min(1.0, 0.25 + 0.75 * coverage - penalty))
 
@@ -527,12 +541,79 @@ def rank_candidates(
     ]
 
     def sort_key(s: CandidateScore) -> tuple:
-        # Bucket totals into TIEBREAKER_TOLERANCE bins; ties broken by meta tier.
         bucket = round(s.total / TIEBREAKER_TOLERANCE)
         return (-bucket, -s.meta_contribution, -s.total)
 
     scores.sort(key=sort_key)
-    return scores[:top_n] if top_n else scores
+
+    if top_n is None:
+        return scores
+
+    # For pick actions with top_n >= 4, use categorized diversity slots so the
+    # recommendations always cover different dimensions — not just five clones of
+    # the same identity/role archetype.
+    #
+    # Slot layout (top_n == 5):
+    #   [0-1]  Best overall  — highest total score
+    #   [2]    Structural fill — highest structural score (fills comp holes)
+    #   [3]    Best denial   — highest denial score (counters enemy hardest)
+    #   [4]    Identity anchor — highest identity score (tightest color fit)
+    #
+    # For top_n < 4, just return top by total (existing behaviour).
+    if top_n < 4 or draft_state.action_to_take == "ban":
+        return scores[:top_n]
+
+    seen: set[str] = set()
+    result: list[CandidateScore] = []
+
+    def _add(s: CandidateScore, role: str) -> bool:
+        if s.champion_id in seen:
+            return False
+        seen.add(s.champion_id)
+        s.recommendation_role = role
+        result.append(s)
+        return True
+
+    # Slots 0-1: best overall
+    for s in scores:
+        if len(result) >= 2:
+            break
+        _add(s, "best_overall")
+
+    # Slot 2: structural fill — highest structural, not already picked
+    structural_best = max(
+        (s for s in scores if s.champion_id not in seen),
+        key=lambda s: s.structural,
+        default=None,
+    )
+    if structural_best:
+        _add(structural_best, "structural_fill")
+
+    # Slot 3: best denial — highest denial
+    denial_best = max(
+        (s for s in scores if s.champion_id not in seen),
+        key=lambda s: s.denial,
+        default=None,
+    )
+    if denial_best:
+        _add(denial_best, "best_denial")
+
+    # Slot 4: identity anchor — highest identity
+    identity_best = max(
+        (s for s in scores if s.champion_id not in seen),
+        key=lambda s: s.identity,
+        default=None,
+    )
+    if identity_best:
+        _add(identity_best, "identity_anchor")
+
+    # Pad with next-best overall if we somehow have fewer than top_n
+    for s in scores:
+        if len(result) >= top_n:
+            break
+        _add(s, "best_overall")
+
+    return result
 
 
 def eligible_candidates(

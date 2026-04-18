@@ -48,6 +48,13 @@ export interface DraftState {
   first_pick_side: Side;
 }
 
+export type RecommendationRole =
+  | "best_overall"
+  | "structural_fill"
+  | "best_denial"
+  | "identity_anchor"
+  | null;
+
 export interface CandidateScore {
   champion_id: string;
   identity: number;
@@ -57,6 +64,7 @@ export interface CandidateScore {
   meta_contribution: number;
   total: number;
   rationale: string[];
+  recommendation_role: RecommendationRole;
 }
 
 export interface ScoreResponse {

@@ -1,7 +1,28 @@
-import type { CandidateScore, Champion } from "@/lib/types";
+import type { CandidateScore, Champion, RecommendationRole } from "@/lib/types";
 import { AxisBar } from "./AxisBar";
 import { ChampionPortrait } from "./ChampionPortrait";
 import { ColorBadges } from "./ColorBadges";
+
+const ROLE_LABELS: Record<NonNullable<RecommendationRole>, string> = {
+  best_overall: "TOP PICK",
+  structural_fill: "FILLS GAPS",
+  best_denial: "BEST DENIAL",
+  identity_anchor: "IDENTITY FIT",
+};
+
+const ROLE_COLORS: Record<NonNullable<RecommendationRole>, string> = {
+  best_overall: "text-amber-500 dark:text-amber-400/80",
+  structural_fill: "text-teal-500 dark:text-teal-400/80",
+  best_denial: "text-rose-500 dark:text-rose-400/80",
+  identity_anchor: "text-violet-500 dark:text-violet-400/80",
+};
+
+const ROLE_ACCENTS: Record<NonNullable<RecommendationRole>, string> = {
+  best_overall: "border-amber-500/60 bg-amber-500/5 hover:border-amber-400 hover:bg-amber-500/10",
+  structural_fill: "border-teal-500/40 bg-teal-500/5 hover:border-teal-400 hover:bg-teal-500/10",
+  best_denial: "border-rose-500/40 bg-rose-500/5 hover:border-rose-400 hover:bg-rose-500/10",
+  identity_anchor: "border-violet-500/40 bg-violet-500/5 hover:border-violet-400 hover:bg-violet-500/10",
+};
 
 interface Props {
   score: CandidateScore;
@@ -20,11 +41,12 @@ export function RecommendationCard({
   onSelect,
   actionLabel,
 }: Props) {
-  const isTop = rank === 1;
-  const accent = isTop
-    ? "border-amber-500/60 bg-amber-500/5 hover:border-amber-400 hover:bg-amber-500/10"
+  const role = score.recommendation_role ?? (rank === 1 ? "best_overall" : null);
+  const isTop = role === "best_overall";
+  const accent = role
+    ? ROLE_ACCENTS[role]
     : "border-border bg-surface hover:border-muted hover:bg-surface-2";
-  const rankLabel = isTop ? "TOP PICK" : `ALT #${rank - 1}`;
+  const rankLabel = role ? ROLE_LABELS[role] : `ALT #${rank - 1}`;
   const clickable = Boolean(onSelect);
 
   const content = (
@@ -41,7 +63,7 @@ export function RecommendationCard({
         <div className="min-w-0 flex-1">
           <p
             className={`mb-0.5 text-[10px] font-semibold uppercase tracking-widest ${
-              isTop ? "text-amber-500 dark:text-amber-400/80" : "text-faint"
+              role ? ROLE_COLORS[role] : "text-faint"
             }`}
           >
             {rankLabel}
@@ -69,7 +91,7 @@ export function RecommendationCard({
           {clickable && actionLabel && (
             <span
               className={`text-[10px] font-semibold uppercase tracking-widest ${
-                isTop ? "text-amber-600 dark:text-amber-400" : "text-faint"
+                role ? ROLE_COLORS[role] : "text-faint"
               }`}
             >
               {actionLabel} →
