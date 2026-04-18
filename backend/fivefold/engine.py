@@ -352,12 +352,26 @@ def score_structural(
         return 0.5
 
     cand_st = cand_r.structural_tags
+
+    # AP-saturation constraint: some champions (e.g. Karthus) need to be the
+    # lone magic-damage source — picking them into an AP-heavy ally pool is a
+    # structural anti-pattern.
+    penalty = 0.0
+    if "requires_solo_magic" in (cand_r.kit_tags or []):
+        ap_allies = sum(
+            1 for pid in our_picks
+            if (ch := champions.get(pid)) and
+               ch.structural_tags is not None and
+               ch.structural_tags.damage_profile == "ap"
+        )
+        penalty = min(0.40, ap_allies * 0.20)
+
     if comp.holes:
         lvls = [LEVEL_VALUES.get(getattr(cand_st, f) or "none", 0.0) for f in comp.holes]
         coverage = sum(lvls) / len(lvls)
-        return max(0.0, min(1.0, 0.25 + 0.75 * coverage))
+        return max(0.0, min(1.0, 0.25 + 0.75 * coverage - penalty))
 
-    return 0.6
+    return max(0.0, 0.6 - penalty)
 
 
 def score_survivability(

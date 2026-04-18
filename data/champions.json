@@ -1707,7 +1707,8 @@
         "execute",
         "farming_jungler",
         "global_ult",
-        "scaling_hyper"
+        "scaling_hyper",
+        "requires_solo_magic"
       ]
     },
     {

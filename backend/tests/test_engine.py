@@ -335,3 +335,26 @@ def test_counter_bonus_applies_when_archetype_targets_enemy_tags():
     # applicable counter archetype — otherwise skip (defensive for future
     # data changes).
     assert with_arch.denial >= without_arch.denial
+
+
+# ---------------------------------------------------------------------------
+# AP-saturation constraint
+# ---------------------------------------------------------------------------
+def test_karthus_structural_drops_with_ap_allies():
+    # Karthus has requires_solo_magic. With an AP ally, structural should fall.
+    clean = engine.score_candidate("karthus", _state(), CHAMPIONS, META)
+    with_ap = engine.score_candidate(
+        "karthus", _state(blue_picks=["lux"]), CHAMPIONS, META  # lux = ap
+    )
+    assert clean.structural > with_ap.structural
+
+
+def test_karthus_structural_higher_with_ad_than_ap_allies():
+    # With AD allies, the constraint doesn't fire — structural stays above the AP case.
+    with_ad = engine.score_candidate(
+        "karthus", _state(blue_picks=["jax"]), CHAMPIONS, META
+    )
+    with_ap = engine.score_candidate(
+        "karthus", _state(blue_picks=["lux"]), CHAMPIONS, META
+    )
+    assert with_ad.structural > with_ap.structural
