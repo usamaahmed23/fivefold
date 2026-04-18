@@ -3000,7 +3000,7 @@
         "R"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "Fundamentally flawed champion currently only breathing due to itemization and runes. R identity is intact but execution is item-dependent in a way that makes her fragile as a pick.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -4936,11 +4936,14 @@
       "id": "nilah",
       "name": "Nilah",
       "colors_main": [
-        "U"
+        "G",
+        "W"
       ],
-      "colors_off": [],
+      "colors_off": [
+        "C"
+      ],
       "contextual": false,
-      "ls_notes": null,
+      "ls_notes": "Grossly misunderstood and underutilized. W ability: 25% magic damage reduction + dodges autos for 2.5s, shares these with touched allies for 1.5s. G: synergy scaling, shares joy/power with allies. W: binary protective ability. C off: her pairings warp the draft around her \u2014 she is a comp-definer when played correctly.",
       "source": "owner",
       "counter_tags": [
         "long_range_poke_adc",
@@ -4956,9 +4959,15 @@
         "frontline": "medium"
       },
       "kit_tags": [
-        "marksman",
+        "skirmisher",
         "self_peel",
-        "skirmisher"
+        "ally_buff_share",
+        "hypercarry"
+      ],
+      "strong_against_tags": [
+        "long_range_poke_adc",
+        "sustained_poke",
+        "auto_reliant"
       ]
     },
     {
@@ -5257,12 +5266,14 @@
       "id": "renata_glasc",
       "name": "Renata Glasc",
       "colors_main": [
-        "R",
+        "B",
+        "W"
+      ],
+      "colors_off": [
         "U"
       ],
-      "colors_off": [],
       "contextual": false,
-      "ls_notes": null,
+      "ls_notes": "One of the best champions in the game in terms of fundamental kit. Oddly almost does not care about items at all. B: Bailout (conditional second life \u2014 fight hard enough), Hostile Takeover ult (power at cost, forces enemies to turn). W: binary supportive kit choices. U off: zone control on E, deceptive threat range.",
       "source": "owner",
       "counter_tags": [
         "spell_shield",
@@ -5281,7 +5292,9 @@
       "kit_tags": [
         "cleanse_self",
         "enchanter",
-        "peel_support"
+        "peel_support",
+        "mind_control_ult",
+        "counter_pick_specialist"
       ]
     },
     {
