@@ -412,11 +412,10 @@
       "id": "blitzcrank",
       "name": "Blitzcrank",
       "colors_main": [
-        "R",
-        "C"
+        "R"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "very red (LS). volatile: one hook changes the game or it doesn't. not a late game champion by itself. straightforward and linear — hook lands or it doesn't.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -675,11 +674,10 @@
       "id": "darius",
       "name": "Darius",
       "colors_main": [
-        "R",
-        "C"
+        "R"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "mono red (LS). closest champion in league to a pure single-color champion. just aggression, lane dominance, stacking bleed. one function.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -770,11 +768,11 @@
       "id": "draven",
       "name": "Draven",
       "colors_main": [
-        "R",
-        "B"
+        "B",
+        "R"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "black red (LS). B leads: must collect axes, must win lane — conditions define everything. R is the output when the B conditions are met. Draven and Lucian come from the same school of thought; Draven hits harder when the conditions are met.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1684,10 +1682,10 @@
       "name": "Karthus",
       "colors_main": [
         "B",
-        "R"
+        "U"
       ],
       "colors_off": [],
-      "ls_notes": "black red: sacrifice/condition mechanics (passive, ult cost), global damage. B leads — power at a cost defines the kit. R is the damage output unlocked by the B conditions.",
+      "ls_notes": "black black blue (LS). B leads: hates sharing magic damage — sacrifices team composition options for his power. U: terrain warping via passive/death, Requiem map control, slowing opponents. not R.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1912,12 +1910,11 @@
       "id": "kindred",
       "name": "Kindred",
       "colors_main": [
+        "W",
         "G"
       ],
-      "colors_off": [
-        "W"
-      ],
-      "ls_notes": null,
+      "colors_off": [],
+      "ls_notes": "white (LS) — protective, binary modes. W leads: marks system is a draft-choice condition, protective ultimate. G: item timing spikes, scales reasonably.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -2132,10 +2129,11 @@
       "id": "lucian",
       "name": "Lucian",
       "colors_main": [
-        "R"
+        "R",
+        "B"
       ],
       "colors_off": [],
-      "ls_notes": "deep red. must win lane. runs hot early, tapers. no meaningful off-color identity.",
+      "ls_notes": "black red. must win lane — same school of thought as Draven. R is the aggression; B is the condition (lane dominance must be met or he suffers greatly). flexibility comes at a cost.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -2672,11 +2670,8 @@
       "colors_main": [
         "R"
       ],
-      "colors_off": [
-        "G",
-        "W"
-      ],
-      "ls_notes": null,
+      "colors_off": [],
+      "ls_notes": "one function (LS) — same archetype as Darius. pure linear aggression. runs at target, unstoppable. no meaningful off-color complexity.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -3918,10 +3913,10 @@
       "name": "Tryndamere",
       "colors_main": [
         "G",
-        "W"
+        "B"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "black champion (LS). excels by going around the opponent — dirty split-push value. B: comes at a cost, team must be sculpted to accommodate him and play 4v5. G: item timings, scaling into late game via farm.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -4132,13 +4127,11 @@
       "id": "veigar",
       "name": "Veigar",
       "colors_main": [
-        "G",
-        "U"
-      ],
-      "colors_off": [
+        "U",
         "W"
       ],
-      "ls_notes": null,
+      "colors_off": [],
+      "ls_notes": "blue and white (LS). U: stacks up inevitably, event horizon zone control, checkmates opponents by depleting options. W: binary answer — once online he just QR kills you, that's settle the wreckage. inaction is action.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -4485,11 +4478,13 @@
       "id": "yasuo",
       "name": "Yasuo",
       "colors_main": [
-        "W",
-        "C"
+        "G",
+        "R"
       ],
-      "colors_off": [],
-      "ls_notes": null,
+      "colors_off": [
+        "B"
+      ],
+      "ls_notes": "green red with black (LS). G: recipe-buy spikes (crit), scales over the top once conditions met. R: volatile, needs to get in. B off: conditions must align (knock-ups, team accommodation) for him to fully express; if they don't he falls apart.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
