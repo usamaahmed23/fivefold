@@ -1844,11 +1844,11 @@
       "id": "kennen",
       "name": "Kennen",
       "colors_main": [
-        "B",
+        "R",
         "G"
       ],
       "colors_off": [],
-      "ls_notes": "0 value at even game state. entirely item-completion dependent — needs two full items before he does anything. ult is a binary all-in condition (B). exhaust single-handedly neutralises his entire gameplan. not R: he is not an early aggressor, he needs the game state to come to him.",
+      "ls_notes": "red green: aggressive AP all-in archetype, can't split push. item-completion dependent — needs completions to do anything. ult is a binary all-in. exhaust single-handedly neutralises his gameplan.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
