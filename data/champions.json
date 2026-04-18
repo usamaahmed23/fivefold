@@ -252,7 +252,7 @@
         "B"
       ],
       "colors_off": [],
-      "ls_notes": "dependent on the team composition",
+      "ls_notes": "dependent on the team composition. Weak against Twitch, Ziggs, Nilah, Seraphine, Draven \u2014 avoid picking into these or target them as counters if enemy has Aphelios. Works best with peel supports (Rakan, Thresh, Braum), not utility/poke supports (Senna, Naut, Xerath).",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -272,6 +272,18 @@
         "hypercarry",
         "marksman",
         "scaling_hyper"
+      ],
+      "countered_by": [
+        "twitch",
+        "ziggs",
+        "nilah",
+        "seraphine",
+        "draven"
+      ],
+      "synergy_with": [
+        "rakan",
+        "thresh",
+        "braum"
       ]
     },
     {

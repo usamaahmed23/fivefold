@@ -374,3 +374,33 @@ def test_sona_denial_bonus_vs_hard_engage_enemy():
         "sona", _state(red_picks=["orianna"]), CHAMPIONS, META
     )
     assert sona_vs_engage.denial >= sona_vs_mage.denial
+
+
+# ---------------------------------------------------------------------------
+# countered_by / synergy_with explicit champion pairs
+# ---------------------------------------------------------------------------
+def test_counter_bonus_when_enemy_has_aphelios():
+    # Twitch is in Aphelios's countered_by list. Against the same enemy (Aphelios),
+    # Twitch should score higher denial than Aatrox (not in countered_by),
+    # because the explicit counter bonus tips the scale between similarly-colored champs.
+    twitch_vs_aph = engine.score_candidate(
+        "twitch", _state(red_picks=["aphelios"]), CHAMPIONS, META
+    )
+    twitch_vs_other = engine.score_candidate(
+        "twitch", _state(red_picks=["kassadin"]), CHAMPIONS, META
+    )
+    # Twitch is explicitly a counter to Aphelios → his denial vs Aphelios should
+    # be at least as high as vs a champion he has no explicit counter relationship with.
+    assert twitch_vs_aph.denial >= twitch_vs_other.denial
+
+
+def test_synergy_bonus_rakan_with_aphelios():
+    # Rakan is in Aphelios's synergy_with list. With Aphelios present, Rakan
+    # should score higher identity than Blitzcrank (also a support, NOT in synergy_with).
+    rakan_with_aph = engine.score_candidate(
+        "rakan", _state(blue_picks=["aphelios"]), CHAMPIONS, META
+    )
+    blitz_with_aph = engine.score_candidate(
+        "blitzcrank", _state(blue_picks=["aphelios"]), CHAMPIONS, META
+    )
+    assert rakan_with_aph.identity >= blitz_with_aph.identity

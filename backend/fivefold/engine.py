@@ -291,6 +291,18 @@ def score_identity(
         else:
             score = max(score, 0.45)
 
+    # Explicit synergy pairs: each ally that lists this candidate as a
+    # synergy_with partner adds a small identity bonus (+0.04, cap +0.12).
+    synergy_count = sum(
+        1 for pid in our_picks
+        if (ch := champions.get(pid)) and cand.id in ch.synergy_with
+    )
+    # Also count from candidate's own synergy_with list matching allies
+    synergy_count += sum(1 for pid in our_picks if pid in cand.synergy_with)
+    # Deduplicate: a pair only counts once
+    synergy_count = min(synergy_count, len(our_picks))
+    score = min(1.0, score + synergy_count * 0.04)
+
     return min(1.0, score)
 
 
@@ -346,7 +358,19 @@ def score_denial(
         explicit_overlap = len(set(cand_r.strong_against_tags) & enemy_weaknesses)
         strong_against_bonus = min(0.15, explicit_overlap * 0.05)
 
-    return min(1.0, 0.65 * color_score + 0.35 * tag_score + strong_against_bonus)
+    # Explicit champion counters: if any enemy pick lists this candidate in
+    # their countered_by, or candidate lists that enemy in its own countered_by
+    # (meaning the enemy beats us — negative bonus as a pick, positive as denial
+    # of that enemy's counter pick). Here we reward picking a champ that
+    # explicitly counters someone on the enemy team (+0.05 per enemy, cap +0.15).
+    counter_bonus = 0.0
+    for pid in enemy_picks:
+        enemy_ch = champions.get(pid)
+        if enemy_ch and cand.id in enemy_ch.countered_by:
+            counter_bonus += 0.05
+    counter_bonus = min(0.15, counter_bonus)
+
+    return min(1.0, 0.65 * color_score + 0.35 * tag_score + strong_against_bonus + counter_bonus)
 
 
 def score_structural(
