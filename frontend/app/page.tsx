@@ -143,7 +143,7 @@ export default function HomePage() {
     setSuggesting(true);
     setSuggestError(null);
     try {
-      const result = await analyzeDraft(state, 3);
+      const result = await analyzeDraft(state, 5);
       setSuggestion(result);
     } catch (e) {
       setSuggestError(e instanceof Error ? e.message : String(e));
