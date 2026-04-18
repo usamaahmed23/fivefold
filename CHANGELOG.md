@@ -2,6 +2,14 @@
 
 All notable changes to Fivefold. Most recent on top.
 
+## 2026-04-18 — Ban scoring overhaul + GitHub
+
+### Added
+- **Ban perspective flip** — `score_candidate` now evaluates bans from the enemy's point of view: `identity` measures how much the candidate reinforces *enemy* colors, `structural` measures how much it fills *enemy* holes, `denial` measures the candidate's threat to *us*, and archetype synergy/counter bonuses flip sides accordingly. Previously bans were scored as if we were picking for ourselves, producing nonsensical suggestions.
+- **Ban role-saturation filter** — `eligible_candidates` now filters bans by the *enemy's* unfilled roles. A single-role champion whose role is already locked on the enemy side (e.g. Kai'Sa when both bots are picked, Aatrox when both tops are locked) is no longer eligible as a ban suggestion.
+- **4 new regression tests** for ban eligibility and ban perspective scoring (26 total).
+- **Public GitHub repo** at https://github.com/usamaahmed23/fivefold.
+
 ## 2026-04-18 — Frontend QoL polish
 
 ### Added
