@@ -398,6 +398,25 @@ def score_structural(
         )
         penalty = min(0.40, ap_allies * 0.20)
 
+    # Damage profile diversity: a comp should never be mono-AP or mono-AD.
+    # Count how many allies share the candidate's damage profile (ap or ad).
+    # mixed/true/tank profiles are neutral and don't trigger this.
+    cand_profile = cand_st.damage_profile if cand_st else None
+    if cand_profile in ("ap", "ad"):
+        same_profile_allies = sum(
+            1 for pid in our_picks
+            if (ch := champions.get(pid)) and
+               ch.structural_tags is not None and
+               ch.structural_tags.damage_profile == cand_profile
+        )
+        # 2 same-type allies → -0.10, 3 → -0.25, 4+ → -0.40
+        if same_profile_allies >= 4:
+            penalty += 0.40
+        elif same_profile_allies == 3:
+            penalty += 0.25
+        elif same_profile_allies == 2:
+            penalty += 0.10
+
     if comp.holes:
         lvls = [LEVEL_VALUES.get(getattr(cand_st, f) or "none", 0.0) for f in comp.holes]
         coverage = sum(lvls) / len(lvls)

@@ -406,3 +406,23 @@ def test_synergy_bonus_rakan_with_aphelios():
         "blitzcrank", _state(blue_picks=["aphelios"]), CHAMPIONS, META
     )
     assert rakan_with_aph.identity >= blitz_with_aph.identity
+
+
+# ---------------------------------------------------------------------------
+# Damage profile diversity
+# ---------------------------------------------------------------------------
+def test_structural_penalises_third_ap_pick():
+    # Two AP allies already — a third AP should score lower structurally
+    # than an AD champion in the same state.
+    state = _state(blue_picks=["ahri", "lux"], action_to_take="pick", phase="pick2")
+    syndra = engine.score_candidate("syndra", state, CHAMPIONS, META)  # ap
+    darius = engine.score_candidate("darius", state, CHAMPIONS, META)  # ad
+    assert darius.structural > syndra.structural
+
+
+def test_structural_no_penalty_first_ap():
+    # First AP pick into an AD team should not be penalised — diversity is good.
+    state = _state(blue_picks=["darius", "jax"], action_to_take="pick", phase="pick2")
+    ahri = engine.score_candidate("ahri", state, CHAMPIONS, META)   # ap — fills missing profile
+    garen = engine.score_candidate("garen", state, CHAMPIONS, META) # ad — stacks same profile
+    assert ahri.structural >= garen.structural
