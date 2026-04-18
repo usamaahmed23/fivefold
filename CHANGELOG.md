@@ -2,6 +2,15 @@
 
 All notable changes to Fivefold. Most recent on top.
 
+## 2026-04-18 — Scoring engine modifiers
+
+### Added
+- **Phase-fit modifier** — R-heavy picks penalized in pick1/ban1 (telegraphing aggression face-up), boosted in pick2. Mono-R gets -0.10 in pick1; pick2 closers get +0.04.
+- **Red side flex bonus** — Flex champions (2+ roles) get a pick1 bonus on red side for counter-pick ambiguity (2 roles → +0.03, 3 → +0.05, 4+ → +0.08). Pick2 only; not in bans.
+- **B-constraint modifier** — B-primary picks in pick1 get a structural penalty when no R is present: -0.05 if B leads, -0.02 if B is secondary. Banning Karthus is still fine; picking him early is costly.
+- **AP-saturation constraint** (`requires_solo_magic` kit_tag) — Karthus's structural score drops -0.20 per AP ally (capped -0.40). Karthus tagged with `requires_solo_magic`.
+- **9 new regression tests** (35 total) covering all four new modifiers.
+
 ## 2026-04-18 — Ban scoring overhaul + GitHub
 
 ### Added

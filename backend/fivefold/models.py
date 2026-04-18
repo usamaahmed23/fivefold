@@ -45,6 +45,7 @@ class Champion(BaseModel):
     win_condition_tags: list[str] = Field(default_factory=list)
     structural_tags: Optional[StructuralTags] = None
     counter_tags: list[str] = Field(default_factory=list)
+    strong_against_tags: list[str] = Field(default_factory=list)
     kit_tags: list[str] = Field(default_factory=list)
     context_rules: list[ContextRule] = Field(default_factory=list)
 

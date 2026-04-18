@@ -358,3 +358,19 @@ def test_karthus_structural_higher_with_ad_than_ap_allies():
         "karthus", _state(blue_picks=["lux"]), CHAMPIONS, META
     )
     assert with_ad.structural > with_ap.structural
+
+
+# ---------------------------------------------------------------------------
+# strong_against_tags (counter-pick specialist bonus)
+# ---------------------------------------------------------------------------
+def test_sona_denial_bonus_vs_hard_engage_enemy():
+    # Sona has strong_against_tags including hard_engage_all_in.
+    # Against a hard-engage enemy (Malphite = engage tank), her denial should
+    # be higher than against a control mage (Orianna = no engage vulnerability).
+    sona_vs_engage = engine.score_candidate(
+        "sona", _state(red_picks=["malphite"]), CHAMPIONS, META
+    )
+    sona_vs_mage = engine.score_candidate(
+        "sona", _state(red_picks=["orianna"]), CHAMPIONS, META
+    )
+    assert sona_vs_engage.denial >= sona_vs_mage.denial

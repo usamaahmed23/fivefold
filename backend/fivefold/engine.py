@@ -338,7 +338,15 @@ def score_denial(
     else:
         tag_score = 0.5
 
-    return 0.65 * color_score + 0.35 * tag_score
+    # strong_against_tags: explicit "I beat comps with these vulnerabilities"
+    # bonus on top of the color-derived score. Counter-pick specialists (e.g.
+    # Sona) use this to express that their value is conditional on enemy shape.
+    strong_against_bonus = 0.0
+    if cand_r.strong_against_tags and enemy_weaknesses:
+        explicit_overlap = len(set(cand_r.strong_against_tags) & enemy_weaknesses)
+        strong_against_bonus = min(0.15, explicit_overlap * 0.05)
+
+    return min(1.0, 0.65 * color_score + 0.35 * tag_score + strong_against_bonus)
 
 
 def score_structural(

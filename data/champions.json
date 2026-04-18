@@ -3499,10 +3499,12 @@
       "id": "sona",
       "name": "Sona",
       "colors_main": [
+        "W"
+      ],
+      "colors_off": [
         "G"
       ],
-      "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "Counter-pick ONLY \u2014 one of the strongest counter-picks in the game. Passive aura system makes her binary/reactive (W). Maximize basic abilities, not R. Counters: hard engage, dive assassins, poke comps, burst before she can heal. Constantly buffed, chronically underrated.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -3522,7 +3524,15 @@
         "aoe_teamfight_ult",
         "enchanter",
         "hard_engage_cc",
-        "peel_support"
+        "peel_support",
+        "counter_pick_specialist"
+      ],
+      "strong_against_tags": [
+        "hard_engage_all_in",
+        "assassin_dive",
+        "burst_before_heal_shield",
+        "poke_sustained",
+        "long_range_poke"
       ]
     },
     {
