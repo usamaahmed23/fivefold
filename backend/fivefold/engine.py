@@ -108,6 +108,29 @@ def _flex_bonus(cand: Champion, draft_state: DraftState) -> float:
 
 
 # ---------------------------------------------------------------------------
+# B-constraint modifier — B-primary picks in pick1 reveal conditions.
+#
+# B champions have conditions the team must accommodate (Karthus can't share
+# magic damage, Tryndamere needs 4v5 enablers, Diana needs engage). Picking
+# them in pick1 tells the enemy exactly what your team can't draft next,
+# letting them deny those conditions in real time.
+#
+# Only applies when R is absent — R-heavy B picks (Draven B/R, Lucian R/B)
+# are already penalised by the phase-fit modifier. Picks only.
+# ---------------------------------------------------------------------------
+def _b_constraint_modifier(colors_main: list[str], phase: str, action: str) -> float:
+    if action == "ban" or phase != "pick1":
+        return 0.0
+    if "R" in colors_main:
+        return 0.0  # already covered by phase-fit R penalty
+    if "B" not in colors_main:
+        return 0.0
+    if colors_main[0] == "B":
+        return -0.05  # B leads: conditions are the core identity, very constraining
+    return -0.02      # B secondary: mild constraint, primary color provides clarity
+
+
+# ---------------------------------------------------------------------------
 # Phase-fit modifier — R-heavy picks are penalised in early phases.
 #
 # Because League drafts are fully face-up, anchoring pick1/ban1 with a
@@ -410,6 +433,7 @@ def score_candidate(
     cand_r = contextual.resolve(cand, draft_state)
     total = max(0.0, min(1.0, total
         + _phase_fit_modifier(cand_r.colors_main, phase, draft_state.action_to_take)
+        + _b_constraint_modifier(cand_r.colors_main, phase, draft_state.action_to_take)
         + _flex_bonus(cand, draft_state)
     ))
 

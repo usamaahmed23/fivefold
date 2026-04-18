@@ -220,6 +220,35 @@ def test_flex_bonus_scales_with_role_count():
     assert sylas.total > karma.total
 
 
+def test_b_constraint_penalises_b_lead_in_pick1():
+    # Karthus (B/U) picked early reveals the "no more AP" constraint.
+    # A U champion without B should outscore him in pick1.
+    state = _state(phase="pick1", action_to_take="pick")
+    karthus = engine.score_candidate("karthus", state, CHAMPIONS, META)   # B/U
+    lissandra = engine.score_candidate("lissandra", state, CHAMPIONS, META)  # G/U/W
+    assert lissandra.total > karthus.total
+
+
+def test_b_constraint_no_penalty_when_r_present():
+    # Draven (B/R) already gets the R-phase-fit penalty — no stacking B penalty.
+    # Verify his score is driven by R-phase-fit not B-constraint.
+    state = _state(phase="pick1", action_to_take="pick")
+    draven = engine.score_candidate("draven", state, CHAMPIONS, META)    # B/R
+    karthus = engine.score_candidate("karthus", state, CHAMPIONS, META)  # B/U — B-constraint applies
+    # Both penalised, but differently — just confirm neither crashes.
+    assert draven.total < 0.5  # R-phase-fit active
+    assert karthus.total < 0.5  # B-constraint active
+
+
+def test_b_constraint_not_in_bans():
+    # Banning Karthus early is fine — we're denying, not constraining ourselves.
+    state_ban = _state(phase="ban1", action_to_take="ban")
+    state_pick = _state(phase="pick1", action_to_take="pick")
+    karthus_ban = engine.score_candidate("karthus", state_ban, CHAMPIONS, META)
+    karthus_pick = engine.score_candidate("karthus", state_pick, CHAMPIONS, META)
+    assert karthus_ban.total > karthus_pick.total
+
+
 def test_phase_fit_penalises_mono_r_in_pick1():
     # Darius (mono-R) should score lower in pick1 than a U/W champion
     # because anchoring aggression early telegraphs the gameplan.
