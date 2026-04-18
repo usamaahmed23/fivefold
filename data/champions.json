@@ -17,11 +17,11 @@
       "id": "aatrox",
       "name": "Aatrox",
       "colors_main": [
-        "R",
-        "B"
+        "B",
+        "R"
       ],
       "colors_off": [],
-      "ls_notes": "mini games, if you fuck up his combos/resets you fuck up your power",
+      "ls_notes": "mini games, if you fuck up his combos/resets you fuck up your power. B leads: the Q sweetspot conditions define his identity — aggression (R) is unlocked by executing them, not inherent.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
