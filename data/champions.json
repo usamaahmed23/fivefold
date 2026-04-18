@@ -1,15 +1,15 @@
 {
-  "source": "LS / Rübezahl MTG Color Spreadsheet",
+  "source": "LS / R\u00fcbezahl MTG Color Spreadsheet",
   "conventions": {
-    "colors_main": "X in sheet — theme best expressed by the champion's kit, core items, team interaction, scaling",
-    "colors_off": "O in sheet — theme influenced by item builds, playstyle, or matchup",
+    "colors_main": "X in sheet \u2014 theme best expressed by the champion's kit, core items, team interaction, scaling",
+    "colors_off": "O in sheet \u2014 theme influenced by item builds, playstyle, or matchup",
     "color_codes": {
-      "W": "White — structure, utility, anti-aggro",
-      "U": "Blue — control, scaling, denial",
-      "B": "Black — power at a cost, sacrifice, conditions",
-      "R": "Red — aggression, tempo, snowball",
-      "G": "Green — synergy, curved spikes, item timings",
-      "C": "Colorless — dedicated theme, warps draft around it"
+      "W": "White \u2014 structure, utility, anti-aggro",
+      "U": "Blue \u2014 control, scaling, denial",
+      "B": "Black \u2014 power at a cost, sacrifice, conditions",
+      "R": "Red \u2014 aggression, tempo, snowball",
+      "G": "Green \u2014 synergy, curved spikes, item timings",
+      "C": "Colorless \u2014 dedicated theme, warps draft around it"
     }
   },
   "champions": [
@@ -21,7 +21,7 @@
         "R"
       ],
       "colors_off": [],
-      "ls_notes": "mini games, if you fuck up his combos/resets you fuck up your power. B leads: the Q sweetspot conditions define his identity — aggression (R) is unlocked by executing them, not inherent.",
+      "ls_notes": "mini games, if you fuck up his combos/resets you fuck up your power. B leads: the Q sweetspot conditions define his identity \u2014 aggression (R) is unlocked by executing them, not inherent.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -415,7 +415,7 @@
         "R"
       ],
       "colors_off": [],
-      "ls_notes": "very red (LS). volatile: one hook changes the game or it doesn't. not a late game champion by itself. straightforward and linear — hook lands or it doesn't.",
+      "ls_notes": "very red (LS). volatile: one hook changes the game or it doesn't. not a late game champion by itself. straightforward and linear \u2014 hook lands or it doesn't.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -709,7 +709,7 @@
         "G"
       ],
       "colors_off": [],
-      "ls_notes": "ult interaction and q/w/e. whole kit has mini quests. items spikes. provides 0 value at even game state — needs a lead to function. R removed: aggression is conditional on the lead, not a baseline trait.",
+      "ls_notes": "ult interaction and q/w/e. whole kit has mini quests. items spikes. provides 0 value at even game state \u2014 needs a lead to function. R removed: aggression is conditional on the lead, not a baseline trait.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -772,7 +772,7 @@
         "R"
       ],
       "colors_off": [],
-      "ls_notes": "black red (LS). B leads: must collect axes, must win lane — conditions define everything. R is the output when the B conditions are met. Draven and Lucian come from the same school of thought; Draven hits harder when the conditions are met.",
+      "ls_notes": "black red (LS). B leads: must collect axes, must win lane \u2014 conditions define everything. R is the output when the B conditions are met. Draven and Lucian come from the same school of thought; Draven hits harder when the conditions are met.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1685,7 +1685,7 @@
         "U"
       ],
       "colors_off": [],
-      "ls_notes": "black black blue (LS). B leads: hates sharing magic damage — sacrifices team composition options for his power. U: terrain warping via passive/death, Requiem map control, slowing opponents. not R.",
+      "ls_notes": "black black blue (LS). B leads: hates sharing magic damage \u2014 sacrifices team composition options for his power. U: terrain warping via passive/death, Requiem map control, slowing opponents. not R.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1847,7 +1847,7 @@
         "G"
       ],
       "colors_off": [],
-      "ls_notes": "red green: aggressive AP all-in archetype, can't split push. item-completion dependent — needs completions to do anything. ult is a binary all-in. exhaust single-handedly neutralises his gameplan.",
+      "ls_notes": "red green: aggressive AP all-in archetype, can't split push. item-completion dependent \u2014 needs completions to do anything. ult is a binary all-in. exhaust single-handedly neutralises his gameplan.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1884,7 +1884,7 @@
       "colors_off": [
         "U"
       ],
-      "ls_notes": "evolution quests are pure B — power unlocked through meeting conditions. 0 value at 0-0-0: needs a kill lead to snowball isolation windows. R removed from off: the aggression is gated behind the lead, not inherent. can manipulate teamfights in upgrades.",
+      "ls_notes": "evolution quests are pure B \u2014 power unlocked through meeting conditions. 0 value at 0-0-0: needs a kill lead to snowball isolation windows. R removed from off: the aggression is gated behind the lead, not inherent. can manipulate teamfights in upgrades.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -1915,7 +1915,7 @@
         "G"
       ],
       "colors_off": [],
-      "ls_notes": "white (LS) — protective, binary modes. W leads: marks system is a draft-choice condition, protective ultimate. G: item timing spikes, scales reasonably.",
+      "ls_notes": "white (LS) \u2014 protective, binary modes. W leads: marks system is a draft-choice condition, protective ultimate. G: item timing spikes, scales reasonably.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -2134,7 +2134,7 @@
         "B"
       ],
       "colors_off": [],
-      "ls_notes": "black red. must win lane — same school of thought as Draven. R is the aggression; B is the condition (lane dominance must be met or he suffers greatly). flexibility comes at a cost.",
+      "ls_notes": "black red. must win lane \u2014 same school of thought as Draven. R is the aggression; B is the condition (lane dominance must be met or he suffers greatly). flexibility comes at a cost.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -2672,7 +2672,7 @@
         "R"
       ],
       "colors_off": [],
-      "ls_notes": "one function (LS) — same archetype as Darius. pure linear aggression. runs at target, unstoppable. no meaningful off-color complexity.",
+      "ls_notes": "one function (LS) \u2014 same archetype as Darius. pure linear aggression. runs at target, unstoppable. no meaningful off-color complexity.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -3917,7 +3917,7 @@
         "B"
       ],
       "colors_off": [],
-      "ls_notes": "black champion (LS). excels by going around the opponent — dirty split-push value. B: comes at a cost, team must be sculpted to accommodate him and play 4v5. G: item timings, scaling into late game via farm.",
+      "ls_notes": "black champion (LS). excels by going around the opponent \u2014 dirty split-push value. B: comes at a cost, team must be sculpted to accommodate him and play 4v5. G: item timings, scaling into late game via farm.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -4037,7 +4037,7 @@
         "R"
       ],
       "colors_off": [],
-      "ls_notes": "viable jungler — funny combos, better items than before. totally viable top and very flexible into jungle; no one does it.",
+      "ls_notes": "viable jungler \u2014 funny combos, better items than before. totally viable top and very flexible into jungle; no one does it.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -4132,7 +4132,7 @@
         "W"
       ],
       "colors_off": [],
-      "ls_notes": "blue and white (LS). U: stacks up inevitably, event horizon zone control, checkmates opponents by depleting options. W: binary answer — once online he just QR kills you, that's settle the wreckage. inaction is action.",
+      "ls_notes": "blue and white (LS). U: stacks up inevitably, event horizon zone control, checkmates opponents by depleting options. W: binary answer \u2014 once online he just QR kills you, that's settle the wreckage. inaction is action.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -4228,7 +4228,7 @@
         "W"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "More niche than originally thought. Very dependent on items and factors beyond his control. U/W identity intact but execution is narrow.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -4608,7 +4608,7 @@
         "B"
       ],
       "colors_off": [],
-      "ls_notes": null,
+      "ls_notes": "Unfortunate victim of the assassin class. Needs items or ways to bypass honesty-weaknesses. Jungle was an interesting attempt at it. B \u2014 conditions define him.",
       "source": "ls_sheet",
       "contextual": false,
       "counter_tags": [
@@ -4617,7 +4617,8 @@
         "group_deny_picks"
       ],
       "roles": [
-        "mid"
+        "mid",
+        "jungle"
       ],
       "structural_tags": {
         "range": "melee",
@@ -5184,12 +5185,12 @@
       "id": "vex",
       "name": "Vex",
       "colors_main": [
-        "G",
-        "U"
+        "U",
+        "W"
       ],
       "colors_off": [],
       "contextual": false,
-      "ls_notes": null,
+      "ls_notes": "Strong as pure team comp counter and utility champ, not battlemage assassin. Fundamentally her class does not pair with modern itemization \u2014 treat as U/W denial/utility, not G.",
       "source": "owner",
       "counter_tags": [
         "one_shot_burst",
@@ -5220,7 +5221,7 @@
       ],
       "colors_off": [],
       "contextual": false,
-      "ls_notes": null,
+      "ls_notes": "Team-comp dependent. Indirect buffs via champs she pairs with matter more than itemization. W/G \u2014 mobility and synergy-scaling identity.",
       "source": "owner",
       "counter_tags": [
         "hard_cc_stops_charge",
@@ -5524,5 +5525,5 @@
     }
   ],
   "total_champions": 172,
-  "notes": "Color data: LS/Rübezahl spreadsheet (source='ls_sheet') + owner-tagged new releases (source='owner'). counter_tags present on owner-tagged entries; will be backfilled for ls_sheet entries via Phase 0 CLI."
+  "notes": "Color data: LS/R\u00fcbezahl spreadsheet (source='ls_sheet') + owner-tagged new releases (source='owner'). counter_tags present on owner-tagged entries; will be backfilled for ls_sheet entries via Phase 0 CLI."
 }
