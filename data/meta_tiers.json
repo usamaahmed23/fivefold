@@ -5,17 +5,20 @@
   "tiers": {
     "top": [
       "zaahen",
+      "ambessa",
       "rumble",
       "gnar",
       "dr_mundo"
     ],
     "jungle": [
+      "jarvan_iv",
       "zaahen",
       "dr_mundo"
     ],
     "mid": [
       "ryze",
       "ahri",
+      "anivia",
       "orianna",
       "karma",
       "azir",
@@ -23,12 +26,14 @@
     ],
     "bot": [
       "ashe",
+      "yunara",
       "ezreal",
       "varus"
     ],
     "support": [
       "bard",
       "seraphine",
+      "lulu",
       "karma"
     ]
   }
