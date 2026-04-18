@@ -188,6 +188,11 @@ export default function HomePage() {
             Color-identity theory. A draft is a coherent win condition, not a
             bag of champions.
           </p>
+          <p className="mt-1 text-[11px] text-faint/70">
+            <span className="inline-flex items-center gap-1 rounded border border-border/60 bg-surface-2 px-1.5 py-0.5 font-mono font-medium">
+              Patch 26.8
+            </span>
+          </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <TurnIndicator state={state} />
