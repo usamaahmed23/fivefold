@@ -190,6 +190,36 @@ def test_ban_scoring_denial_is_threat_to_us():
     assert ashe.denial > ahri.denial
 
 
+def test_flex_bonus_applies_red_side_pick1():
+    # On red side pick1, a flex champion (e.g. Karma: support/mid) should
+    # score higher than the same champion on blue side pick1 — red side
+    # gets counter-pick ambiguity from hiding the role until lock-in.
+    state_red = _state(phase="pick1", action_to_take="pick", side_to_act="red")
+    state_blue = _state(phase="pick1", action_to_take="pick", side_to_act="blue")
+    karma_red = engine.score_candidate("karma", state_red, CHAMPIONS, META)
+    karma_blue = engine.score_candidate("karma", state_blue, CHAMPIONS, META)
+    assert karma_red.total > karma_blue.total
+
+
+def test_flex_bonus_not_in_pick2():
+    # Flex bonus is pick1 only — once both sides have established picks,
+    # the counter-pick ambiguity window is gone.
+    state_red_p1 = _state(phase="pick1", action_to_take="pick", side_to_act="red")
+    state_red_p2 = _state(phase="pick2", action_to_take="pick", side_to_act="red")
+    karma_p1 = engine.score_candidate("karma", state_red_p1, CHAMPIONS, META)
+    karma_p2 = engine.score_candidate("karma", state_red_p2, CHAMPIONS, META)
+    assert karma_p1.total > karma_p2.total
+
+
+def test_flex_bonus_scales_with_role_count():
+    # More roles = more ambiguity = higher bonus on red side pick1.
+    # Karma (2 roles) should score lower than a 3-role flex champion.
+    state_red = _state(phase="pick1", action_to_take="pick", side_to_act="red")
+    karma = engine.score_candidate("karma", state_red, CHAMPIONS, META)      # 2 roles
+    sylas = engine.score_candidate("sylas", state_red, CHAMPIONS, META)      # 4 roles
+    assert sylas.total > karma.total
+
+
 def test_phase_fit_penalises_mono_r_in_pick1():
     # Darius (mono-R) should score lower in pick1 than a U/W champion
     # because anchoring aggression early telegraphs the gameplan.

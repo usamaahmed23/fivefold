@@ -84,6 +84,30 @@ TIEBREAKER_TOLERANCE = 0.03
 ALL_ROLES: tuple[str, ...] = ("top", "jungle", "mid", "bot", "support")
 
 # ---------------------------------------------------------------------------
+# Flex bonus — red side pick1 counter-pick ambiguity.
+#
+# Red side sees blue's first pick before locking their own. A flex champion
+# (2+ roles) hides which lane you're filling until lock-in, denying blue
+# the ability to react precisely. LS and PV explicitly flag flex picks as
+# "really undervalued" on red side. Bonus scales with number of viable roles.
+# Only applies to red side pick actions in pick1.
+# ---------------------------------------------------------------------------
+def _flex_bonus(cand: Champion, draft_state: DraftState) -> float:
+    if (draft_state.action_to_take != "pick"
+            or draft_state.side_to_act != "red"
+            or draft_state.phase != "pick1"):
+        return 0.0
+    n = len(cand.roles)
+    if n >= 4:
+        return 0.08  # 4+ roles: maximum ambiguity (e.g. Ivern jungle/top/mid/support)
+    if n == 3:
+        return 0.05  # 3 roles: strong flex signal
+    if n == 2:
+        return 0.03  # 2 roles: standard flex pick
+    return 0.0
+
+
+# ---------------------------------------------------------------------------
 # Phase-fit modifier — R-heavy picks are penalised in early phases.
 #
 # Because League drafts are fully face-up, anchoring pick1/ban1 with a
@@ -384,9 +408,10 @@ def score_candidate(
     )
 
     cand_r = contextual.resolve(cand, draft_state)
-    total = max(0.0, min(1.0, total + _phase_fit_modifier(
-        cand_r.colors_main, phase, draft_state.action_to_take
-    )))
+    total = max(0.0, min(1.0, total
+        + _phase_fit_modifier(cand_r.colors_main, phase, draft_state.action_to_take)
+        + _flex_bonus(cand, draft_state)
+    ))
 
     return CandidateScore(
         champion_id=candidate_id,
