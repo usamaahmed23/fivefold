@@ -36,13 +36,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "anti_heal",
         "displacement",
         "juggernaut",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -68,13 +76,21 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "burst_mage",
         "high_mobility",
         "point_click_cc"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "skirmish"
       ]
     },
     {
@@ -101,13 +117,23 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "high_mobility",
         "reset_mechanic",
         "untargetable"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "engage_dive",
+        "pick",
+        "skirmish"
       ]
     },
     {
@@ -132,7 +158,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "cleanse_self",
@@ -141,6 +171,14 @@
         "engage_tank",
         "knockup",
         "peel_support"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "teamfight",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "vayne"
       ]
     },
     {
@@ -169,13 +207,27 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "engage_tank",
         "hard_engage_cc",
         "point_click_cc"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "teamfight",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "miss_fortune",
+        "orianna"
       ]
     },
     {
@@ -202,13 +254,26 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "medium",
+        "waveclear": "high",
+        "scaling": "late"
       },
       "kit_tags": [
         "burst_mage",
         "control_mage",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "teamfight",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "poppy",
+        "vayne"
       ]
     },
     {
@@ -235,13 +300,21 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "burst_mage",
         "hard_engage_cc",
         "point_click_cc"
+      ],
+      "win_condition_tags": [
+        "wombo",
+        "teamfight"
       ]
     },
     {
@@ -266,7 +339,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "hypercarry",
@@ -288,6 +365,10 @@
       ],
       "weak_with": [
         "lulu"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling"
       ]
     },
     {
@@ -315,7 +396,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "global_ult",
@@ -327,12 +412,18 @@
         "soraka",
         "nami",
         "janna",
-        "milio"
+        "milio",
+        "seraphine"
       ],
       "weak_with": [
         "senna",
         "leona",
         "nautilus"
+      ],
+      "win_condition_tags": [
+        "global_pressure",
+        "roam",
+        "scaling"
       ]
     },
     {
@@ -358,7 +449,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "high",
+        "scaling": "late"
       },
       "kit_tags": [
         "control_mage",
@@ -366,14 +461,18 @@
         "global_ult",
         "knockup",
         "scaling_hyper"
+      ],
+      "win_condition_tags": [
+        "global_pressure",
+        "scaling",
+        "objective_control"
       ]
     },
     {
       "id": "azir",
       "name": "Azir",
       "colors_main": [
-        "U",
-        "C"
+        "U"
       ],
       "colors_off": [],
       "ls_notes": null,
@@ -391,7 +490,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "medium",
+        "waveclear": "high",
+        "scaling": "late"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
@@ -399,6 +502,12 @@
         "displacement",
         "knockup",
         "scaling_hyper"
+      ],
+      "win_condition_tags": [
+        "wombo",
+        "scaling",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
@@ -426,7 +535,11 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "medium",
+        "waveclear": "low",
+        "scaling": "late"
       },
       "kit_tags": [
         "global_ult",
@@ -436,7 +549,13 @@
       ],
       "synergy_with": [
         "caitlyn",
-        "ezreal"
+        "ezreal",
+        "galio"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "global_pressure",
+        "roam"
       ]
     },
     {
@@ -461,13 +580,20 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "displacement",
         "hook_support",
         "knockup",
         "pick_threat"
+      ],
+      "win_condition_tags": [
+        "pick"
       ]
     },
     {
@@ -493,7 +619,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "high",
+        "scaling": "mid"
       },
       "kit_tags": [
         "burst_mage",
@@ -502,6 +632,10 @@
       ],
       "synergy_with": [
         "nami"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "lane_bully"
       ]
     },
     {
@@ -530,7 +664,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "medium",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "engage_tank",
@@ -541,6 +679,11 @@
       "synergy_with": [
         "jinx",
         "yunara"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
@@ -567,7 +710,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "marksman",
@@ -584,6 +731,10 @@
         "soraka",
         "senna",
         "lulu"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "lane_bully"
       ]
     },
     {
@@ -591,8 +742,7 @@
       "name": "Camille",
       "colors_main": [
         "U",
-        "B",
-        "C"
+        "B"
       ],
       "colors_off": [],
       "ls_notes": "Dimir Assassin ravnica",
@@ -611,7 +761,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "backline_access",
@@ -619,6 +773,13 @@
         "hard_engage_cc",
         "high_mobility",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "engage_dive"
+      ],
+      "synergy_with": [
+        "galio"
       ]
     },
     {
@@ -645,12 +806,22 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "medium",
+        "waveclear": "high",
+        "scaling": "late"
       },
       "kit_tags": [
         "battle_mage",
         "hard_engage_cc",
         "scaling_hyper"
+      ],
+      "win_condition_tags": [
+        "scaling"
+      ],
+      "synergy_with": [
+        "seraphine"
       ]
     },
     {
@@ -677,7 +848,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ap",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "control_mage",
@@ -685,6 +860,12 @@
         "execute",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "engage_dive",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
@@ -692,8 +873,7 @@
       "name": "Corki",
       "colors_main": [
         "U",
-        "W",
-        "C"
+        "W"
       ],
       "colors_off": [],
       "ls_notes": null,
@@ -711,12 +891,21 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "artillery",
         "global_ult",
         "marksman"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "global_pressure",
+        "scaling"
       ]
     },
     {
@@ -742,12 +931,20 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "displacement",
         "execute",
         "juggernaut"
+      ],
+      "win_condition_tags": [
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -773,13 +970,26 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "assassin",
         "knockup",
         "reliable_knockup_chain"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "pick",
+        "teamfight"
+      ],
+      "synergy_with": [
+        "yasuo"
       ]
     },
     {
@@ -806,11 +1016,19 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "late"
       },
       "kit_tags": [
         "juggernaut",
         "scaling_hyper"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "teamfight"
       ]
     },
     {
@@ -836,7 +1054,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "global_ult",
@@ -845,6 +1067,10 @@
       ],
       "synergy_with": [
         "thresh"
+      ],
+      "win_condition_tags": [
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -870,13 +1096,23 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "assassin",
         "hard_engage_cc",
         "high_mobility"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "pick",
+        "teamfight"
       ]
     },
     {
@@ -901,12 +1137,24 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "early"
       },
       "kit_tags": [
         "burst_mage",
         "early_ganker",
         "high_mobility"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "roam",
+        "skirmish"
+      ],
+      "synergy_with": [
+        "renekton"
       ]
     },
     {
@@ -932,12 +1180,19 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "burst_mage",
         "stealth"
+      ],
+      "win_condition_tags": [
+        "pick"
       ]
     },
     {
@@ -965,7 +1220,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "artillery",
@@ -979,6 +1238,12 @@
       "weak_with": [
         "nautilus",
         "yuumi"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "global_pressure",
+        "roam",
+        "scaling"
       ]
     },
     {
@@ -1007,20 +1272,29 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "high",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "control_mage",
         "hard_engage_cc"
+      ],
+      "win_condition_tags": [
+        "wombo",
+        "scaling",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
       "id": "fiora",
       "name": "Fiora",
       "colors_main": [
-        "G",
-        "C"
+        "G"
       ],
       "colors_off": [
         "W"
@@ -1040,13 +1314,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "high_mobility",
         "self_peel",
         "skirmisher",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "skirmish"
       ]
     },
     {
@@ -1072,13 +1354,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "high_mobility",
         "knockup",
         "untargetable"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "skirmish"
       ]
     },
     {
@@ -1107,7 +1397,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ap",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
@@ -1116,6 +1410,16 @@
         "hard_engage_cc",
         "knockup",
         "spell_shield"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "global_pressure",
+        "roam"
+      ],
+      "synergy_with": [
+        "camille",
+        "bard"
       ]
     },
     {
@@ -1142,13 +1446,22 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "high",
+        "scaling": "late"
       },
       "kit_tags": [
         "cleanse_self",
         "global_ult",
         "scaling_hyper",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "global_pressure",
+        "scaling"
       ]
     },
     {
@@ -1173,12 +1486,20 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "cleanse_self",
         "execute",
         "juggernaut"
+      ],
+      "win_condition_tags": [
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -1205,13 +1526,23 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "displacement",
         "knockup",
         "marksman"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "wombo",
+        "teamfight",
+        "skirmish"
       ]
     },
     {
@@ -1240,7 +1571,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "mixed",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "high",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "battle_mage",
@@ -1248,6 +1583,15 @@
         "engage_tank",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "pick",
+        "teamfight",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "orianna"
       ]
     },
     {
@@ -1274,12 +1618,21 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "farming_jungler",
         "marksman",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "skirmish",
+        "objective_control"
       ]
     },
     {
@@ -1304,7 +1657,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "displacement",
@@ -1312,6 +1669,14 @@
         "engage_tank",
         "hard_engage_cc",
         "high_mobility"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "skirmish",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "orianna"
       ]
     },
     {
@@ -1340,12 +1705,22 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "medium",
+        "waveclear": "high",
+        "scaling": "mid"
       },
       "kit_tags": [
         "control_mage",
         "poke_support",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "split_push",
+        "scaling",
+        "objective_control"
       ]
     },
     {
@@ -1370,12 +1745,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "displacement",
         "juggernaut",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -1403,7 +1787,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "diver",
@@ -1411,6 +1799,10 @@
         "high_mobility",
         "reset_mechanic",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "skirmish"
       ]
     },
     {
@@ -1438,13 +1830,25 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "enchanter",
         "farming_jungler",
         "knockup",
         "peel_support"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "rengar"
       ]
     },
     {
@@ -1469,7 +1873,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "cleanse_self",
@@ -1483,6 +1891,11 @@
       ],
       "weak_with": [
         "jinx"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling",
+        "teamfight"
       ]
     },
     {
@@ -1507,7 +1920,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "early"
       },
       "kit_tags": [
         "diver",
@@ -1515,6 +1932,17 @@
         "engage_tank",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "roam",
+        "teamfight",
+        "skirmish"
+      ],
+      "synergy_with": [
+        "rumble",
+        "orianna",
+        "yasuo"
       ]
     },
     {
@@ -1540,13 +1968,22 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "late"
       },
       "kit_tags": [
         "knockup",
         "scaling_hyper",
         "skirmisher",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "scaling",
+        "skirmish"
       ]
     },
     {
@@ -1574,12 +2011,20 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "early"
       },
       "kit_tags": [
         "artillery",
         "displacement",
         "poke_support"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "lane_bully"
       ]
     },
     {
@@ -1603,7 +2048,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "artillery",
@@ -1614,6 +2063,11 @@
       "synergy_with": [
         "senna",
         "xerath"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "poke_siege",
+        "global_pressure"
       ]
     },
     {
@@ -1639,7 +2093,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "global_ult",
@@ -1656,6 +2114,12 @@
       ],
       "weak_with": [
         "janna"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "global_pressure",
+        "scaling",
+        "skirmish"
       ]
     },
     {
@@ -1680,7 +2144,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "backline_access",
@@ -1693,6 +2161,11 @@
         "nami",
         "soraka",
         "lulu"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "engage_dive",
+        "scaling"
       ]
     },
     {
@@ -1717,13 +2190,25 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "high_mobility",
         "marksman",
         "peel_support",
         "self_peel"
+      ],
+      "win_condition_tags": [
+        "skirmish",
+        "lane_bully"
+      ],
+      "synergy_with": [
+        "thresh",
+        "renata_glasc"
       ]
     },
     {
@@ -1748,7 +2233,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "high",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "enchanter",
@@ -1759,6 +2248,11 @@
       "synergy_with": [
         "vayne",
         "caitlyn"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "poke_siege",
+        "scaling"
       ]
     },
     {
@@ -1784,7 +2278,11 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "high",
+        "scaling": "late"
       },
       "kit_tags": [
         "control_mage",
@@ -1793,6 +2291,11 @@
         "global_ult",
         "scaling_hyper",
         "requires_solo_magic"
+      ],
+      "win_condition_tags": [
+        "global_pressure",
+        "scaling",
+        "objective_control"
       ]
     },
     {
@@ -1817,12 +2320,20 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "assassin",
         "high_mobility",
         "scaling_hyper"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "scaling"
       ]
     },
     {
@@ -1846,13 +2357,23 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "anti_heal",
         "aoe_teamfight_ult",
         "assassin",
         "reset_mechanic"
+      ],
+      "win_condition_tags": [
+        "wombo",
+        "pick",
+        "teamfight",
+        "skirmish"
       ]
     },
     {
@@ -1881,13 +2402,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "hypercarry",
         "marksman",
         "scaling_hyper",
         "untargetable"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling"
       ]
     },
     {
@@ -1914,13 +2443,23 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "diver",
         "farming_jungler",
         "high_mobility"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "pick",
+        "scaling",
+        "skirmish"
       ]
     },
     {
@@ -1949,13 +2488,22 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "burst_mage",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "teamfight"
       ]
     },
     {
@@ -1983,12 +2531,20 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "high_mobility",
         "reset_mechanic"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "skirmish"
       ]
     },
     {
@@ -2013,13 +2569,25 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "farming_jungler",
         "marksman",
         "peel_support",
         "self_peel"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "engage_dive",
+        "teamfight"
+      ],
+      "synergy_with": [
+        "taric"
       ]
     },
     {
@@ -2043,12 +2611,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "diver",
         "execute",
         "juggernaut"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -2076,13 +2653,25 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "anti_frontline_on_hit",
         "hypercarry",
         "marksman",
         "scaling_hyper"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling"
+      ],
+      "synergy_with": [
+        "lulu",
+        "nami"
       ]
     },
     {
@@ -2108,12 +2697,20 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "burst_mage",
         "high_mobility"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "skirmish"
       ]
     },
     {
@@ -2138,13 +2735,22 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "medium",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "displacement",
         "diver",
         "early_ganker",
         "hard_engage_cc"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "roam",
+        "skirmish"
       ]
     },
     {
@@ -2169,7 +2775,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
@@ -2179,10 +2789,18 @@
         "point_click_cc"
       ],
       "synergy_with": [
-        "samira"
+        "samira",
+        "miss_fortune",
+        "varus"
       ],
       "weak_with": [
         "ashe"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
@@ -2208,13 +2826,22 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "control_mage",
         "hard_engage_cc",
         "point_click_cc",
         "untargetable"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "engage_dive",
+        "teamfight"
       ]
     },
     {
@@ -2240,7 +2867,11 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "high_mobility",
@@ -2248,6 +2879,10 @@
       ],
       "synergy_with": [
         "nami"
+      ],
+      "win_condition_tags": [
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -2273,7 +2908,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "late"
       },
       "kit_tags": [
         "enchanter",
@@ -2281,13 +2920,19 @@
         "peel_support"
       ],
       "synergy_with": [
-        "jinx"
+        "jinx",
+        "kogmaw",
+        "vayne"
       ],
       "weak_with": [
         "aphelios",
         "caitlyn",
         "kaisa",
         "smolder"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling"
       ]
     },
     {
@@ -2315,13 +2960,22 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "artillery",
         "burst_mage",
         "global_ult",
         "hard_engage_cc"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "global_pressure",
+        "roam"
       ]
     },
     {
@@ -2348,13 +3002,27 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ap",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "engage_tank",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "teamfight",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "yasuo",
+        "yone"
       ]
     },
     {
@@ -2379,13 +3047,21 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "high",
+        "scaling": "late"
       },
       "kit_tags": [
         "control_mage",
         "hard_engage_cc",
         "point_click_cc",
         "spell_shield"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "objective_control"
       ]
     },
     {
@@ -2414,7 +3090,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "medium",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
@@ -2422,6 +3102,12 @@
         "engage_tank",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
@@ -2446,13 +3132,25 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "late"
       },
       "kit_tags": [
         "cleanse_self",
         "reset_mechanic",
         "scaling_hyper",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "skirmish"
+      ],
+      "synergy_with": [
+        "taric",
+        "zilean"
       ]
     },
     {
@@ -2476,7 +3174,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "anti_heal",
@@ -2484,7 +3186,14 @@
         "marksman"
       ],
       "synergy_with": [
-        "thresh"
+        "thresh",
+        "lillia",
+        "leona",
+        "amumu"
+      ],
+      "win_condition_tags": [
+        "wombo",
+        "teamfight"
       ]
     },
     {
@@ -2509,12 +3218,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "mixed",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "battle_mage",
         "juggernaut",
         "pick_threat"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "scaling",
+        "teamfight"
       ]
     },
     {
@@ -2541,7 +3259,11 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "high",
+        "waveclear": "high",
+        "scaling": "mid"
       },
       "kit_tags": [
         "hard_engage_cc",
@@ -2551,6 +3273,10 @@
       ],
       "synergy_with": [
         "caitlyn"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "pick"
       ]
     },
     {
@@ -2575,7 +3301,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "enchanter",
@@ -2589,10 +3319,16 @@
         "yunara",
         "lucian",
         "brand",
-        "smolder"
+        "smolder",
+        "kogmaw"
       ],
       "weak_with": [
         "kaisa"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling",
+        "teamfight"
       ]
     },
     {
@@ -2619,13 +3355,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "late"
       },
       "kit_tags": [
         "juggernaut",
         "point_click_cc",
         "scaling_hyper",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "scaling"
       ]
     },
     {
@@ -2650,7 +3394,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "engage_support",
@@ -2666,6 +3414,12 @@
       "weak_with": [
         "ezreal",
         "ashe"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "pick",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
@@ -2691,12 +3445,20 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "burst_mage",
         "hard_engage_cc"
+      ],
+      "win_condition_tags": [
+        "wombo",
+        "teamfight"
       ]
     },
     {
@@ -2721,12 +3483,22 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "early"
       },
       "kit_tags": [
         "early_ganker",
         "high_mobility",
         "poke_support"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "roam",
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -2753,13 +3525,27 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "diver",
         "global_ult",
         "spell_shield"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "pick",
+        "global_pressure",
+        "roam"
+      ],
+      "synergy_with": [
+        "orianna",
+        "twisted_fate"
       ]
     },
     {
@@ -2784,13 +3570,23 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ap",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "early_ganker",
         "engage_tank",
         "knockup",
         "peel_support"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "roam",
+        "objective_control"
       ]
     },
     {
@@ -2815,13 +3611,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "anti_heal",
         "cleanse_self",
         "juggernaut",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -2848,7 +3652,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
@@ -2856,6 +3664,22 @@
         "displacement",
         "knockup",
         "peel_support"
+      ],
+      "win_condition_tags": [
+        "wombo",
+        "scaling",
+        "teamfight",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "nocturne",
+        "yasuo",
+        "jarvan_iv",
+        "sivir",
+        "zac",
+        "hecarim",
+        "amumu",
+        "gragas"
       ]
     },
     {
@@ -2883,7 +3707,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "medium",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
@@ -2891,6 +3719,12 @@
         "engage_tank",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
@@ -2916,13 +3750,26 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "early"
       },
       "kit_tags": [
         "diver",
         "global_ult",
         "hard_engage_cc",
         "poke_support"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "engage_dive",
+        "global_pressure",
+        "roam"
+      ],
+      "synergy_with": [
+        "taliyah"
       ]
     },
     {
@@ -2949,7 +3796,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "medium",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "displacement",
@@ -2957,6 +3808,15 @@
         "engage_tank",
         "hard_engage_cc",
         "self_peel"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "teamfight",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "veigar",
+        "anivia"
       ]
     },
     {
@@ -2981,7 +3841,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
@@ -2990,6 +3854,10 @@
         "hook_support",
         "reset_mechanic",
         "stealth"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "skirmish"
       ]
     },
     {
@@ -3014,7 +3882,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
@@ -3022,6 +3894,10 @@
         "hard_engage_cc",
         "high_mobility",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "skirmish"
       ]
     },
     {
@@ -3047,13 +3923,23 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "global_ult",
         "high_mobility",
         "marksman",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "global_pressure",
+        "roam",
+        "skirmish"
       ]
     },
     {
@@ -3064,8 +3950,7 @@
         "W"
       ],
       "colors_off": [
-        "U",
-        "C"
+        "U"
       ],
       "ls_notes": "colorless when paried with Xayah",
       "source": "ls_sheet",
@@ -3081,7 +3966,11 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "medium",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "enchanter",
@@ -3089,6 +3978,14 @@
         "hard_engage_cc",
         "high_mobility",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "engage_dive",
+        "teamfight"
+      ],
+      "synergy_with": [
+        "xayah"
       ]
     },
     {
@@ -3113,12 +4010,20 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "engage_tank",
         "hard_engage_cc",
         "point_click_cc"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "objective_control"
       ]
     },
     {
@@ -3142,13 +4047,23 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "early"
       },
       "kit_tags": [
         "diver",
         "early_ganker",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "pick",
+        "roam",
+        "skirmish"
       ]
     },
     {
@@ -3172,19 +4087,32 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "early"
       },
       "kit_tags": [
         "diver",
         "hard_engage_cc",
         "juggernaut"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "skirmish",
+        "lane_bully"
+      ],
+      "synergy_with": [
+        "elise"
       ]
     },
     {
       "id": "rengar",
       "name": "Rengar",
       "colors_main": [
-        "C"
+        "R",
+        "B"
       ],
       "colors_off": [],
       "ls_notes": null,
@@ -3203,13 +4131,24 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "high_mobility",
         "reset_mechanic",
         "stealth"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "skirmish"
+      ],
+      "synergy_with": [
+        "ivern"
       ]
     },
     {
@@ -3217,8 +4156,7 @@
       "name": "Riven",
       "colors_main": [
         "G",
-        "W",
-        "C"
+        "W"
       ],
       "colors_off": [],
       "ls_notes": null,
@@ -3235,13 +4173,22 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "diver",
         "high_mobility",
         "knockup",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "teamfight",
+        "skirmish"
       ]
     },
     {
@@ -3267,11 +4214,23 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "mixed",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "battle_mage"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "wombo",
+        "teamfight"
+      ],
+      "synergy_with": [
+        "jarvan_iv"
       ]
     },
     {
@@ -3297,13 +4256,22 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "battle_mage",
         "global_ult",
         "point_click_cc",
         "scaling_hyper"
+      ],
+      "win_condition_tags": [
+        "global_pressure",
+        "roam",
+        "scaling"
       ]
     },
     {
@@ -3328,13 +4296,23 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "medium",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "engage_tank",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
@@ -3362,7 +4340,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "medium",
+        "waveclear": "low",
+        "scaling": "late"
       },
       "kit_tags": [
         "enchanter",
@@ -3371,11 +4353,19 @@
         "scaling_hyper"
       ],
       "synergy_with": [
-        "jhin"
+        "jhin",
+        "milio",
+        "tahm_kench",
+        "sion"
       ],
       "weak_with": [
         "ashe",
         "caitlyn"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "global_pressure",
+        "scaling"
       ]
     },
     {
@@ -3401,13 +4391,22 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "displacement",
         "diver",
         "juggernaut",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -3434,12 +4433,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "early_ganker",
         "stealth"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "roam",
+        "skirmish"
       ]
     },
     {
@@ -3466,7 +4474,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "medium",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "engage_tank",
@@ -3474,6 +4486,12 @@
         "hard_engage_cc",
         "knockup",
         "peel_support"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "engage_dive",
+        "global_pressure",
+        "roam"
       ]
     },
     {
@@ -3498,20 +4516,28 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "farming_jungler",
         "scaling_hyper",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "scaling",
+        "objective_control"
       ]
     },
     {
       "id": "singed",
       "name": "Singed",
       "colors_main": [
-        "G",
-        "C"
+        "G"
       ],
       "colors_off": [],
       "ls_notes": null,
@@ -3528,12 +4554,20 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ap",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "displacement",
         "juggernaut",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "roam"
       ]
     },
     {
@@ -3562,13 +4596,24 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "engage_tank",
         "hard_engage_cc",
         "juggernaut",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "senna"
       ]
     },
     {
@@ -3593,12 +4638,24 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "medium",
+        "waveclear": "high",
+        "scaling": "late"
       },
       "kit_tags": [
         "engage_support",
         "marksman",
         "spell_shield"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling",
+        "teamfight"
+      ],
+      "synergy_with": [
+        "orianna"
       ]
     },
     {
@@ -3622,13 +4679,23 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
         "displacement",
         "engage_tank",
         "hard_engage_cc"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
@@ -3654,7 +4721,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
@@ -3669,6 +4740,15 @@
         "burst_before_heal_shield",
         "poke_sustained",
         "long_range_poke"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "wombo",
+        "teamfight"
+      ],
+      "synergy_with": [
+        "nilah",
+        "seraphine"
       ]
     },
     {
@@ -3696,7 +4776,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "cleanse_self",
@@ -3711,6 +4795,11 @@
       "weak_with": [
         "caitlyn",
         "kaisa"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "global_pressure",
+        "scaling"
       ]
     },
     {
@@ -3738,12 +4827,20 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "battle_mage",
         "displacement",
         "hook_support"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "scaling"
       ]
     },
     {
@@ -3771,12 +4868,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "diver",
         "high_mobility",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "pick",
+        "skirmish"
       ]
     },
     {
@@ -3801,13 +4907,23 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "burst_mage",
         "control_mage",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "scaling",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
@@ -3834,12 +4950,24 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "medium",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "engage_tank",
         "global_ult",
         "peel_support"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "global_pressure",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "senna"
       ]
     },
     {
@@ -3867,13 +4995,25 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "control_mage",
         "displacement",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "teamfight",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "pantheon"
       ]
     },
     {
@@ -3899,11 +5039,19 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "high_mobility"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "skirmish"
       ]
     },
     {
@@ -3927,21 +5075,33 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "medium",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "enchanter",
         "hard_engage_cc",
         "peel_support",
         "untargetable"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "teamfight"
+      ],
+      "synergy_with": [
+        "kindred",
+        "master_yi",
+        "nilah"
       ]
     },
     {
       "id": "teemo",
       "name": "Teemo",
       "colors_main": [
-        "U",
-        "C"
+        "U"
       ],
       "colors_off": [],
       "ls_notes": null,
@@ -3958,12 +5118,20 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "medium",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "marksman",
         "poke_support",
         "stealth"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "scaling"
       ]
     },
     {
@@ -3988,7 +5156,11 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "displacement",
@@ -4001,10 +5173,15 @@
         "samira",
         "miss_fortune",
         "xayah",
-        "draven"
+        "draven",
+        "kalista"
       ],
       "weak_with": [
         "yunara"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "pick"
       ]
     },
     {
@@ -4029,13 +5206,22 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "displacement",
         "marksman",
         "reset_mechanic",
         "self_peel"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "split_push",
+        "skirmish"
       ]
     },
     {
@@ -4064,12 +5250,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "anti_frontline_on_hit",
         "displacement",
         "juggernaut"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "skirmish",
+        "objective_control"
       ]
     },
     {
@@ -4094,13 +5289,22 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "late"
       },
       "kit_tags": [
         "cleanse_self",
         "scaling_hyper",
         "skirmisher",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "scaling",
+        "skirmish"
       ]
     },
     {
@@ -4125,12 +5329,24 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "burst_mage",
         "global_ult",
         "point_click_cc"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "global_pressure",
+        "roam"
+      ],
+      "synergy_with": [
+        "nocturne"
       ]
     },
     {
@@ -4154,7 +5370,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "hypercarry",
@@ -4164,7 +5384,12 @@
       ],
       "synergy_with": [
         "milio",
-        "nami"
+        "nami",
+        "yuumi"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling"
       ]
     },
     {
@@ -4190,12 +5415,19 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "diver",
         "juggernaut",
         "point_click_cc"
+      ],
+      "win_condition_tags": [
+        "engage_dive"
       ]
     },
     {
@@ -4220,12 +5452,20 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "early"
       },
       "kit_tags": [
         "displacement",
         "execute",
         "juggernaut"
+      ],
+      "win_condition_tags": [
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -4251,13 +5491,25 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "artillery",
         "hard_engage_cc",
         "heal_cut",
         "marksman"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "pick",
+        "teamfight"
+      ],
+      "synergy_with": [
+        "leona"
       ]
     },
     {
@@ -4282,7 +5534,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "late"
       },
       "kit_tags": [
         "anti_frontline_on_hit",
@@ -4292,7 +5548,14 @@
         "untargetable"
       ],
       "synergy_with": [
-        "karma"
+        "karma",
+        "anivia",
+        "lulu",
+        "alistar"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling"
       ]
     },
     {
@@ -4318,13 +5581,24 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "burst_mage",
         "execute",
         "hard_engage_cc",
         "scaling_hyper"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "scaling"
+      ],
+      "synergy_with": [
+        "poppy"
       ]
     },
     {
@@ -4351,12 +5625,21 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "high",
+        "scaling": "mid"
       },
       "kit_tags": [
         "artillery",
         "control_mage",
         "hard_engage_cc"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "scaling",
+        "objective_control"
       ]
     },
     {
@@ -4381,7 +5664,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "diver",
@@ -4389,6 +5676,11 @@
         "hard_engage_cc",
         "knockup",
         "point_click_cc"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "roam",
+        "skirmish"
       ]
     },
     {
@@ -4413,13 +5705,21 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "medium",
+        "waveclear": "high",
+        "scaling": "late"
       },
       "kit_tags": [
         "burst_mage",
         "control_mage",
         "hard_engage_cc",
         "scaling_hyper"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "objective_control"
       ]
     },
     {
@@ -4447,12 +5747,20 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "mixed",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "battle_mage",
         "scaling_hyper",
         "untargetable"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "teamfight"
       ]
     },
     {
@@ -4478,12 +5786,20 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "diver",
         "hard_engage_cc",
         "juggernaut"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "teamfight"
       ]
     },
     {
@@ -4509,12 +5825,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "diver",
         "early_ganker",
         "hard_engage_cc"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "roam",
+        "skirmish"
       ]
     },
     {
@@ -4540,7 +5865,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
@@ -4548,6 +5877,11 @@
         "diver",
         "knockup",
         "stealth"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "teamfight"
       ]
     },
     {
@@ -4557,9 +5891,7 @@
         "R",
         "W"
       ],
-      "colors_off": [
-        "C"
-      ],
+      "colors_off": [],
       "ls_notes": "colorless when paried with Rakan",
       "source": "ls_sheet",
       "contextual": false,
@@ -4574,7 +5906,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "hard_engage_cc",
@@ -4583,7 +5919,12 @@
         "untargetable"
       ],
       "synergy_with": [
-        "thresh"
+        "thresh",
+        "rakan"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "teamfight"
       ]
     },
     {
@@ -4608,7 +5949,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "high",
+        "scaling": "mid"
       },
       "kit_tags": [
         "artillery",
@@ -4617,6 +5962,11 @@
       ],
       "synergy_with": [
         "jhin"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "scaling",
+        "objective_control"
       ]
     },
     {
@@ -4643,13 +5993,23 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "early"
       },
       "kit_tags": [
         "diver",
         "early_ganker",
         "knockup",
         "self_peel"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "roam",
+        "teamfight",
+        "skirmish"
       ]
     },
     {
@@ -4678,7 +6038,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "airborne_chain",
@@ -4686,6 +6050,18 @@
         "knockup",
         "skirmisher",
         "spell_shield"
+      ],
+      "win_condition_tags": [
+        "wombo",
+        "teamfight",
+        "skirmish"
+      ],
+      "synergy_with": [
+        "diana",
+        "yone",
+        "malphite",
+        "orianna",
+        "jarvan_iv"
       ]
     },
     {
@@ -4710,19 +6086,27 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "displacement",
         "juggernaut",
         "splitpusher"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "objective_control"
       ]
     },
     {
       "id": "yuumi",
       "name": "Yuumi",
       "colors_main": [
-        "C"
+        "W"
       ],
       "colors_off": [],
       "ls_notes": null,
@@ -4739,7 +6123,11 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "enchanter",
@@ -4747,10 +6135,15 @@
         "untargetable"
       ],
       "synergy_with": [
-        "zeri"
+        "zeri",
+        "twitch"
       ],
       "weak_with": [
         "ezreal"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "teamfight"
       ]
     },
     {
@@ -4774,7 +6167,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
@@ -4782,6 +6179,15 @@
         "engage_tank",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "teamfight",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "orianna"
       ]
     },
     {
@@ -4806,12 +6212,20 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "high_mobility",
         "reset_mechanic"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "skirmish"
       ]
     },
     {
@@ -4838,12 +6252,20 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "medium",
+        "waveclear": "high",
+        "scaling": "mid"
       },
       "kit_tags": [
         "artillery",
         "global_ult",
         "poke_support"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "global_pressure"
       ]
     },
     {
@@ -4869,20 +6291,31 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "late"
       },
       "kit_tags": [
         "cleanse_self",
         "enchanter",
         "knockup",
         "peel_support"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling"
+      ],
+      "synergy_with": [
+        "master_yi"
       ]
     },
     {
       "id": "zoe",
       "name": "Zoe",
       "colors_main": [
-        "C"
+        "U"
       ],
       "colors_off": [],
       "ls_notes": null,
@@ -4900,12 +6333,19 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "burst_mage",
         "point_click_cc",
         "poke_support"
+      ],
+      "win_condition_tags": [
+        "poke_siege"
       ]
     },
     {
@@ -4932,13 +6372,20 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "burst_mage",
         "hard_engage_cc",
         "knockup",
         "poke_support"
+      ],
+      "win_condition_tags": [
+        "poke_siege"
       ]
     },
     {
@@ -4965,13 +6412,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "medium",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "displacement",
         "engage_tank",
         "hard_engage_cc",
         "juggernaut"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "objective_control"
       ]
     },
     {
@@ -5000,12 +6455,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "early_ganker",
         "high_mobility"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "roam",
+        "skirmish"
       ]
     },
     {
@@ -5032,7 +6496,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "execute",
@@ -5046,6 +6514,10 @@
       ],
       "weak_with": [
         "lulu"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling"
       ]
     },
     {
@@ -5073,12 +6545,21 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "high",
+        "scaling": "late"
       },
       "kit_tags": [
         "artillery",
         "burst_mage",
         "control_mage"
+      ],
+      "win_condition_tags": [
+        "poke_siege",
+        "scaling",
+        "objective_control"
       ]
     },
     {
@@ -5104,7 +6585,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "cleanse_self",
@@ -5115,10 +6600,15 @@
         "twitch",
         "aphelios",
         "ashe",
-        "caitlyn"
+        "caitlyn",
+        "senna"
       ],
       "weak_with": [
         "yunara"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling"
       ]
     },
     {
@@ -5128,9 +6618,7 @@
         "G",
         "W"
       ],
-      "colors_off": [
-        "C"
-      ],
+      "colors_off": [],
       "contextual": false,
       "ls_notes": "Grossly misunderstood and underutilized. W ability: 25% magic damage reduction + dodges autos for 2.5s, shares these with touched allies for 1.5s. G: synergy scaling, shares joy/power with allies. W: binary protective ability. C off: her pairings warp the draft around her \u2014 she is a comp-definer when played correctly.",
       "source": "owner",
@@ -5145,7 +6633,11 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "skirmisher",
@@ -5157,6 +6649,15 @@
         "long_range_poke_adc",
         "sustained_poke",
         "auto_reliant"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling",
+        "skirmish"
+      ],
+      "synergy_with": [
+        "taric",
+        "sona"
       ]
     },
     {
@@ -5183,12 +6684,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "anti_frontline_on_hit",
         "displacement",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "skirmish",
+        "objective_control"
       ]
     },
     {
@@ -5215,7 +6725,11 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "global_ult",
@@ -5223,6 +6737,12 @@
         "marksman",
         "skirmisher",
         "stealth"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "global_pressure",
+        "roam",
+        "scaling"
       ]
     },
     {
@@ -5249,12 +6769,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "assassin",
         "reset_mechanic",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "pick",
+        "skirmish"
       ]
     },
     {
@@ -5280,7 +6809,11 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "cleanse_self",
@@ -5292,6 +6825,10 @@
         "leona",
         "thresh",
         "nautilus"
+      ],
+      "win_condition_tags": [
+        "skirmish",
+        "lane_bully"
       ]
     },
     {
@@ -5317,7 +6854,11 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "tank",
-        "frontline": "high"
+        "frontline": "high",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "early"
       },
       "kit_tags": [
         "displacement",
@@ -5325,6 +6866,12 @@
         "engage_tank",
         "hard_engage_cc",
         "knockup"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "wombo",
+        "teamfight",
+        "objective_control"
       ]
     },
     {
@@ -5353,7 +6900,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "high",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "aoe_teamfight_ult",
@@ -5363,7 +6914,16 @@
       ],
       "synergy_with": [
         "jinx",
-        "smolder"
+        "smolder",
+        "ashe",
+        "cassiopeia",
+        "sona"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "poke_siege",
+        "wombo",
+        "scaling"
       ]
     },
     {
@@ -5389,13 +6949,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "anti_frontline_on_hit",
         "skirmisher",
         "splitpusher",
         "untargetable"
+      ],
+      "win_condition_tags": [
+        "split_push",
+        "skirmish"
       ]
     },
     {
@@ -5421,12 +6989,21 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "medium",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "burst_mage",
         "control_mage",
         "hard_engage_cc"
+      ],
+      "win_condition_tags": [
+        "pick",
+        "scaling",
+        "objective_control"
       ]
     },
     {
@@ -5452,7 +7029,11 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "high_mobility",
@@ -5461,6 +7042,10 @@
       ],
       "synergy_with": [
         "yuumi"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling"
       ]
     },
     {
@@ -5488,7 +7073,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "cleanse_self",
@@ -5496,6 +7085,13 @@
         "peel_support",
         "mind_control_ult",
         "counter_pick_specialist"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "teamfight"
+      ],
+      "synergy_with": [
+        "kalista"
       ]
     },
     {
@@ -5522,12 +7118,20 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "burst_mage",
         "displacement",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "skirmish",
+        "split_push"
       ]
     },
     {
@@ -5552,13 +7156,21 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "low",
+        "scaling": "mid"
       },
       "kit_tags": [
         "displacement",
         "diver",
         "high_mobility",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "skirmish"
       ]
     },
     {
@@ -5584,11 +7196,19 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ap",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "low",
+        "peel": "high",
+        "waveclear": "low",
+        "scaling": "late"
       },
       "kit_tags": [
         "battle_mage",
         "spell_shield"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "poke_siege"
       ]
     },
     {
@@ -5614,13 +7234,22 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "cleanse_self",
         "diver",
         "early_ganker",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "engage_dive",
+        "roam",
+        "skirmish"
       ]
     },
     {
@@ -5645,13 +7274,26 @@
       "structural_tags": {
         "range": "medium",
         "damage_profile": "mixed",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "battle_mage",
         "farming_jungler",
         "high_mobility",
         "scaling_hyper"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "roam",
+        "wombo",
+        "objective_control"
+      ],
+      "synergy_with": [
+        "miss_fortune"
       ]
     },
     {
@@ -5679,13 +7321,26 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "high",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "airborne_chain",
         "high_mobility",
         "knockup",
         "skirmisher"
+      ],
+      "win_condition_tags": [
+        "wombo",
+        "teamfight",
+        "skirmish"
+      ],
+      "synergy_with": [
+        "yasuo",
+        "malphite"
       ]
     },
     {
@@ -5710,7 +7365,11 @@
       "structural_tags": {
         "range": "long",
         "damage_profile": "ad",
-        "frontline": "low"
+        "frontline": "low",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "mid"
       },
       "kit_tags": [
         "hypercarry",
@@ -5724,6 +7383,10 @@
       "weak_with": [
         "thresh",
         "milio"
+      ],
+      "win_condition_tags": [
+        "protect_the_carry",
+        "scaling"
       ]
     },
     {
@@ -5749,11 +7412,19 @@
       "structural_tags": {
         "range": "melee",
         "damage_profile": "ad",
-        "frontline": "medium"
+        "frontline": "medium",
+        "engage": "medium",
+        "peel": "low",
+        "waveclear": "medium",
+        "scaling": "late"
       },
       "kit_tags": [
         "burst_mage",
         "control_mage"
+      ],
+      "win_condition_tags": [
+        "scaling",
+        "objective_control"
       ]
     }
   ],
