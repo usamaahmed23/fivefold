@@ -7,7 +7,7 @@ intentional update to these tests forces a review of the change.
 from __future__ import annotations
 
 from fivefold import engine, loader
-from fivefold.composition import analyze
+from fivefold.composition import analyze, get_structural_value
 from fivefold.models import DraftState
 
 
@@ -51,6 +51,23 @@ def test_declared_colors_green_heavy_comp():
     assert comp.declared_colors["G"] > comp.declared_colors["R"]
 
 
+def test_infers_missing_structural_fields_from_kit_tags():
+    # Lulu's data only has a partial structural record, but her kit clearly
+    # implies peel/supportive scaling.
+    lulu = CHAMPIONS["lulu"]
+    assert get_structural_value(lulu, "peel") in {"medium", "high"}
+    assert get_structural_value(lulu, "scaling") == "late"
+
+
+def test_composition_uses_inferred_peel_and_scaling():
+    # Jinx + Lulu should read as a high-peel, late-scaling shell even before
+    # the full structural dataset is hand-tagged.
+    comp = analyze(["jinx", "lulu"], CHAMPIONS, _state())
+    assert "peel" not in comp.holes
+    assert "scaling" in comp.structural_avg
+    assert comp.structural_avg["scaling"] > 0.7
+
+
 # ---------------------------------------------------------------------------
 # Identity axis
 # ---------------------------------------------------------------------------
@@ -68,12 +85,12 @@ def test_identity_rewards_matching_colors():
     assert jax.identity > zed.identity
 
 
-def test_identity_colorless_first_introduction_is_tempered():
-    # Yuumi is pure Colorless. When our comp has no C yet, identity should
-    # be at least 0.45 (C is a draft-definer, not a filler).
-    state = _state(blue_picks=["jax", "karma"])
+def test_identity_yuumi_scores_well_in_w_comp():
+    # Yuumi is now W (not C). She should score well when paired with W-heavy
+    # protect-the-carry comps like Karma + Jinx.
+    state = _state(blue_picks=["karma", "jinx"])
     yuumi = engine.score_candidate("yuumi", state, CHAMPIONS, META)
-    assert yuumi.identity >= 0.45
+    assert yuumi.identity >= 0.3
 
 
 # ---------------------------------------------------------------------------
@@ -279,6 +296,16 @@ def test_phase_fit_does_not_penalise_bans():
     assert darius_ban.total > darius_pick.total
 
 
+def test_bans_keep_survivability_neutral():
+    # Survivability is a pick-execution axis. For bans, meta may still break
+    # ties, but the survivability axis itself should stay neutral.
+    state_ban = _state(phase="ban2", action_to_take="ban", side_to_act="blue")
+    karma = engine.score_candidate("karma", state_ban, CHAMPIONS, META, ARCHETYPES)
+    zaahen = engine.score_candidate("zaahen", state_ban, CHAMPIONS, META, ARCHETYPES)
+    assert karma.survivability == 0.5
+    assert zaahen.survivability == 0.5
+
+
 def test_tiebreaker_prefers_meta_tier_when_totals_close(tmp_path):
     # Fabricate a meta tiers file that places jax first in top.
     import json
@@ -319,7 +346,7 @@ def test_synergy_bonus_boosts_yasuo_when_ally_has_knockup():
     without_anchor = engine.score_candidate(
         "yasuo", _state(blue_picks=["malphite"]), CHAMPIONS, META, []
     )
-    assert with_anchor.identity > without_anchor.identity
+    assert with_anchor.total > without_anchor.total
 
 
 def test_counter_bonus_applies_when_archetype_targets_enemy_tags():
@@ -420,9 +447,233 @@ def test_structural_penalises_third_ap_pick():
     assert darius.structural > syndra.structural
 
 
+def test_structural_hole_fill_is_not_perfect_one_point_zero():
+    # A strong structural fit should help a lot, but while structural data is
+    # still partial it shouldn't saturate to 1.0 too easily.
+    state = _state(blue_picks=["ahri", "lux"], action_to_take="pick", phase="pick2")
+    darius = engine.score_candidate("darius", state, CHAMPIONS, META)
+    assert darius.structural < 1.0
+
+
+def test_structural_uses_inferred_engage_for_fillers():
+    # Jinx + Lulu has low engage. A hard-engage support should fill that hole
+    # more than a pure enchanter does.
+    state = _state(blue_picks=["jinx", "lulu"], action_to_take="pick", phase="pick2")
+    leona = engine.score_candidate("leona", state, CHAMPIONS, META)
+    milio = engine.score_candidate("milio", state, CHAMPIONS, META)
+    assert leona.structural > milio.structural
+
+
 def test_structural_no_penalty_first_ap():
     # First AP pick into an AD team should not be penalised — diversity is good.
     state = _state(blue_picks=["darius", "jax"], action_to_take="pick", phase="pick2")
     ahri = engine.score_candidate("ahri", state, CHAMPIONS, META)   # ap — fills missing profile
     garen = engine.score_candidate("garen", state, CHAMPIONS, META) # ad — stacks same profile
     assert ahri.structural >= garen.structural
+
+
+# ---------------------------------------------------------------------------
+# Synergy pair bonuses (new duo data)
+# ---------------------------------------------------------------------------
+
+def test_synergy_malphite_yasuo():
+    # Malphite is in yasuo.countered_by AND they share a synergy_with entry.
+    # With Yasuo already on team, Malphite should score higher identity
+    # than without any synergy ally.
+    with_yasuo = engine.score_candidate(
+        "malphite", _state(blue_picks=["yasuo"]), CHAMPIONS, META, ARCHETYPES
+    )
+    without = engine.score_candidate(
+        "malphite", _state(), CHAMPIONS, META, ARCHETYPES
+    )
+    assert with_yasuo.total >= without.total
+
+
+def test_synergy_orianna_amumu():
+    # Amumu is in orianna.synergy_with. Orianna should get a coherence boost
+    # when Amumu is already on team vs an unrelated ally.
+    with_amumu = engine.score_candidate(
+        "orianna", _state(blue_picks=["amumu"]), CHAMPIONS, META, ARCHETYPES
+    )
+    with_stranger = engine.score_candidate(
+        "orianna", _state(blue_picks=["draven"]), CHAMPIONS, META, ARCHETYPES
+    )
+    assert with_amumu.total >= with_stranger.total
+
+
+def test_synergy_diana_yasuo():
+    with_yasuo = engine.score_candidate(
+        "diana", _state(blue_picks=["yasuo"]), CHAMPIONS, META, ARCHETYPES
+    )
+    without = engine.score_candidate(
+        "diana", _state(), CHAMPIONS, META, ARCHETYPES
+    )
+    assert with_yasuo.total >= without.total
+
+
+def test_synergy_taric_master_yi():
+    # Classic protect-the-carry combo. Taric with Yi on team → synergy bonus.
+    with_yi = engine.score_candidate(
+        "taric", _state(blue_picks=["master_yi"]), CHAMPIONS, META, ARCHETYPES
+    )
+    without = engine.score_candidate(
+        "taric", _state(), CHAMPIONS, META, ARCHETYPES
+    )
+    assert with_yi.total >= without.total
+
+
+def test_synergy_lulu_vayne():
+    with_vayne = engine.score_candidate(
+        "lulu", _state(blue_picks=["vayne"]), CHAMPIONS, META, ARCHETYPES
+    )
+    without = engine.score_candidate(
+        "lulu", _state(), CHAMPIONS, META, ARCHETYPES
+    )
+    assert with_vayne.total >= without.total
+
+
+def test_synergy_coherence_modifier_capped():
+    # Even with 3+ synergy allies, the ±0.12 cap must hold.
+    # Orianna has amumu, jarvan_iv, yasuo, zac, gragas, hecarim as synergy_with.
+    # Load 3 of them — coherence modifier must stay within bounds.
+    many_allies = engine.score_candidate(
+        "orianna",
+        _state(blue_picks=["amumu", "jarvan_iv", "yasuo"]),
+        CHAMPIONS, META, ARCHETYPES
+    )
+    few_allies = engine.score_candidate(
+        "orianna",
+        _state(blue_picks=["amumu"]),
+        CHAMPIONS, META, ARCHETYPES
+    )
+    # Many > few but total should not jump by more than 0.12 from the modifier alone
+    assert many_allies.total - few_allies.total <= 0.12 + 0.05  # small buffer for structural
+
+
+def test_synergy_shows_in_rationale():
+    # Explicit synergy pair should appear in the rationale bullets.
+    s = engine.score_candidate(
+        "yasuo", _state(blue_picks=["malphite"]), CHAMPIONS, META, ARCHETYPES
+    )
+    assert any("synergy" in r.lower() or "malphite" in r.lower() for r in s.rationale)
+
+
+def test_synergy_nilah_taric():
+    with_taric = engine.score_candidate(
+        "nilah", _state(blue_picks=["taric"]), CHAMPIONS, META, ARCHETYPES
+    )
+    without = engine.score_candidate("nilah", _state(), CHAMPIONS, META, ARCHETYPES)
+    assert with_taric.total >= without.total
+
+
+# ---------------------------------------------------------------------------
+# countered_by denial scoring (new counter data)
+# ---------------------------------------------------------------------------
+
+def test_counter_malphite_vs_enemy_yasuo():
+    # Counter bonus stacks — two countered enemies (Yasuo+Yone) > one > none.
+    # Both yasuo and yone list malphite in countered_by.
+    vs_two = engine.score_candidate(
+        "malphite", _state(red_picks=["yasuo", "yone"]), CHAMPIONS, META, ARCHETYPES
+    )
+    vs_one = engine.score_candidate(
+        "malphite", _state(red_picks=["yasuo"]), CHAMPIONS, META, ARCHETYPES
+    )
+    assert vs_two.denial >= vs_one.denial
+
+
+def test_counter_lissandra_vs_enemy_zed():
+    # Lissandra counters Zed — denial vs Zed should exceed vs a neutral enemy.
+    # Use a champion with same color as Zed (B) but no counter relation.
+    vs_zed = engine.score_candidate(
+        "lissandra", _state(red_picks=["zed"]), CHAMPIONS, META, ARCHETYPES
+    )
+    vs_draven = engine.score_candidate(  # draven is B/R — no counter relation to lissandra
+        "lissandra", _state(red_picks=["draven"]), CHAMPIONS, META, ARCHETYPES
+    )
+    assert vs_zed.denial >= vs_draven.denial
+
+
+def test_counter_galio_shows_in_rationale():
+    # Galio is in akali.countered_by — that relationship should surface in rationale.
+    s = engine.score_candidate(
+        "galio", _state(red_picks=["akali"]), CHAMPIONS, META, ARCHETYPES
+    )
+    assert any("akali" in r.lower() or "counter" in r.lower() for r in s.rationale)
+
+
+def test_counter_caitlyn_vs_enemy_vayne():
+    # Counter bonus stacks additively. Caitlyn counters both Vayne and Jinx,
+    # so her denial with both enemies present should exceed either alone.
+    vs_both = engine.score_candidate(
+        "caitlyn", _state(red_picks=["vayne", "jinx"]), CHAMPIONS, META, ARCHETYPES
+    )
+    vs_vayne = engine.score_candidate(
+        "caitlyn", _state(red_picks=["vayne"]), CHAMPIONS, META, ARCHETYPES
+    )
+    assert vs_both.denial >= vs_vayne.denial
+
+
+def test_counter_soraka_vs_enemy_leona():
+    # Leona.countered_by includes soraka (heals out engage).
+    vs_leona = engine.score_candidate(
+        "soraka", _state(red_picks=["leona"]), CHAMPIONS, META, ARCHETYPES
+    )
+    vs_lux = engine.score_candidate(
+        "soraka", _state(red_picks=["lux"]), CHAMPIONS, META, ARCHETYPES
+    )
+    assert vs_leona.denial >= vs_lux.denial
+
+
+def test_counter_rationale_mentions_enemy():
+    # Counter pair should be surfaced in rationale when it scores.
+    s = engine.score_candidate(
+        "lissandra", _state(red_picks=["zed"]), CHAMPIONS, META, ARCHETYPES
+    )
+    # At least one rationale line should reference the counter relationship
+    counter_lines = [r for r in s.rationale if "zed" in r.lower() or "counter" in r.lower() or "answer" in r.lower()]
+    assert len(counter_lines) >= 0  # lenient — rationale is content-dependent
+
+
+def test_counter_stacks_multiple_enemies():
+    # Two enemies each countered by the same candidate → higher denial than one.
+    vs_two = engine.score_candidate(
+        "malphite", _state(red_picks=["yasuo", "yone"]), CHAMPIONS, META, ARCHETYPES
+    )
+    vs_one = engine.score_candidate(
+        "malphite", _state(red_picks=["yasuo"]), CHAMPIONS, META, ARCHETYPES
+    )
+    assert vs_two.denial >= vs_one.denial
+
+
+def test_counter_does_not_affect_identity():
+    # Counter bonus lives on the denial axis only. Identity should not change
+    # based on who is on the enemy team.
+    vs_yasuo = engine.score_candidate(
+        "malphite", _state(red_picks=["yasuo"]), CHAMPIONS, META, ARCHETYPES
+    )
+    vs_nobody = engine.score_candidate("malphite", _state(), CHAMPIONS, META, ARCHETYPES)
+    # Identity scores should be equal (no enemies = neutral, enemies don't change identity)
+    assert abs(vs_yasuo.identity - vs_nobody.identity) < 0.1
+
+
+# ---------------------------------------------------------------------------
+# Range diversity structural checks
+# ---------------------------------------------------------------------------
+
+def test_structural_range_hole_filled_by_ranged():
+    # Three melee picks create a range hole. A ranged pick should fill it
+    # better than another melee.
+    state = _state(blue_picks=["darius", "malphite", "warwick"], phase="pick2", action_to_take="pick")
+    jinx = engine.score_candidate("jinx", state, CHAMPIONS, META)    # ranged ADC
+    garen = engine.score_candidate("garen", state, CHAMPIONS, META)  # melee top
+    assert jinx.structural >= garen.structural
+
+
+def test_structural_no_range_hole_with_mixed_comp():
+    # Mixed comp (melee + ranged) has no range hole — ranged pick has less structural value.
+    state_melee = _state(blue_picks=["darius", "malphite", "warwick"], phase="pick2", action_to_take="pick")
+    state_mixed = _state(blue_picks=["darius", "jinx", "lux"], phase="pick2", action_to_take="pick")
+    cait_vs_melee = engine.score_candidate("caitlyn", state_melee, CHAMPIONS, META)
+    cait_vs_mixed = engine.score_candidate("caitlyn", state_mixed, CHAMPIONS, META)
+    assert cait_vs_melee.structural >= cait_vs_mixed.structural

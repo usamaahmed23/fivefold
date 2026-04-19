@@ -51,6 +51,13 @@
       "win_condition_tags": [
         "skirmish",
         "lane_bully"
+      ],
+      "countered_by": [
+        "vayne",
+        "gangplank",
+        "trundle",
+        "olaf",
+        "garen"
       ]
     },
     {
@@ -91,6 +98,13 @@
       "win_condition_tags": [
         "pick",
         "skirmish"
+      ],
+      "countered_by": [
+        "leblanc",
+        "zed",
+        "talon",
+        "fizz",
+        "sylas"
       ]
     },
     {
@@ -134,6 +148,17 @@
         "engage_dive",
         "pick",
         "skirmish"
+      ],
+      "countered_by": [
+        "galio",
+        "diana",
+        "lissandra",
+        "malzahar",
+        "ahri",
+        "darius",
+        "renekton",
+        "garen",
+        "malphite"
       ]
     },
     {
@@ -179,6 +204,13 @@
       ],
       "synergy_with": [
         "vayne"
+      ],
+      "countered_by": [
+        "thresh",
+        "morgana",
+        "lulu",
+        "blitzcrank",
+        "nautilus"
       ]
     },
     {
@@ -594,6 +626,13 @@
       ],
       "win_condition_tags": [
         "pick"
+      ],
+      "countered_by": [
+        "thresh",
+        "nautilus",
+        "lulu",
+        "janna",
+        "senna"
       ]
     },
     {
@@ -735,6 +774,13 @@
       "win_condition_tags": [
         "poke_siege",
         "lane_bully"
+      ],
+      "countered_by": [
+        "draven",
+        "lucian",
+        "miss_fortune",
+        "samira",
+        "nilah"
       ]
     },
     {
@@ -780,6 +826,13 @@
       ],
       "synergy_with": [
         "galio"
+      ],
+      "countered_by": [
+        "malphite",
+        "kayle",
+        "yorick",
+        "warwick",
+        "trundle"
       ]
     },
     {
@@ -945,6 +998,13 @@
       "win_condition_tags": [
         "skirmish",
         "lane_bully"
+      ],
+      "countered_by": [
+        "vayne",
+        "quinn",
+        "olaf",
+        "illaoi",
+        "gnar"
       ]
     },
     {
@@ -990,6 +1050,13 @@
       ],
       "synergy_with": [
         "yasuo"
+      ],
+      "countered_by": [
+        "zed",
+        "yasuo",
+        "syndra",
+        "orianna",
+        "ahri"
       ]
     },
     {
@@ -1071,6 +1138,13 @@
       "win_condition_tags": [
         "skirmish",
         "lane_bully"
+      ],
+      "countered_by": [
+        "caitlyn",
+        "kalista",
+        "lucian",
+        "nilah",
+        "samira"
       ]
     },
     {
@@ -1155,6 +1229,13 @@
       ],
       "synergy_with": [
         "renekton"
+      ],
+      "countered_by": [
+        "amumu",
+        "warwick",
+        "sejuani",
+        "lee_sin",
+        "vi"
       ]
     },
     {
@@ -1244,6 +1325,13 @@
         "global_pressure",
         "roam",
         "scaling"
+      ],
+      "countered_by": [
+        "draven",
+        "lucian",
+        "miss_fortune",
+        "samira",
+        "zeri"
       ]
     },
     {
@@ -1329,6 +1417,13 @@
       "win_condition_tags": [
         "split_push",
         "skirmish"
+      ],
+      "countered_by": [
+        "malphite",
+        "tahm_kench",
+        "yorick",
+        "garen",
+        "volibear"
       ]
     },
     {
@@ -1369,6 +1464,13 @@
       "win_condition_tags": [
         "pick",
         "skirmish"
+      ],
+      "countered_by": [
+        "zed",
+        "annie",
+        "lissandra",
+        "galio",
+        "ahri"
       ]
     },
     {
@@ -1462,6 +1564,13 @@
         "split_push",
         "global_pressure",
         "scaling"
+      ],
+      "countered_by": [
+        "darius",
+        "jayce",
+        "renekton",
+        "quinn",
+        "mordekaiser"
       ]
     },
     {
@@ -1500,6 +1609,13 @@
       "win_condition_tags": [
         "skirmish",
         "lane_bully"
+      ],
+      "countered_by": [
+        "vayne",
+        "teemo",
+        "quinn",
+        "fiora",
+        "jayce"
       ]
     },
     {
@@ -1677,6 +1793,13 @@
       ],
       "synergy_with": [
         "orianna"
+      ],
+      "countered_by": [
+        "rammus",
+        "amumu",
+        "warwick",
+        "jax",
+        "trundle"
       ]
     },
     {
@@ -1803,6 +1926,13 @@
       "win_condition_tags": [
         "engage_dive",
         "skirmish"
+      ],
+      "countered_by": [
+        "malphite",
+        "pantheon",
+        "renekton",
+        "jax",
+        "garen"
       ]
     },
     {
@@ -1896,6 +2026,13 @@
         "protect_the_carry",
         "scaling",
         "teamfight"
+      ],
+      "countered_by": [
+        "blitzcrank",
+        "leona",
+        "pyke",
+        "thresh",
+        "nautilus"
       ]
     },
     {
@@ -1984,6 +2121,13 @@
         "split_push",
         "scaling",
         "skirmish"
+      ],
+      "countered_by": [
+        "malphite",
+        "darius",
+        "garen",
+        "teemo",
+        "quinn"
       ]
     },
     {
@@ -2068,6 +2212,13 @@
         "pick",
         "poke_siege",
         "global_pressure"
+      ],
+      "countered_by": [
+        "lucian",
+        "miss_fortune",
+        "samira",
+        "zeri",
+        "draven"
       ]
     },
     {
@@ -2120,6 +2271,13 @@
         "global_pressure",
         "scaling",
         "skirmish"
+      ],
+      "countered_by": [
+        "caitlyn",
+        "kalista",
+        "samira",
+        "draven",
+        "miss_fortune"
       ]
     },
     {
@@ -2334,6 +2492,13 @@
       "win_condition_tags": [
         "pick",
         "scaling"
+      ],
+      "countered_by": [
+        "zed",
+        "katarina",
+        "talon",
+        "malzahar",
+        "tristana"
       ]
     },
     {
@@ -2374,6 +2539,13 @@
         "pick",
         "teamfight",
         "skirmish"
+      ],
+      "countered_by": [
+        "galio",
+        "diana",
+        "lissandra",
+        "cassiopeia",
+        "pantheon"
       ]
     },
     {
@@ -2417,6 +2589,13 @@
       "win_condition_tags": [
         "protect_the_carry",
         "scaling"
+      ],
+      "countered_by": [
+        "darius",
+        "malphite",
+        "garen",
+        "renekton",
+        "pantheon"
       ]
     },
     {
@@ -2460,6 +2639,13 @@
         "pick",
         "scaling",
         "skirmish"
+      ],
+      "countered_by": [
+        "amumu",
+        "warwick",
+        "lee_sin",
+        "volibear",
+        "sejuani"
       ]
     },
     {
@@ -2504,6 +2690,13 @@
         "engage_dive",
         "wombo",
         "teamfight"
+      ],
+      "countered_by": [
+        "darius",
+        "malphite",
+        "renekton",
+        "garen",
+        "yorick"
       ]
     },
     {
@@ -2545,6 +2738,13 @@
       "win_condition_tags": [
         "pick",
         "skirmish"
+      ],
+      "countered_by": [
+        "camille",
+        "rammus",
+        "warwick",
+        "amumu",
+        "poppy"
       ]
     },
     {
@@ -2588,6 +2788,13 @@
       ],
       "synergy_with": [
         "taric"
+      ],
+      "countered_by": [
+        "amumu",
+        "warwick",
+        "rammus",
+        "sejuani",
+        "zac"
       ]
     },
     {
@@ -2672,6 +2879,13 @@
       "synergy_with": [
         "lulu",
         "nami"
+      ],
+      "countered_by": [
+        "draven",
+        "caitlyn",
+        "miss_fortune",
+        "samira",
+        "kalista"
       ]
     },
     {
@@ -2711,6 +2925,13 @@
       "win_condition_tags": [
         "pick",
         "skirmish"
+      ],
+      "countered_by": [
+        "galio",
+        "lissandra",
+        "viktor",
+        "malzahar",
+        "diana"
       ]
     },
     {
@@ -2751,6 +2972,13 @@
         "engage_dive",
         "roam",
         "skirmish"
+      ],
+      "countered_by": [
+        "amumu",
+        "warwick",
+        "volibear",
+        "sejuani",
+        "nocturne"
       ]
     },
     {
@@ -2801,6 +3029,13 @@
         "wombo",
         "teamfight",
         "objective_control"
+      ],
+      "countered_by": [
+        "soraka",
+        "lulu",
+        "nami",
+        "karma",
+        "janna"
       ]
     },
     {
@@ -2933,6 +3168,13 @@
       "win_condition_tags": [
         "protect_the_carry",
         "scaling"
+      ],
+      "countered_by": [
+        "blitzcrank",
+        "nautilus",
+        "leona",
+        "thresh",
+        "pyke"
       ]
     },
     {
@@ -2976,6 +3218,18 @@
         "poke_siege",
         "global_pressure",
         "roam"
+      ],
+      "countered_by": [
+        "zed",
+        "talon",
+        "leblanc",
+        "fizz",
+        "yasuo",
+        "blitzcrank",
+        "nautilus",
+        "alistar",
+        "senna",
+        "thresh"
       ]
     },
     {
@@ -3023,6 +3277,13 @@
       "synergy_with": [
         "yasuo",
         "yone"
+      ],
+      "countered_by": [
+        "vayne",
+        "olaf",
+        "lillia",
+        "teemo",
+        "jayce"
       ]
     },
     {
@@ -3151,6 +3412,13 @@
       "synergy_with": [
         "taric",
         "zilean"
+      ],
+      "countered_by": [
+        "rammus",
+        "amumu",
+        "warwick",
+        "malphite",
+        "jax"
       ]
     },
     {
@@ -3233,6 +3501,13 @@
         "pick",
         "scaling",
         "teamfight"
+      ],
+      "countered_by": [
+        "olaf",
+        "vayne",
+        "gangplank",
+        "trundle",
+        "quinn"
       ]
     },
     {
@@ -3277,6 +3552,13 @@
       "win_condition_tags": [
         "poke_siege",
         "pick"
+      ],
+      "countered_by": [
+        "blitzcrank",
+        "pyke",
+        "thresh",
+        "nautilus",
+        "leona"
       ]
     },
     {
@@ -3329,6 +3611,13 @@
         "protect_the_carry",
         "scaling",
         "teamfight"
+      ],
+      "countered_by": [
+        "blitzcrank",
+        "leona",
+        "pyke",
+        "thresh",
+        "nautilus"
       ]
     },
     {
@@ -3420,6 +3709,13 @@
         "pick",
         "teamfight",
         "objective_control"
+      ],
+      "countered_by": [
+        "janna",
+        "lulu",
+        "soraka",
+        "thresh",
+        "blitzcrank"
       ]
     },
     {
@@ -3499,6 +3795,13 @@
         "roam",
         "skirmish",
         "lane_bully"
+      ],
+      "countered_by": [
+        "lee_sin",
+        "amumu",
+        "sejuani",
+        "warwick",
+        "vi"
       ]
     },
     {
@@ -3680,6 +3983,13 @@
         "hecarim",
         "amumu",
         "gragas"
+      ],
+      "countered_by": [
+        "zed",
+        "talon",
+        "leblanc",
+        "fizz",
+        "katarina"
       ]
     },
     {
@@ -3858,6 +4168,13 @@
       "win_condition_tags": [
         "pick",
         "skirmish"
+      ],
+      "countered_by": [
+        "senna",
+        "thresh",
+        "blitzcrank",
+        "lulu",
+        "nautilus"
       ]
     },
     {
@@ -4149,6 +4466,13 @@
       ],
       "synergy_with": [
         "ivern"
+      ],
+      "countered_by": [
+        "camille",
+        "poppy",
+        "malphite",
+        "jarvan_iv",
+        "rammus"
       ]
     },
     {
@@ -4189,6 +4513,13 @@
         "engage_dive",
         "teamfight",
         "skirmish"
+      ],
+      "countered_by": [
+        "renekton",
+        "darius",
+        "malphite",
+        "pantheon",
+        "garen"
       ]
     },
     {
@@ -4800,6 +5131,13 @@
         "protect_the_carry",
         "global_pressure",
         "scaling"
+      ],
+      "countered_by": [
+        "blitzcrank",
+        "nautilus",
+        "leona",
+        "pyke",
+        "thresh"
       ]
     },
     {
@@ -4924,6 +5262,13 @@
         "scaling",
         "teamfight",
         "objective_control"
+      ],
+      "countered_by": [
+        "zed",
+        "talon",
+        "ekko",
+        "akali",
+        "leblanc"
       ]
     },
     {
@@ -5182,6 +5527,13 @@
       "win_condition_tags": [
         "engage_dive",
         "pick"
+      ],
+      "countered_by": [
+        "soraka",
+        "lulu",
+        "nami",
+        "blitzcrank",
+        "nautilus"
       ]
     },
     {
@@ -5305,6 +5657,13 @@
         "split_push",
         "scaling",
         "skirmish"
+      ],
+      "countered_by": [
+        "malphite",
+        "rammus",
+        "garen",
+        "kled",
+        "pantheon"
       ]
     },
     {
@@ -5347,6 +5706,13 @@
       ],
       "synergy_with": [
         "nocturne"
+      ],
+      "countered_by": [
+        "zed",
+        "talon",
+        "fizz",
+        "kassadin",
+        "leblanc"
       ]
     },
     {
@@ -5390,6 +5756,13 @@
       "win_condition_tags": [
         "protect_the_carry",
         "scaling"
+      ],
+      "countered_by": [
+        "caitlyn",
+        "draven",
+        "lucian",
+        "miss_fortune",
+        "jhin"
       ]
     },
     {
@@ -5556,6 +5929,13 @@
       "win_condition_tags": [
         "protect_the_carry",
         "scaling"
+      ],
+      "countered_by": [
+        "caitlyn",
+        "draven",
+        "lucian",
+        "miss_fortune",
+        "ashe"
       ]
     },
     {
@@ -5681,6 +6061,13 @@
         "engage_dive",
         "roam",
         "skirmish"
+      ],
+      "countered_by": [
+        "rammus",
+        "amumu",
+        "warwick",
+        "malphite",
+        "sejuani"
       ]
     },
     {
@@ -5720,6 +6107,13 @@
       "win_condition_tags": [
         "scaling",
         "objective_control"
+      ],
+      "countered_by": [
+        "zed",
+        "talon",
+        "fizz",
+        "kassadin",
+        "leblanc"
       ]
     },
     {
@@ -5925,6 +6319,13 @@
       "win_condition_tags": [
         "scaling",
         "teamfight"
+      ],
+      "countered_by": [
+        "draven",
+        "caitlyn",
+        "miss_fortune",
+        "nilah",
+        "samira"
       ]
     },
     {
@@ -5967,6 +6368,13 @@
         "poke_siege",
         "scaling",
         "objective_control"
+      ],
+      "countered_by": [
+        "zed",
+        "talon",
+        "fizz",
+        "leblanc",
+        "yasuo"
       ]
     },
     {
@@ -6062,6 +6470,13 @@
         "malphite",
         "orianna",
         "jarvan_iv"
+      ],
+      "countered_by": [
+        "malphite",
+        "pantheon",
+        "garen",
+        "renekton",
+        "annie"
       ]
     },
     {
@@ -6226,6 +6641,13 @@
       "win_condition_tags": [
         "pick",
         "skirmish"
+      ],
+      "countered_by": [
+        "lissandra",
+        "malzahar",
+        "galio",
+        "kayle",
+        "diana"
       ]
     },
     {
@@ -6518,6 +6940,13 @@
       "win_condition_tags": [
         "protect_the_carry",
         "scaling"
+      ],
+      "countered_by": [
+        "draven",
+        "lucian",
+        "caitlyn",
+        "miss_fortune",
+        "samira"
       ]
     },
     {
@@ -7004,6 +7433,13 @@
         "pick",
         "scaling",
         "objective_control"
+      ],
+      "countered_by": [
+        "zed",
+        "yasuo",
+        "yone",
+        "galio",
+        "lissandra"
       ]
     },
     {
@@ -7046,6 +7482,13 @@
       "win_condition_tags": [
         "protect_the_carry",
         "scaling"
+      ],
+      "countered_by": [
+        "caitlyn",
+        "draven",
+        "miss_fortune",
+        "samira",
+        "nilah"
       ]
     },
     {
@@ -7341,6 +7784,13 @@
       "synergy_with": [
         "yasuo",
         "malphite"
+      ],
+      "countered_by": [
+        "malphite",
+        "pantheon",
+        "garen",
+        "renekton",
+        "trundle"
       ]
     },
     {
@@ -7387,6 +7837,13 @@
       "win_condition_tags": [
         "protect_the_carry",
         "scaling"
+      ],
+      "countered_by": [
+        "draven",
+        "lucian",
+        "caitlyn",
+        "miss_fortune",
+        "samira"
       ]
     },
     {
