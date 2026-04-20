@@ -121,14 +121,38 @@ Then open [http://localhost:3000](http://localhost:3000).
 
 ## Deploying To Vercel
 
-Fivefold is ready for Vercel in the setup that Vercel supports most cleanly today:
+Fivefold now supports both Vercel deployment shapes:
 
-- one Vercel project for `frontend`
-- one Vercel project for `backend`
-- both connected to the same GitHub repo, each with its own **Root Directory**
+- **single Vercel project via Services** if your account sees the Services preset
+- **two Vercel projects** from the same repo if you prefer the more traditional monorepo setup
 
-This is the recommended path because Vercel's unified multi-service deployment
-feature is still in **Private Beta**.
+If Vercel shows you the **Services** screen during import, that is now the
+easiest path for this repo.
+
+### Single-project Vercel Services setup
+
+The repo root now contains [vercel.json](/Users/Usama/Desktop/LOOLLL/fivefold/vercel.json) with:
+
+- `frontend` at `/`
+- `backend` at `/_/backend`
+
+If you deploy with Services:
+
+- keep **Root Directory** as `./`
+- use the Services preset
+- you usually do **not** need `NEXT_PUBLIC_FIVEFOLD_API_URL`, because the frontend now falls back to `/_/backend` automatically in production
+
+Optional override:
+
+```bash
+NEXT_PUBLIC_FIVEFOLD_API_URL=/_/backend
+```
+
+If you hit CORS issues or call the backend from a different domain later, set:
+
+```bash
+FIVEFOLD_CORS_ORIGINS=https://your-services-domain.vercel.app
+```
 
 ### Frontend project
 
@@ -162,8 +186,7 @@ The backend now includes:
 ### Important note
 
 If you have access to Vercel **Services** beta, you *can* host the full project
-under one Vercel project. But the safest default for this repo right now is
-still **two Vercel projects from the same monorepo**.
+under one Vercel project. This repo is now configured for that path directly.
 
 ## API
 
