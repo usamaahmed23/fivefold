@@ -281,7 +281,7 @@ export default function HomePage() {
 
       <div className="mt-5 grid grid-cols-2 gap-3 xl:grid-cols-[7rem_minmax(0,1fr)_7rem] xl:gap-4">
         <SideColumn
-          className="col-span-1 xl:col-start-1"
+          className="order-1 col-span-1 xl:order-1 xl:col-start-1"
           side="blue"
           state={state}
           champions={championMap}
@@ -289,14 +289,14 @@ export default function HomePage() {
           onSwapPicks={onSwapPicks}
         />
         <SideColumn
-          className="col-span-1 xl:col-start-3"
+          className="order-2 col-span-1 xl:order-3 xl:col-start-3"
           side="red"
           state={state}
           champions={championMap}
           portraits={portraits}
           onSwapPicks={onSwapPicks}
         />
-        <div className="col-span-2 flex min-w-0 flex-col gap-4 xl:col-start-2 xl:row-start-1">
+        <div className="order-3 col-span-2 flex min-w-0 flex-col gap-4 xl:order-2 xl:col-span-1 xl:col-start-2 xl:row-start-1">
           <div className="h-[52svh] min-h-[340px] rounded-xl border border-border bg-surface/80 p-2.5 shadow-sm backdrop-blur-sm sm:h-[500px] sm:p-3">
             <ChampionGrid
               champions={champions}
