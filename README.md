@@ -119,6 +119,52 @@ npm run dev
 
 Then open [http://localhost:3000](http://localhost:3000).
 
+## Deploying To Vercel
+
+Fivefold is ready for Vercel in the setup that Vercel supports most cleanly today:
+
+- one Vercel project for `frontend`
+- one Vercel project for `backend`
+- both connected to the same GitHub repo, each with its own **Root Directory**
+
+This is the recommended path because Vercel's unified multi-service deployment
+feature is still in **Private Beta**.
+
+### Frontend project
+
+Create a Vercel project with:
+
+- **Root Directory:** `frontend`
+- framework: `Next.js`
+- environment variable:
+
+```bash
+NEXT_PUBLIC_FIVEFOLD_API_URL=https://your-backend-project-url.vercel.app
+```
+
+### Backend project
+
+Create a second Vercel project with:
+
+- **Root Directory:** `backend`
+- Python / FastAPI auto-detected from `app.py`
+- environment variable:
+
+```bash
+FIVEFOLD_CORS_ORIGINS=https://your-frontend-project-url.vercel.app
+```
+
+The backend now includes:
+
+- [backend/app.py](/Users/Usama/Desktop/LOOLLL/fivefold/backend/app.py) — Vercel FastAPI entrypoint
+- [backend/vercel.json](/Users/Usama/Desktop/LOOLLL/fivefold/backend/vercel.json) — function settings
+
+### Important note
+
+If you have access to Vercel **Services** beta, you *can* host the full project
+under one Vercel project. But the safest default for this repo right now is
+still **two Vercel projects from the same monorepo**.
+
 ## API
 
 Main endpoints:
