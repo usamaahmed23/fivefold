@@ -102,6 +102,8 @@ export default function HomePage() {
     [state],
   );
 
+  const requestSeq = useRef(0);
+
   const onSelect = useCallback(
     (id: string) => {
       if (taken.has(id) || state.phase === "complete") return;
@@ -111,10 +113,9 @@ export default function HomePage() {
     [state, taken],
   );
 
-  const onUndo = useCallback(
-    () => setHistory((h) => (h.length > 1 ? h.slice(0, -1) : h)),
-    [],
-  );
+  const onUndo = useCallback(() => {
+    setHistory((h) => (h.length > 1 ? h.slice(0, -1) : h));
+  }, []);
 
   const onReset = useCallback(() => {
     setHistory([initialDraftState(state.first_pick_side)]);
@@ -140,17 +141,33 @@ export default function HomePage() {
 
   const onSuggest = useCallback(async () => {
     if (state.phase === "complete") return;
+    const seq = ++requestSeq.current;
     setSuggesting(true);
     setSuggestError(null);
     try {
-      const result = await analyzeDraft(state, 5);
-      setSuggestion(result);
+      const result = await analyzeDraft(state, 10);
+      if (seq === requestSeq.current) {
+        setSuggestion(result);
+      }
     } catch (e) {
-      setSuggestError(e instanceof Error ? e.message : String(e));
+      if (seq === requestSeq.current) {
+        setSuggestError(e instanceof Error ? e.message : String(e));
+      }
     } finally {
-      setSuggesting(false);
+      if (seq === requestSeq.current) {
+        setSuggesting(false);
+      }
     }
   }, [state]);
+
+  useEffect(() => {
+    if (champions.length === 0 || state.phase === "complete") return;
+    setSuggestion(null);
+    const handle = window.setTimeout(() => {
+      void onSuggest();
+    }, 120);
+    return () => window.clearTimeout(handle);
+  }, [champions.length, onSuggest, state]);
 
   // Keyboard shortcuts (ignored while typing in an input).
   useEffect(() => {
@@ -164,14 +181,11 @@ export default function HomePage() {
       } else if (e.key === "r" || e.key === "R") {
         e.preventDefault();
         onReset();
-      } else if (e.key === "s" || e.key === "S") {
-        e.preventDefault();
-        void onSuggest();
       }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [onUndo, onReset, onSuggest]);
+  }, [onUndo, onReset]);
 
   const btnBase =
     "rounded-md border border-border bg-surface px-2.5 py-1 text-xs font-medium text-muted transition hover:border-muted/60 hover:bg-surface-2 hover:text-fg disabled:cursor-not-allowed disabled:opacity-40";
@@ -283,20 +297,22 @@ export default function HomePage() {
               highlighted={suggestion?.scores.map((s) => s.champion_id)}
             />
           </div>
-          <RecommendationPanel
-            result={suggestion}
-            loading={suggesting}
-            error={suggestError}
-            champions={championMap}
-            portraits={portraits}
-            onSuggest={onSuggest}
-            onSelect={onSelect}
-            actionLabel={
-              state.action_to_take === "ban" ? "Ban" : "Pick"
-            }
-            side={state.side_to_act}
-            disabled={state.phase === "complete"}
-          />
+          <div>
+            <RecommendationPanel
+              result={suggestion}
+              loading={suggesting}
+              error={suggestError}
+              champions={championMap}
+              portraits={portraits}
+              onSuggest={onSuggest}
+              onSelect={onSelect}
+              actionLabel={
+                state.action_to_take === "ban" ? "Ban" : "Pick"
+              }
+              side={state.side_to_act}
+              disabled={state.phase === "complete"}
+            />
+          </div>
         </div>
         <SideColumn
           side="red"
@@ -314,7 +330,6 @@ export default function HomePage() {
           ["Esc", "clear search"],
           ["U", "undo"],
           ["R", "reset"],
-          ["S", "suggest"],
         ].map(([key, label]) => (
           <span key={key} className="flex items-center gap-1.5">
             <kbd className="rounded border-b border-border bg-surface-2 px-1.5 py-0.5 font-mono text-[10px] font-medium text-muted shadow-sm">

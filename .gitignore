@@ -12,6 +12,9 @@ build/
 node_modules/
 .next/
 frontend/.next/
+frontend/.next.stale-*/
+*.tsbuildinfo
+*.tsbuildinfo.stale-*
 
 # Env
 .env

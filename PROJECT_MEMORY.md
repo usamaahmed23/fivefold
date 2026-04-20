@@ -19,19 +19,22 @@ Core thesis:
 
 ## Current Product State
 
-As of 2026-04-17, the repo is farther along than some docs imply:
+As of 2026-04-20, Fivefold is already a usable deterministic draft product:
 
-- Backend deterministic engine exists.
+- Backend deterministic engine exists and is heavily tested.
 - FastAPI wrapper exists.
-- Next.js frontend exists and builds successfully.
-- Tests exist for backend engine + API.
-- LLM pipeline is not implemented yet.
+- Next.js frontend exists and is being used as the primary UI.
+- Recommendation flow is compact and interactive:
+  - 10 icon-first recommendations
+  - one expanded detail pane
+  - explicit `Pick` / `Ban`
+  - automatic refresh as the draft changes
+- LLM pipeline is still not implemented yet.
 
 Practical summary:
-- The MVP already works as a deterministic draft recommender.
-- The largest missing feature is Phase 3 narrative generation.
-- The largest data limitation is incomplete signal in champion metadata and
-  empty meta tiers.
+- The MVP is no longer just a scaffold; it is a working draft recommender.
+- The largest missing product feature is still Phase 3 narrative generation.
+- The highest-leverage improvements now are engine/data fidelity, not basic app scaffolding.
 
 ## Key Files
 
@@ -87,7 +90,8 @@ Important flow:
 
 Useful UX notes:
 - Draft history is stored in localStorage.
-- Suggest currently returns deterministic results only.
+- Recommendations refresh automatically as draft state changes.
+- The UI now favors compact option browsing over tall card stacks.
 - Champion portraits are fetched from Riot Data Dragon on the client.
 
 ## Data Reality
@@ -112,7 +116,7 @@ Important implication:
 
 These are the main repo-shape issues worth remembering before editing:
 
-- Some docs still describe the project as if backend/frontend are not built.
+- Some docs historically described the project as if backend/frontend were not built; README has now been updated, but older notes may still lag behind.
 - `TASKS.md` is directionally useful, but not fully synced with actual repo state.
 - [scripts/tag.py](/Users/Usama/Desktop/LOOLLL/fivefold/scripts/tag.py)
   points at `champions_complete.json`, which does not appear to be the current
@@ -124,12 +128,10 @@ These are the main repo-shape issues worth remembering before editing:
 
 ## Verification Notes
 
-Verified during repo walkthrough:
-- `frontend` production build succeeded with `npm run build`.
-
-Not verified in that session:
-- Backend tests did not run because `pytest` was not installed in the active
-  shell environment.
+Recent verified state:
+- Backend tests are active and were passing in the latest tuning pass.
+- Frontend typecheck has been used as the main lightweight verification pass.
+- Dev servers have been run locally with frontend on `:3000` and backend on `:8000`.
 
 ## Good Next Moves
 

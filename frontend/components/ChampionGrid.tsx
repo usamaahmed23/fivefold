@@ -7,7 +7,7 @@ import { ColorBadge } from "./ColorBadge";
 import { RoleIcon } from "./RoleIcon";
 
 const ROLES: Role[] = ["top", "jungle", "mid", "bot", "support"];
-const COLORS: Color[] = ["R", "G", "U", "W", "B", "C"];
+const COLORS: Color[] = ["R", "G", "U", "W", "B"];
 
 interface Props {
   champions: Champion[];
@@ -72,6 +72,14 @@ export function ChampionGrid({ champions, taken, portraits, onSelect, highlighte
 
   const available = filtered.filter((c) => !taken.has(c.id)).length;
   const showCount = query || role || color;
+  const activeFilters = [query ? `"${query}"` : null, role, color].filter(Boolean);
+
+  const clearFilters = () => {
+    setQuery("");
+    setRole(null);
+    setColor(null);
+    inputRef.current?.focus();
+  };
 
   const roleCounts = useMemo(() => {
     const m = new Map<Role, number>();
@@ -173,6 +181,26 @@ export function ChampionGrid({ champions, taken, portraits, onSelect, highlighte
           })}
         </div>
       </div>
+      {showCount && (
+        <div className="flex flex-wrap items-center justify-between gap-2 rounded border border-border/60 bg-surface-2/40 px-2.5 py-1.5 text-[11px] text-faint">
+          <span className="min-w-0">
+            Showing <span className="font-semibold text-fg">{available}</span> available champs
+            {activeFilters.length > 0 ? (
+              <>
+                {" "}for{" "}
+                <span className="text-muted">{activeFilters.join(" · ")}</span>
+              </>
+            ) : null}
+          </span>
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="rounded border border-border/70 bg-surface px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted transition hover:border-muted/70 hover:text-fg"
+          >
+            Clear Filters
+          </button>
+        </div>
+      )}
       <div className="grid flex-1 grid-cols-6 gap-0.5 overflow-y-auto pr-1 sm:grid-cols-7 md:grid-cols-8 lg:grid-cols-9 xl:grid-cols-10">
         {filtered.map((c) => (
           <ChampionCard

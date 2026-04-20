@@ -1,104 +1,157 @@
 # Fivefold
 
-> A League of Legends drafting tool grounded in color-identity theory, not patch winrates.
+Fivefold is a League of Legends draft tool built around **LS's MTG color philosophy** instead of patch winrates or comfort-pick heuristics.
 
-Most drafting tools optimize for the wrong signal. They recommend picks based on patch winrate, player comfort, and pairwise synergy heuristics. This collapses a draft into a bag of individually-optimized champions.
+Most draft tools collapse the problem into champion strength lists. Fivefold treats a draft as a **coherent win condition built adversarially across alternating picks and bans**. A recommendation is judged on:
 
-A draft is not a bag. It is a **coherent win condition built adversarially across ten alternating decisions**. Each team is simultaneously building a composition with a clear win condition, disrupting the opponent's emerging win condition, and covering its own structural holes.
+- `Identity`: does this reinforce our color identity?
+- `Denial`: does this disrupt what the enemy is building?
+- `Structural`: does this fill real composition holes?
+- `Survivability`: can this actually execute in the current meta/lane context?
 
-Fivefold operationalizes this by treating champions as **color-identity primitives** — based on LS's MTG-colors framing — rather than as winrate rows. A pick is scored on four axes: does it reinforce our identity, disrupt theirs, fill our structural gaps, and survive the lane? The resulting recommendation comes with a coaching-style rationale in color-theory terms, not stat terms.
+The deterministic engine is the product. Any LLM layer is narration, not decision-making.
 
----
+## What It Does Now
 
-## Color framework
+The current app is already a usable deterministic drafting product:
 
-Based on LS / Rübezahl's MTG Color Spreadsheet (LS Community Discord). Color identity reflects what a champion fundamentally *wants to do*, independent of patch.
+- live draft board for 2026 draft order
+- blue/red picks and bans with enforced turn flow
+- 10 compact recommendations instead of 5 oversized cards
+- click a recommendation to inspect the rationale, then `Pick` / `Ban`
+- automatic recommendation refresh as the draft changes
+- diversified recommendation branches like:
+  - best overall
+  - structural fill
+  - support branch
+  - flex branch
+  - denial line
+- role authenticity guards so fake bot/support picks pollute recommendations less
+- LS-style structural logic for:
+  - early anchor quality
+  - ranged AD coverage
+  - flex value
+  - side-lane branches
+  - support-enabler unlocks
 
-| | Red | Green | Blue | White | Black | Colorless |
-|--|-----|-------|------|-------|-------|-----------|
-| **Theme** | Aggression | Synergy | Control | Versatility | Power at a cost | Warps draft |
-| **Feel** | Snowball, tempo | Item timings, attrition | Denial, scaling | "Choose One" | Conditions, sacrifice | Dedicated theme |
+## Core Idea
 
-Champions can be multi-color. Gangplank is Green/Blue (off White). Aatrox is Red/Black. Some champions have **contextual** identity that only resolves once allies are picked (Rakan gains Colorless when paired with Xayah).
+Champions are modeled as **color-identity primitives**, not stat rows.
 
----
+| Code | Meaning in League |
+|---|---|
+| `R` | aggression, snowball, forced early concessions |
+| `G` | harmony, item spikes, curved power growth |
+| `U` | control, denial, deception, inaction as action |
+| `W` | versatility, supportiveness, binary "Choose One" play |
+| `B` | power at a cost, quests, conditions, warped incentives |
+| `C` | dedicated theme that warps the entire draft |
 
-## Architecture
+Each champion has:
 
+- `colors_main`: core identity
+- `colors_off`: conditional or build-dependent threads
+- `roles`
+- `win_condition_tags`
+- `structural_tags`
+- `counter_tags`
+- optional contextual rules and champion-specific synergy/counter edges
+
+## Current Product State
+
+What is already real in this repo:
+
+- backend deterministic scoring engine
+- FastAPI API
+- Next.js frontend
+- recommendation UI with compact selector + detail pane
+- champion dataset with extensive hand-tuned fields
+- automated backend test coverage
+
+What is not shipped yet:
+
+- 3-stage LLM narrative pipeline
+- fully populated meta tiers
+- deploy/docs polish
+
+## Repo Layout
+
+```text
+fivefold/
+├── backend/
+│   ├── fivefold/
+│   │   ├── api.py
+│   │   ├── composition.py
+│   │   ├── contextual.py
+│   │   ├── engine.py
+│   │   ├── loader.py
+│   │   ├── models.py
+│   │   └── win_conditions.py
+│   └── tests/
+├── data/
+│   ├── champions.json
+│   ├── archetypes.json
+│   └── meta_tiers.json
+├── docs/
+│   ├── DESIGN.md
+│   └── DATA_AUDIT.md
+├── frontend/
+└── scripts/
 ```
-Deterministic scoring engine (Python)
-    → color identity math + structural analysis over champion data
-    → produces 4-axis scores (identity, denial, structural, survivability)
 
-LLM pipeline (3 stages, Claude Sonnet)
-    → Enemy Reader: what is the opponent building?
-    → Identity Critic: how coherent are we?
-    → Coach: final recommendation with rationale
+## Running Locally
 
-Frontend (Next.js)
-    → live draft board
-    → recommendation panel with axis visualisation
-```
-
-The engine is the product. The LLM is narration. The tool works — with less eloquence — if the LLM is unavailable.
-
----
-
-## Project status
-
-- [x] Champion color data — 167 champions tagged
-- [x] Phase 0 tagging CLI (`scripts/tag.py`)
-- [ ] Phase 0 complete — all structural/counter tags filled
-- [ ] Phase 1 — Scoring engine
-- [ ] Phase 2 — FastAPI backend
-- [ ] Phase 3 — LLM pipeline
-- [ ] Phase 4 — Next.js frontend
-- [ ] Phase 5 — Deploy
-
----
-
-## Data
-
-Champion color data is sourced from the **LS / Rübezahl MTG Color Spreadsheet** (LS Community Discord). Attribution in `data/champions.json`. Champions released after the spreadsheet was last updated are tagged by the project owner and marked accordingly in the data.
-
----
-
-## Running the tagging CLI (Phase 0)
+### Backend
 
 ```bash
-cd scripts
-
-# See what's left to tag
-python tag.py --list
-
-# Tag the next untagged champion
-python tag.py
-
-# Jump to a specific champion
-python tag.py --champion gangplank
-
-# See tag distribution
-python tag.py --stats
-```
-
-The CLI saves after every champion and auto-backs up before each write.
-
----
-
-## Dev setup (Phase 1+)
-
-```bash
-# Backend
 cd backend
-pip install fastapi uvicorn anthropic pydantic
-uvicorn main:app --reload
+.venv/bin/pytest -q
+.venv/bin/uvicorn fivefold.api:app --host 127.0.0.1 --port 8000
+```
 
-# Frontend
+### Frontend
+
+```bash
 cd frontend
 npm install
 npm run dev
 ```
 
----
+Then open [http://localhost:3000](http://localhost:3000).
 
-*This project is not endorsed by Riot Games. League of Legends is a trademark of Riot Games, Inc.*
+## API
+
+Main endpoints:
+
+- `GET /api/health`
+- `GET /api/champions`
+- `POST /api/draft/score`
+- `POST /api/draft/analyze`
+
+`/api/draft/score` is LLM-free and fast.
+
+## Data Notes
+
+Champion color identity is based on the **LS / Rübezahl MTG color spreadsheet** plus owner-authored additions for newer champions and follow-up tuning passes.
+
+This repo intentionally prefers:
+
+- theory-consistent structure over patch-winrate shortcuts
+- deterministic rules over opaque recommendation mush
+- explicit champion modeling over hidden learned weights
+
+## Philosophy Constraints
+
+Some rules Fivefold tries hard not to violate:
+
+- meta tiers must not drive `identity` or `denial`
+- main colors matter more than off-colors
+- contextual/colorless champs should warp the draft, not act like normal fillers
+- narrow exploit picks should not appear as generic blind recommendations
+- stable early anchors matter more than fake-genius thin-info counters
+
+## Attribution
+
+Color-identity theory and the underlying framework are inspired by **LS** and the LS community spreadsheet work around MTG colors in League.
+
+Fivefold is an independent fan project and is not endorsed by Riot Games.

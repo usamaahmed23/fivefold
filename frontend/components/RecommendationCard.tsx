@@ -6,22 +6,31 @@ import { ColorBadges } from "./ColorBadges";
 const ROLE_LABELS: Record<NonNullable<RecommendationRole>, string> = {
   best_overall: "TOP PICK",
   structural_fill: "FILLS GAPS",
+  support_enabler: "SUPPORT BRANCH",
+  flex_branch: "FLEX BRANCH",
   best_denial: "BEST DENIAL",
   identity_anchor: "IDENTITY FIT",
+  alt: "ALTERNATE",
 };
 
 const ROLE_COLORS: Record<NonNullable<RecommendationRole>, string> = {
   best_overall: "text-amber-500 dark:text-amber-400/80",
   structural_fill: "text-teal-500 dark:text-teal-400/80",
+  support_enabler: "text-sky-500 dark:text-sky-400/80",
+  flex_branch: "text-lime-500 dark:text-lime-400/80",
   best_denial: "text-rose-500 dark:text-rose-400/80",
   identity_anchor: "text-violet-500 dark:text-violet-400/80",
+  alt: "text-faint",
 };
 
 const ROLE_ACCENTS: Record<NonNullable<RecommendationRole>, string> = {
   best_overall: "border-amber-500/60 bg-amber-500/5 hover:border-amber-400 hover:bg-amber-500/10",
   structural_fill: "border-teal-500/40 bg-teal-500/5 hover:border-teal-400 hover:bg-teal-500/10",
+  support_enabler: "border-sky-500/40 bg-sky-500/5 hover:border-sky-400 hover:bg-sky-500/10",
+  flex_branch: "border-lime-500/40 bg-lime-500/5 hover:border-lime-400 hover:bg-lime-500/10",
   best_denial: "border-rose-500/40 bg-rose-500/5 hover:border-rose-400 hover:bg-rose-500/10",
   identity_anchor: "border-violet-500/40 bg-violet-500/5 hover:border-violet-400 hover:bg-violet-500/10",
+  alt: "border-border bg-surface hover:border-muted hover:bg-surface-2",
 };
 
 interface Props {
@@ -47,10 +56,9 @@ export function RecommendationCard({
     ? ROLE_ACCENTS[role]
     : "border-border bg-surface hover:border-muted hover:bg-surface-2";
   const rankLabel = role ? ROLE_LABELS[role] : `ALT #${rank - 1}`;
-  const clickable = Boolean(onSelect);
 
-  const content = (
-    <>
+  return (
+    <div className={`rounded border ${accent} p-3`}>
       <div className="mb-3 flex items-center gap-3">
         <div className="shrink-0 overflow-hidden rounded ring-1 ring-border">
           <ChampionPortrait
@@ -88,17 +96,14 @@ export function RecommendationCard({
           <span className="rounded bg-surface-2 px-2 py-1 font-mono text-lg font-semibold text-fg">
             {score.total.toFixed(2)}
           </span>
-          {clickable && actionLabel && (
-            <span
-              className={`text-[10px] font-semibold uppercase tracking-widest ${
-                role ? ROLE_COLORS[role] : "text-faint"
-              }`}
-            >
-              {actionLabel} →
-            </span>
-          )}
         </div>
       </div>
+      {score.meta_contribution > 0 && (
+        <p className="mb-2 text-[10px] uppercase tracking-wider text-faint">
+          Meta execution support:{" "}
+          <span className="font-mono text-muted">{score.meta_contribution.toFixed(2)}</span>
+        </p>
+      )}
       <div className="grid grid-cols-2 gap-x-3 gap-y-2">
         <AxisBar label="Identity" value={score.identity} tone="bg-violet-500" />
         <AxisBar label="Denial" value={score.denial} tone="bg-rose-500" />
@@ -119,20 +124,21 @@ export function RecommendationCard({
           ))}
         </ul>
       )}
-    </>
+      {onSelect && actionLabel && (
+        <div className="mt-3 flex justify-end border-t border-border pt-3">
+          <button
+            type="button"
+            onClick={() => onSelect(score.champion_id)}
+            className={`rounded px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition ${
+              role === "best_denial"
+                ? "bg-rose-500 text-white hover:bg-rose-400"
+                : "bg-amber-500 text-slate-900 hover:bg-amber-400"
+            }`}
+          >
+            {actionLabel} {champion?.name ?? score.champion_id}
+          </button>
+        </div>
+      )}
+    </div>
   );
-
-  if (clickable) {
-    return (
-      <button
-        type="button"
-        onClick={() => onSelect!(score.champion_id)}
-        className={`w-full rounded border ${accent} p-3 text-left transition`}
-      >
-        {content}
-      </button>
-    );
-  }
-
-  return <div className={`rounded border ${accent} p-3`}>{content}</div>;
 }

@@ -126,8 +126,15 @@ def create_app() -> FastAPI:
 
         eligible = engine.eligible_candidates(req.state, champs)
         ranked = engine.rank_candidates(
-            eligible, req.state, champs, meta, top_n=req.top_n, archetypes=archs
+            eligible,
+            req.state,
+            champs,
+            meta,
+            top_n=req.top_n,
+            archetypes=archs,
+            diversify=False,
         )
+        ranked.sort(key=lambda s: s.total, reverse=True)
         return ScoreResponse(scores=ranked)
 
     @app.post("/api/draft/analyze", response_model=AnalyzeResponse)
@@ -138,7 +145,13 @@ def create_app() -> FastAPI:
 
         eligible = engine.eligible_candidates(req.state, champs)
         ranked = engine.rank_candidates(
-            eligible, req.state, champs, meta, top_n=req.top_n, archetypes=archs
+            eligible,
+            req.state,
+            champs,
+            meta,
+            top_n=req.top_n,
+            archetypes=archs,
+            diversify=True,
         )
         # Phase 3 will fill in enemy_reader / identity_critic / coach by
         # calling the LLM pipeline. For now: deterministic mode only.

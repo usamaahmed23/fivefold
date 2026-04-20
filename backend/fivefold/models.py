@@ -123,4 +123,4 @@ class CandidateScore(BaseModel):
     meta_contribution: float
     total: float
     rationale: list[str] = Field(default_factory=list)
-    recommendation_role: Optional[str] = None  # best_overall | structural_fill | best_denial | identity_anchor
+    recommendation_role: Optional[str] = None  # best_overall | structural_fill | support_enabler | flex_branch | best_denial | identity_anchor

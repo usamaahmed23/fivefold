@@ -39,11 +39,4 @@ export const COLOR_META: Record<
     name: "Black",
     hint: "Power at a cost · sacrifice · conditions",
   },
-  C: {
-    bg: "bg-violet-600",
-    text: "text-white",
-    ring: "",
-    name: "Colorless",
-    hint: "Dedicated theme · warps draft",
-  },
 };

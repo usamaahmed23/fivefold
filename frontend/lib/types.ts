@@ -1,4 +1,4 @@
-export type Color = "R" | "G" | "U" | "W" | "B" | "C";
+export type Color = "R" | "G" | "U" | "W" | "B";
 export type Role = "top" | "jungle" | "mid" | "bot" | "support";
 export type Phase = "ban1" | "pick1" | "ban2" | "pick2" | "complete";
 export type Side = "blue" | "red";
@@ -51,8 +51,11 @@ export interface DraftState {
 export type RecommendationRole =
   | "best_overall"
   | "structural_fill"
+  | "support_enabler"
+  | "flex_branch"
   | "best_denial"
   | "identity_anchor"
+  | "alt"
   | null;
 
 export interface CandidateScore {

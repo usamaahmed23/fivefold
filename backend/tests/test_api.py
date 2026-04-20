@@ -121,6 +121,28 @@ def test_analyze_returns_deterministic_placeholder(client):
     assert body["coach"] is None
 
 
+def test_analyze_can_return_diversified_slots(client):
+    r = client.post(
+        "/api/draft/analyze",
+        json={
+            "state": _base_state(
+                blue_picks=["jax"],
+                red_picks=["aatrox"],
+                red_bans=["zed"],
+            ),
+            "top_n": 5,
+        },
+    )
+    assert r.status_code == 200
+    scores = r.json()["scores"]
+    assert len(scores) == 5
+    roles = [s["recommendation_role"] for s in scores]
+    assert "best_overall" in roles
+    assert "structural_fill" in roles
+    assert "best_denial" in roles
+    assert "identity_anchor" in roles
+
+
 def test_cors_preflight(client):
     r = client.options(
         "/api/champions",

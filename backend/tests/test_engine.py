@@ -68,6 +68,13 @@ def test_composition_uses_inferred_peel_and_scaling():
     assert comp.structural_avg["scaling"] > 0.7
 
 
+def test_composition_flags_ranged_ad_hole_when_only_melee_ad_present():
+    # Yone provides physical damage, but not the ranged AD / backline DPS that
+    # many front-to-back or wombo shells still need once top/jungle/mid are set.
+    comp = analyze(["yone", "amumu", "orianna"], CHAMPIONS, _state(blue_picks=["yone", "amumu", "orianna"]))
+    assert "ranged_ad_source" in comp.holes
+
+
 # ---------------------------------------------------------------------------
 # Identity axis
 # ---------------------------------------------------------------------------
@@ -116,6 +123,33 @@ def test_denial_red_punishes_scaling_enemy():
     darius = engine.score_candidate("darius", state, CHAMPIONS, META)  # R/C
     jinx = engine.score_candidate("jinx", state, CHAMPIONS, META)     # G/W (outscales them, shouldn't "deny")
     assert darius.denial > jinx.denial
+
+
+def test_denial_is_less_confident_on_single_enemy_pick():
+    # One revealed enemy champion should not produce near-certain denial scores.
+    early = _state(blue_picks=["ashe"], side_to_act="red", action_to_take="pick")
+    later = _state(blue_picks=["ashe", "galio", "ornn"], side_to_act="red", action_to_take="pick")
+    yasuo_early = engine.score_candidate("yasuo", early, CHAMPIONS, META, ARCHETYPES)
+    yasuo_later = engine.score_candidate("yasuo", later, CHAMPIONS, META, ARCHETYPES)
+    assert yasuo_early.denial < yasuo_later.denial
+    assert yasuo_early.denial < 0.75
+
+
+def test_yone_amumu_orianna_prefers_ranged_ad_over_extra_ap_wombo():
+    # This shell already has engage + follow-up magic damage. The next pick
+    # should not drift toward yet another AP teamfight piece just because it
+    # shares a wombo archetype.
+    state = _state(
+        phase="pick2",
+        turn_index=3,
+        blue_picks=["yone", "amumu", "orianna"],
+        action_to_take="pick",
+    )
+    ezreal = engine.score_candidate("ezreal", state, CHAMPIONS, META, ARCHETYPES)
+    kennen = engine.score_candidate("kennen", state, CHAMPIONS, META, ARCHETYPES)
+    fiddlesticks = engine.score_candidate("fiddlesticks", state, CHAMPIONS, META, ARCHETYPES)
+    assert ezreal.total > kennen.total
+    assert ezreal.total > fiddlesticks.total
 
 
 # ---------------------------------------------------------------------------
@@ -229,14 +263,470 @@ def test_flex_bonus_not_in_pick2():
 
 
 def test_flex_bonus_scales_with_role_count():
-    # More roles = more ambiguity = higher bonus on red side pick1.
-    # Karma (2 roles) should score lower than a 3-role flex champion.
+    # More roles = more ambiguity = higher red-side pick1 lift, even if anchor
+    # quality means the higher-flex champ is not always the better opener.
     state_red = _state(phase="pick1", action_to_take="pick", side_to_act="red")
-    # Use lulu (2 roles: support/mid) vs sylas (4 roles) — lulu is not in meta tiers
-    # so survivability doesn't skew the comparison.
-    lulu = engine.score_candidate("lulu", state_red, CHAMPIONS, META)        # 2 roles
-    sylas = engine.score_candidate("sylas", state_red, CHAMPIONS, META)      # 4 roles
-    assert sylas.total > lulu.total
+    state_blue = _state(phase="pick1", action_to_take="pick", side_to_act="blue")
+    lulu_red = engine.score_candidate("lulu", state_red, CHAMPIONS, META)
+    lulu_blue = engine.score_candidate("lulu", state_blue, CHAMPIONS, META)
+    sylas_red = engine.score_candidate("sylas", state_red, CHAMPIONS, META)
+    sylas_blue = engine.score_candidate("sylas", state_blue, CHAMPIONS, META)
+    assert (sylas_red.total - sylas_blue.total) > (lulu_red.total - lulu_blue.total)
+
+
+def test_pick1_opener_penalises_setup_reliant_anchor():
+    # Yasuo should not be the default red-side response to one revealed bot
+    # because he is a setup-dependent commit, not a stable opener.
+    state = _state(blue_picks=["ashe"], side_to_act="red", action_to_take="pick")
+    yasuo = engine.score_candidate("yasuo", state, CHAMPIONS, META, ARCHETYPES)
+    galio = engine.score_candidate("galio", state, CHAMPIONS, META, ARCHETYPES)
+    braum = engine.score_candidate("braum", state, CHAMPIONS, META, ARCHETYPES)
+    assert galio.total > yasuo.total or braum.total > yasuo.total
+
+
+def test_empty_board_prefers_stable_anchor_over_fragile_combo_piece():
+    state = _state(phase="pick1", action_to_take="pick")
+    ornn = engine.score_candidate("ornn", state, CHAMPIONS, META, ARCHETYPES)
+    kennen = engine.score_candidate("kennen", state, CHAMPIONS, META, ARCHETYPES)
+    assert ornn.total > kennen.total
+
+
+def test_empty_board_white_stable_anchor_beats_backline_question_mark():
+    state = _state(phase="pick1", action_to_take="pick")
+    gragas = engine.score_candidate("gragas", state, CHAMPIONS, META, ARCHETYPES)
+    seraphine = engine.score_candidate("seraphine", state, CHAMPIONS, META, ARCHETYPES)
+    assert gragas.total >= seraphine.total
+
+
+def test_bot_anchor_prefers_real_bot_over_fringe_bot_fill():
+    # A comp missing bot should prefer a real bot anchor over a fringe bot-role
+    # all-in piece like Kennen.
+    state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["ornn", "lissandra", "wukong"],
+    )
+    caitlyn = engine.score_candidate("caitlyn", state, CHAMPIONS, META, ARCHETYPES)
+    kennen = engine.score_candidate("kennen", state, CHAMPIONS, META, ARCHETYPES)
+    assert caitlyn.structural > kennen.structural
+    assert caitlyn.total > kennen.total
+
+
+def test_bot_anchor_allows_legit_apc_bot():
+    # Bot authenticity should not collapse into "marksman only" — legitimate
+    # APC bot anchors like Seraphine should still be recognised.
+    state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["ornn", "lissandra", "wukong"],
+    )
+    seraphine = engine.score_candidate("seraphine", state, CHAMPIONS, META, ARCHETYPES)
+    kennen = engine.score_candidate("kennen", state, CHAMPIONS, META, ARCHETYPES)
+    assert seraphine.structural > kennen.structural
+
+
+def test_role_audit_trims_fringe_bot_tags():
+    assert "bot" not in CHAMPIONS["kennen"].roles
+    assert "bot" not in CHAMPIONS["yasuo"].roles
+    assert "bot" not in CHAMPIONS["sylas"].roles
+
+
+def test_role_audit_trims_fake_support_tags():
+    assert "support" not in CHAMPIONS["kennen"].roles
+    assert "support" not in CHAMPIONS["evelynn"].roles
+    assert "support" not in CHAMPIONS["briar"].roles
+
+
+def test_diversify_surfaces_support_enabler_for_carry_shell():
+    state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["ornn", "orianna", "gragas", "kogmaw"],
+    )
+    ranked = engine.rank_candidates(
+        engine.eligible_candidates(state, CHAMPIONS),
+        state,
+        CHAMPIONS,
+        META,
+        top_n=5,
+        archetypes=ARCHETYPES,
+        diversify=True,
+    )
+    support_names = {r.champion_id for r in ranked if r.recommendation_role == "support_enabler"}
+    assert support_names
+    assert support_names & {"nami", "janna", "lulu", "soraka", "milio", "seraphine", "sona", "renata_glasc", "rakan"}
+    assert sum(1 for r in ranked if r.recommendation_role == "best_overall") == 1
+    assert any(r.recommendation_role == "identity_anchor" for r in ranked)
+
+
+def test_diversify_can_surface_flex_branch():
+    state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["gragas", "orianna", "braum", "jinx"],
+    )
+    ranked = engine.rank_candidates(
+        engine.eligible_candidates(state, CHAMPIONS),
+        state,
+        CHAMPIONS,
+        META,
+        top_n=5,
+        archetypes=ARCHETYPES,
+        diversify=True,
+    )
+    flex = [r for r in ranked if r.recommendation_role == "flex_branch"]
+    assert flex
+    assert any(len(CHAMPIONS[r.champion_id].roles) >= 2 for r in flex)
+    assert any(r.recommendation_role == "best_denial" for r in ranked)
+
+
+def test_diversified_rationales_start_with_branch_goal():
+    state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["ornn", "orianna", "gragas", "kogmaw"],
+    )
+    ranked = engine.rank_candidates(
+        engine.eligible_candidates(state, CHAMPIONS),
+        state,
+        CHAMPIONS,
+        META,
+        top_n=5,
+        archetypes=ARCHETYPES,
+        diversify=True,
+    )
+    expected_prefixes = {
+        "best_overall": "Best all-around fit at this point in the draft.",
+        "structural_fill": "Structural branch — patches the biggest remaining comp holes.",
+        "support_enabler": "Support branch — doubles down on enabling or protecting your carry line.",
+        "best_denial": "Denial branch — pressures the enemy's currently declared line hardest.",
+        "identity_anchor": "Identity branch — stays closest to your current LS color plan.",
+    }
+    for score in ranked:
+        if score.recommendation_role in expected_prefixes:
+            assert score.rationale
+            assert score.rationale[0] == expected_prefixes[score.recommendation_role]
+
+
+def test_best_denial_stays_sane_on_thin_enemy_info():
+    state = _state(
+        phase="pick1",
+        turn_index=1,
+        blue_picks=["ashe"],
+        side_to_act="red",
+        action_to_take="pick",
+    )
+    ranked = engine.rank_candidates(
+        engine.eligible_candidates(state, CHAMPIONS),
+        state,
+        CHAMPIONS,
+        META,
+        top_n=5,
+        archetypes=ARCHETYPES,
+        diversify=True,
+    )
+    denial = next((r for r in ranked if r.recommendation_role == "best_denial"), None)
+    assert denial is not None
+    assert denial.champion_id in {"gragas", "galio", "braum", "poppy", "mel", "alistar", "sett", "ornn", "trundle", "tahm_kench"}
+
+
+def test_open_board_penalises_narrow_assassins_and_counter_junglers():
+    state = _state(phase="pick1", action_to_take="pick")
+    viktor = engine.score_candidate("viktor", state, CHAMPIONS, META, ARCHETYPES)
+    twisted_fate = engine.score_candidate("twisted_fate", state, CHAMPIONS, META, ARCHETYPES)
+    rammus = engine.score_candidate("rammus", state, CHAMPIONS, META, ARCHETYPES)
+    talon = engine.score_candidate("talon", state, CHAMPIONS, META, ARCHETYPES)
+    khazix = engine.score_candidate("khazix", state, CHAMPIONS, META, ARCHETYPES)
+    assert viktor.total > rammus.total
+    assert twisted_fate.total > talon.total
+    assert rammus.total > khazix.total
+
+
+def test_blue_shell_prefers_real_ad_lines_over_assassin_fills():
+    state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["ornn", "orianna", "lulu"],
+    )
+    graves = engine.score_candidate("graves", state, CHAMPIONS, META, ARCHETYPES)
+    kindred = engine.score_candidate("kindred", state, CHAMPIONS, META, ARCHETYPES)
+    khazix = engine.score_candidate("khazix", state, CHAMPIONS, META, ARCHETYPES)
+    talon = engine.score_candidate("talon", state, CHAMPIONS, META, ARCHETYPES)
+    assert graves.total > khazix.total
+    assert kindred.total > talon.total
+
+
+def test_declared_blue_shell_can_surface_control_mids_over_niche_melee_options():
+    state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["ashe", "galio"],
+        red_picks=["gragas", "braum"],
+        side_to_act="red",
+    )
+    viktor = engine.score_candidate("viktor", state, CHAMPIONS, META, ARCHETYPES)
+    twisted_fate = engine.score_candidate("twisted_fate", state, CHAMPIONS, META, ARCHETYPES)
+    talon = engine.score_candidate("talon", state, CHAMPIONS, META, ARCHETYPES)
+    kassadin = engine.score_candidate("kassadin", state, CHAMPIONS, META, ARCHETYPES)
+    assert viktor.total > talon.total
+    assert twisted_fate.total > kassadin.total
+
+
+def test_mid_anchor_bonus_rewards_real_control_mid_in_blue_shell():
+    state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["gragas", "braum"],
+    )
+    viktor = engine.score_candidate("viktor", state, CHAMPIONS, META, ARCHETYPES)
+    kennen = engine.score_candidate("kennen", state, CHAMPIONS, META, ARCHETYPES)
+    assert viktor.structural >= kennen.structural
+    assert viktor.total > kennen.total
+
+
+def test_twisted_fate_is_not_treated_as_ad_source():
+    tf = CHAMPIONS["twisted_fate"]
+    assert tf.structural_tags is not None
+    assert tf.structural_tags.damage_profile == "ap"
+
+    state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["gragas", "braum"],
+    )
+    twisted_fate = engine.score_candidate("twisted_fate", state, CHAMPIONS, META, ARCHETYPES)
+    ezreal = engine.score_candidate("ezreal", state, CHAMPIONS, META, ARCHETYPES)
+    assert ezreal.structural > twisted_fate.structural
+
+
+def test_magic_damage_champs_do_not_pose_as_ad_fillers():
+    expected_profiles = {
+        "corki": "mixed",
+        "dr_mundo": "mixed",
+        "gragas": "ap",
+        "mordekaiser": "ap",
+        "rumble": "ap",
+        "teemo": "ap",
+        "vladimir": "ap",
+        "gwen": "ap",
+        "lillia": "ap",
+        "zaahen": "ad",
+        "ksante": "tank",
+        "skarner": "tank",
+        "zac": "tank",
+    }
+    for champion_id, expected in expected_profiles.items():
+        champ = CHAMPIONS[champion_id]
+        assert champ.structural_tags is not None
+        assert champ.structural_tags.damage_profile == expected
+
+
+def test_olaf_gains_white_thread_and_score_with_enchanter_allies():
+    olaf = CHAMPIONS["olaf"]
+    assert olaf.colors_main == ["W", "G"]
+    assert olaf.colors_off == ["R"]
+
+    plain = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["jinx", "orianna"],
+    )
+    unlocked = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["yuumi", "jinx", "orianna"],
+    )
+
+    olaf_plain = engine.score_candidate("olaf", plain, CHAMPIONS, META, ARCHETYPES)
+    olaf_unlocked = engine.score_candidate("olaf", unlocked, CHAMPIONS, META, ARCHETYPES)
+    darius_unlocked = engine.score_candidate("darius", unlocked, CHAMPIONS, META, ARCHETYPES)
+
+    assert olaf_unlocked.total > olaf_plain.total
+    assert olaf_unlocked.total > darius_unlocked.total
+
+
+def test_ambessa_reads_as_scaling_fighter_not_mono_red_all_in():
+    ambessa = CHAMPIONS["ambessa"]
+    assert ambessa.colors_main == ["W", "G"]
+    assert ambessa.colors_off == ["R"]
+    assert ambessa.structural_tags is not None
+    assert ambessa.structural_tags.waveclear == "medium"
+    assert ambessa.structural_tags.scaling == "late"
+    assert "teamfight" in (ambessa.win_condition_tags or [])
+    assert "lane_bully" in (ambessa.win_condition_tags or [])
+
+
+def test_kayle_reads_as_independent_scaling_side_lane_carry():
+    kayle = CHAMPIONS["kayle"]
+    assert kayle.colors_main == ["U"]
+    assert kayle.colors_off == []
+    assert kayle.roles == ["top", "mid"]
+    assert kayle.structural_tags is not None
+    assert kayle.structural_tags.damage_profile == "mixed"
+    assert kayle.structural_tags.range == "medium"
+    assert kayle.structural_tags.waveclear == "high"
+    assert "split_push" in (kayle.win_condition_tags or [])
+    assert "teamfight" in (kayle.win_condition_tags or [])
+    assert "support" not in kayle.roles
+
+
+def test_pick1_penalises_solo_lane_hyper_scalers_like_kayle():
+    state = _state(phase="pick1", action_to_take="pick")
+    kayle = engine.score_candidate("kayle", state, CHAMPIONS, META, ARCHETYPES)
+    ornn = engine.score_candidate("ornn", state, CHAMPIONS, META, ARCHETYPES)
+    assert kayle.total < ornn.total
+
+
+def test_pick1_second_rotation_does_not_surface_kayle_as_early_blue_anchor():
+    state = _state(
+        phase="pick1",
+        turn_index=8,
+        blue_bans=["bard", "anivia", "zaahen"],
+        red_bans=["ashe", "ezreal", "jarvan_iv"],
+        blue_picks=["gragas"],
+        red_picks=["galio", "seraphine"],
+        side_to_act="blue",
+        action_to_take="pick",
+    )
+    ranked = engine.rank_candidates(
+        engine.eligible_candidates(state, CHAMPIONS),
+        state,
+        CHAMPIONS,
+        META,
+        top_n=20,
+        archetypes=ARCHETYPES,
+    )
+    top10 = [s.champion_id for s in ranked[:10]]
+    assert "kayle" not in top10
+
+
+def test_kayn_reads_as_form_flexible_not_narrow_assassin():
+    champions = loader.load_champions()
+    kayn = champions["kayn"]
+    assert kayn.colors_main == ["B", "W", "U"]
+    assert kayn.colors_off == ["G", "R"]
+    assert "adaptive_form" in (kayn.kit_tags or [])
+    assert "objective_control" in (kayn.win_condition_tags or [])
+    assert "scaling" not in (kayn.win_condition_tags or [])
+
+    open_state = _state(phase="pick1", action_to_take="pick")
+    squishy_state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        red_picks=["ashe", "xerath", "jhin"],
+    )
+    kayn_open = engine.score_candidate("kayn", open_state, champions, META, ARCHETYPES)
+    khazix_open = engine.score_candidate("khazix", open_state, champions, META, ARCHETYPES)
+    kayn_squishy = engine.score_candidate("kayn", squishy_state, champions, META, ARCHETYPES)
+    khazix_squishy = engine.score_candidate("khazix", squishy_state, champions, META, ARCHETYPES)
+    assert kayn_open.total > khazix_open.total
+    assert kayn_squishy.total > khazix_squishy.total
+
+
+def test_side_lane_branch_waits_for_shell_before_rewarding_split_pushers():
+    open_state = _state(phase="pick1", action_to_take="pick")
+    shell_state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["braum", "orianna", "jinx"],
+    )
+    fiora_open = engine._side_lane_branch_modifier(CHAMPIONS["fiora"], open_state, CHAMPIONS)
+    quinn_open = engine._side_lane_branch_modifier(CHAMPIONS["quinn"], open_state, CHAMPIONS)
+    fiora_shell = engine._side_lane_branch_modifier(CHAMPIONS["fiora"], shell_state, CHAMPIONS)
+    quinn_shell = engine._side_lane_branch_modifier(CHAMPIONS["quinn"], shell_state, CHAMPIONS)
+
+    assert fiora_open < 0.0
+    assert quinn_open < 0.0
+    assert fiora_shell > 0.0
+    assert quinn_shell > 0.0
+
+
+def test_side_lane_data_cluster_reads_more_honestly():
+    tryndamere = CHAMPIONS["tryndamere"]
+    quinn = CHAMPIONS["quinn"]
+    belveth = CHAMPIONS["belveth"]
+
+    assert tryndamere.colors_off == ["R"]
+    assert tryndamere.structural_tags is not None
+    assert tryndamere.structural_tags.waveclear == "medium"
+    assert "lane_bully" in (tryndamere.win_condition_tags or [])
+    assert "high_mobility" in (tryndamere.kit_tags or [])
+
+    assert quinn.colors_main == ["R", "U"]
+    assert quinn.colors_off == ["W"]
+    assert quinn.structural_tags is not None
+    assert quinn.structural_tags.waveclear == "medium"
+    assert quinn.structural_tags.scaling == "mid"
+    assert "lane_bully" in (quinn.win_condition_tags or [])
+
+    assert belveth.colors_main == ["G", "B", "U"]
+
+
+def test_top_jungle_anchor_cluster_reads_more_honestly():
+    ksante = CHAMPIONS["ksante"]
+    volibear = CHAMPIONS["volibear"]
+    zac = CHAMPIONS["zac"]
+    skarner = CHAMPIONS["skarner"]
+    renekton = CHAMPIONS["renekton"]
+    mundo = CHAMPIONS["dr_mundo"]
+
+    assert "gwen" in (ksante.countered_by or [])
+    assert "teamfight" in (ksante.win_condition_tags or [])
+
+    assert volibear.colors_main == ["G", "R"]
+    assert volibear.colors_off == ["W"]
+    assert volibear.structural_tags is not None
+    assert volibear.structural_tags.damage_profile == "mixed"
+    assert "split_push" in (volibear.win_condition_tags or [])
+
+    assert zac.colors_main == ["W", "U"]
+    assert zac.colors_off == ["G"]
+    assert zac.structural_tags is not None
+    assert zac.structural_tags.peel == "medium"
+    assert zac.structural_tags.scaling == "late"
+    assert "pick" in (zac.win_condition_tags or [])
+
+    assert skarner.colors_main == ["W", "G"]
+    assert skarner.colors_off == ["U"]
+    assert skarner.structural_tags is not None
+    assert skarner.structural_tags.peel == "medium"
+    assert skarner.structural_tags.scaling == "late"
+    assert "pick" in (skarner.win_condition_tags or [])
+
+    assert renekton.colors_main == ["R", "G"]
+    assert renekton.colors_off == ["W"]
+    assert renekton.structural_tags is not None
+    assert renekton.structural_tags.scaling == "mid"
+    assert "teamfight" in (renekton.win_condition_tags or [])
+
+    assert mundo.structural_tags is not None
+    assert mundo.structural_tags.damage_profile == "mixed"
+    assert mundo.structural_tags.peel == "low"
+    assert mundo.structural_tags.waveclear == "medium"
+    assert "split_push" in (mundo.win_condition_tags or [])
+
+
+def test_support_anchor_prefers_real_support_over_fringe_support_fill():
+    state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["ornn", "lissandra", "caitlyn"],
+    )
+    nautilus = engine.score_candidate("nautilus", state, CHAMPIONS, META, ARCHETYPES)
+    kennen = engine.score_candidate("kennen", state, CHAMPIONS, META, ARCHETYPES)
+    assert nautilus.structural > kennen.structural
+    assert nautilus.total > kennen.total
+
+
+def test_support_anchor_allows_legit_support_mage():
+    state = _state(
+        phase="pick2",
+        action_to_take="pick",
+        blue_picks=["ornn", "lissandra", "caitlyn"],
+    )
+    seraphine = engine.score_candidate("seraphine", state, CHAMPIONS, META, ARCHETYPES)
+    hwei = engine.score_candidate("hwei", state, CHAMPIONS, META, ARCHETYPES)
+    assert seraphine.structural > hwei.structural
 
 
 def test_b_constraint_penalises_b_lead_in_pick1():
@@ -317,9 +807,9 @@ def test_tiebreaker_prefers_meta_tier_when_totals_close(tmp_path):
     }))
     meta = loader.load_meta_tiers(tiers_path)
 
-    # Symmetric-ish state so jax vs kayle totals are close.
+    # Symmetric-ish state so jax vs nasus totals are close.
     state = _state(blue_picks=["karma", "lulu"])
-    ranked = engine.rank_candidates(["jax", "kayle"], state, CHAMPIONS, meta)
+    ranked = engine.rank_candidates(["jax", "nasus"], state, CHAMPIONS, meta)
     # Jax should win any tie because he sits at top of meta.
     assert ranked[0].champion_id == "jax"
 
@@ -477,16 +967,15 @@ def test_structural_no_penalty_first_ap():
 # ---------------------------------------------------------------------------
 
 def test_synergy_malphite_yasuo():
-    # Malphite is in yasuo.countered_by AND they share a synergy_with entry.
-    # With Yasuo already on team, Malphite should score higher identity
-    # than without any synergy ally.
+    # Synergy should matter relative to an unrelated ally state, but should
+    # not automatically overrule the early-anchor philosophy by itself.
     with_yasuo = engine.score_candidate(
         "malphite", _state(blue_picks=["yasuo"]), CHAMPIONS, META, ARCHETYPES
     )
-    without = engine.score_candidate(
-        "malphite", _state(), CHAMPIONS, META, ARCHETYPES
+    with_stranger = engine.score_candidate(
+        "malphite", _state(blue_picks=["draven"]), CHAMPIONS, META, ARCHETYPES
     )
-    assert with_yasuo.total >= without.total
+    assert with_yasuo.total >= with_stranger.total
 
 
 def test_synergy_orianna_amumu():
@@ -512,14 +1001,15 @@ def test_synergy_diana_yasuo():
 
 
 def test_synergy_taric_master_yi():
-    # Classic protect-the-carry combo. Taric with Yi on team → synergy bonus.
+    # Classic protect-the-carry combo. The synergy should beat an unrelated
+    # ally state, not necessarily a totally empty board.
     with_yi = engine.score_candidate(
         "taric", _state(blue_picks=["master_yi"]), CHAMPIONS, META, ARCHETYPES
     )
-    without = engine.score_candidate(
-        "taric", _state(), CHAMPIONS, META, ARCHETYPES
+    with_stranger = engine.score_candidate(
+        "taric", _state(blue_picks=["draven"]), CHAMPIONS, META, ARCHETYPES
     )
-    assert with_yi.total >= without.total
+    assert with_yi.total >= with_stranger.total
 
 
 def test_synergy_lulu_vayne():
@@ -533,7 +1023,7 @@ def test_synergy_lulu_vayne():
 
 
 def test_synergy_coherence_modifier_capped():
-    # Even with 3+ synergy allies, the ±0.12 cap must hold.
+    # Even with 3+ synergy allies, the reduced cap must hold.
     # Orianna has amumu, jarvan_iv, yasuo, zac, gragas, hecarim as synergy_with.
     # Load 3 of them — coherence modifier must stay within bounds.
     many_allies = engine.score_candidate(
@@ -546,8 +1036,9 @@ def test_synergy_coherence_modifier_capped():
         _state(blue_picks=["amumu"]),
         CHAMPIONS, META, ARCHETYPES
     )
-    # Many > few but total should not jump by more than 0.12 from the modifier alone
-    assert many_allies.total - few_allies.total <= 0.12 + 0.05  # small buffer for structural
+    # Many > few but total should not jump by more than the reduced coherence cap
+    # plus a small structural buffer.
+    assert many_allies.total - few_allies.total <= 0.06 + 0.05
 
 
 def test_synergy_shows_in_rationale():

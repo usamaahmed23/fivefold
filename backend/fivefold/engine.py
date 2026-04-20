@@ -7,7 +7,14 @@ denial scoring (see CLAUDE.md design principles).
 from __future__ import annotations
 
 from . import composition, contextual
-from .composition import ALL_FIELD_VALUES, COLORS, LEVEL_VALUES, OFF_COLOR_WEIGHT, RANGE_VALUES
+from .composition import (
+    ALL_FIELD_VALUES,
+    COLORS,
+    LEVEL_VALUES,
+    OFF_COLOR_WEIGHT,
+    RANGE_VALUES,
+    get_structural_value,
+)
 from .models import Archetype, CandidateScore, Champion, DraftState, MetaTiers
 
 # ---------------------------------------------------------------------------
@@ -74,9 +81,9 @@ COLOR_BRINGS: dict[str, set[str]] = {
 
 WEIGHTS_BY_PHASE: dict[str, dict[str, float]] = {
     "ban1":  {"identity": 0.40, "denial": 0.40, "structural": 0.10, "survivability": 0.10},
-    "pick1": {"identity": 0.40, "denial": 0.30, "structural": 0.20, "survivability": 0.10},
+    "pick1": {"identity": 0.42, "denial": 0.32, "structural": 0.21, "survivability": 0.05},
     "ban2":  {"identity": 0.30, "denial": 0.40, "structural": 0.20, "survivability": 0.10},
-    "pick2": {"identity": 0.20, "denial": 0.20, "structural": 0.40, "survivability": 0.20},
+    "pick2": {"identity": 0.22, "denial": 0.22, "structural": 0.46, "survivability": 0.10},
 }
 
 TIEBREAKER_TOLERANCE = 0.03
@@ -204,6 +211,373 @@ def _role_fits(cand: Champion, unfilled: set[str]) -> bool:
     return any(r in unfilled for r in cand.roles)
 
 
+def _is_real_bot_anchor(cand: Champion) -> bool:
+    """Whether this champion is a credible backline/bot anchor in LS terms.
+
+    This is intentionally broader than "marksman only" so legitimate APC bot
+    patterns remain available, but narrower than "anything with bot in roles".
+    """
+    if "bot" not in (cand.roles or []):
+        return False
+
+    kit = set(cand.kit_tags or [])
+    win = set(cand.win_condition_tags or [])
+    st = cand.structural_tags
+
+    if "marksman" in kit:
+        return True
+
+    if st is None or st.range != "long":
+        return False
+
+    if {"protect_the_carry", "poke_siege", "scaling", "pick", "global_pressure"} & win:
+        if {"artillery", "control_mage", "battle_mage", "poke_support", "enchanter", "burst_mage"} & kit:
+            # Exclude low-structure all-in impostors that happen to have bot in
+            # their role list but are not real backline anchors.
+            if "engage_dive" in win and st.frontline == "low" and st.peel == "low":
+                return False
+            return True
+
+    return False
+
+
+def _is_real_support_anchor(cand: Champion) -> bool:
+    """Whether this champion is a credible support anchor rather than a fringe slot."""
+    if "support" not in (cand.roles or []):
+        return False
+
+    kit = set(cand.kit_tags or [])
+    win = set(cand.win_condition_tags or [])
+    st = cand.structural_tags
+
+    if st is None:
+        return False
+
+    if {"enchanter", "peel_support", "engage_support", "hook_support"} & kit:
+        return True
+
+    if st.frontline == "high" and st.engage in ("medium", "high"):
+        return True
+
+    if st.peel == "high":
+        return True
+
+    if {"protect_the_carry", "pick", "teamfight", "objective_control"} & win and (
+        st.peel in ("medium", "high") or st.engage in ("medium", "high")
+    ):
+        return True
+
+    return False
+
+
+def _is_real_mid_anchor(cand: Champion) -> bool:
+    """Whether this champion is a credible mid-lane anchor for a control shell."""
+    if "mid" not in (cand.roles or []):
+        return False
+
+    kit = set(cand.kit_tags or [])
+    win = set(cand.win_condition_tags or [])
+    st = cand.structural_tags
+
+    if st is None:
+        return False
+    if st.range not in ("medium", "long"):
+        return False
+    if "assassin" in kit:
+        return False
+
+    if st.waveclear == "high":
+        return True
+
+    if {"control_mage", "artillery", "global_ult", "point_click_cc"} & kit:
+        if {"scaling", "objective_control", "global_pressure", "pick", "poke_siege"} & win:
+            return True
+
+    if st.peel in ("medium", "high") and {"scaling", "teamfight", "objective_control"} & win:
+        return True
+
+    return False
+
+
+def _is_support_enabler(cand: Champion) -> bool:
+    """Support branch that meaningfully enables a carry shell."""
+    if not _is_real_support_anchor(cand):
+        return False
+    kit = set(cand.kit_tags or [])
+    win = set(cand.win_condition_tags or [])
+    st = cand.structural_tags
+    return bool(
+        "protect_the_carry" in win
+        or (
+            st is not None
+            and st.peel == "high"
+            and bool({"enchanter", "peel_support"} & kit)
+        )
+    )
+
+
+def _support_unlock_modifier(
+    cand: Champion,
+    draft_state: DraftState,
+    champions: dict[str, Champion],
+) -> float:
+    """Reward explicit enchanter-unlocked melee carry lines.
+
+    Some carries are not generically good late-game pieces, but become real
+    draft branches once a white/enchanter ally is already committed. Keep this
+    data-driven by requiring an explicit synergy edge in champion data.
+    """
+    if draft_state.action_to_take != "pick" or not draft_state.our_picks:
+        return 0.0
+
+    st = cand.structural_tags
+    if st is None or st.damage_profile not in ("ad", "mixed") or st.range != "melee":
+        return 0.0
+
+    kit = set(cand.kit_tags or [])
+    win = set(cand.win_condition_tags or [])
+    if not ({"juggernaut", "skirmisher", "diver"} & kit):
+        return 0.0
+    if not ({"cleanse_self", "self_peel"} & kit):
+        return 0.0
+    if not ({"skirmish", "lane_bully", "split_push"} & win):
+        return 0.0
+
+    enchanter_allies = {
+        pid
+        for pid in draft_state.our_picks
+        if (ally := champions.get(pid)) and {"enchanter", "peel_support"} & set(ally.kit_tags or [])
+    }
+    if not enchanter_allies:
+        return 0.0
+
+    explicit_unlocks = enchanter_allies & set(cand.synergy_with or [])
+    if not explicit_unlocks:
+        return 0.0
+
+    bonus = 0.05
+    if len(explicit_unlocks) >= 2:
+        bonus += 0.015
+    return min(0.08, bonus)
+
+
+def _is_independent_side_laner(cand: Champion) -> bool:
+    """Whether the champion creates real side-lane pressure in LS terms."""
+    roles = set(cand.roles or [])
+    if not roles or roles <= {"bot", "support"}:
+        return False
+
+    st = cand.structural_tags
+    if st is None or st.damage_profile not in ("ad", "mixed"):
+        return False
+
+    kit = set(cand.kit_tags or [])
+    win = set(cand.win_condition_tags or [])
+
+    if not ({"split_push", "global_pressure"} & win):
+        return False
+
+    if not {"splitpusher", "skirmisher", "global_ult", "high_mobility", "self_peel", "cleanse_self"} & kit:
+        return False
+
+    return True
+
+
+def _side_lane_branch_modifier(
+    cand: Champion,
+    draft_state: DraftState,
+    champions: dict[str, Champion],
+) -> float:
+    """Reward independent side-lane branches once a real shell exists.
+
+    LS-style drafts can branch into 1-4 or side-lane pressure lines, but only
+    once the rest of the deck is stable enough to absorb it. This should not
+    make Quinn/Fiora/Trynd blind-openers; it should make them appear more
+    naturally once a four-man shell or scaling enemy gives them permission.
+    """
+    if draft_state.action_to_take != "pick":
+        return 0.0
+    if not _is_independent_side_laner(cand):
+        return 0.0
+
+    our_picks = draft_state.our_picks
+    if len(our_picks) < 2:
+        return -0.03
+
+    comp = composition.analyze(our_picks, champions, draft_state)
+    ally_win_tags = {
+        tag
+        for pid in our_picks
+        if (ally := champions.get(pid))
+        for tag in (ally.win_condition_tags or [])
+    }
+
+    stable_four_man = (
+        comp.structural_avg.get("frontline", 0.0) >= 0.55
+        or any(
+            _is_real_support_anchor(champions[pid])
+            or _is_real_mid_anchor(champions[pid])
+            or _is_real_bot_anchor(champions[pid])
+            for pid in our_picks
+            if pid in champions
+        )
+    ) and bool({"teamfight", "objective_control", "protect_the_carry", "scaling"} & ally_win_tags)
+
+    if not stable_four_man:
+        return 0.0
+
+    bonus = 0.04
+    kit = set(cand.kit_tags or [])
+    win = set(cand.win_condition_tags or [])
+    if {"global_pressure", "roam"} & win or {"global_ult", "high_mobility"} & kit:
+        bonus += 0.01
+
+    enemy_confidence = _enemy_read_confidence(draft_state.enemy_picks)
+    if enemy_confidence >= 0.66:
+        enemy_win_tags = {
+            tag
+            for pid in draft_state.enemy_picks
+            if (enemy := champions.get(pid))
+            for tag in (enemy.win_condition_tags or [])
+        }
+        if {"protect_the_carry", "scaling", "objective_control", "teamfight"} & enemy_win_tags:
+            bonus += 0.015
+
+    return min(0.07, bonus)
+
+
+def _ambiguous_roles(picks: list[str], champions: dict[str, Champion]) -> set[str]:
+    """Roles that remain genuinely flexible across current picks."""
+    role_counts: dict[str, int] = {r: 0 for r in ALL_ROLES}
+    for pid in picks:
+        ch = champions.get(pid)
+        if ch is None or len(ch.roles) < 2:
+            continue
+        for role in ch.roles:
+            role_counts[role] += 1
+    return {role for role, count in role_counts.items() if count >= 2}
+
+
+def _preserves_flex_branch(
+    cand: Champion,
+    unfilled_roles: set[str],
+    ambiguous_roles: set[str],
+) -> bool:
+    roles = set(cand.roles or [])
+    if len(roles) < 2:
+        return False
+    return bool(roles & unfilled_roles) and bool((roles - unfilled_roles) & ambiguous_roles)
+
+
+def _primary_role(champ: Champion) -> str:
+    return (champ.roles or ["misc"])[0]
+
+
+def _recommendation_bucket(champ: Champion) -> str:
+    """Coarse branch bucket used to keep diversified picks meaningfully distinct."""
+    st = champ.structural_tags
+    win = set(champ.win_condition_tags or [])
+
+    if _is_support_enabler(champ):
+        return "support_enabler"
+    if _is_real_support_anchor(champ):
+        return "support_anchor"
+    if _is_real_bot_anchor(champ):
+        return "bot_anchor"
+    if _is_real_mid_anchor(champ):
+        return "mid_anchor"
+    if len(champ.roles or []) >= 2:
+        return "flex"
+    if "protect_the_carry" in win:
+        return "protect"
+    if "engage_dive" in win or (st and st.engage == "high"):
+        return "engage"
+    if st and st.frontline == "high":
+        return "frontline"
+    return _primary_role(champ)
+
+
+def _pick_distinct_candidate(
+    ranked: list[CandidateScore],
+    champions: dict[str, Champion],
+    seen_ids: set[str],
+    used_roles: set[str],
+    used_buckets: set[str],
+    key_fn,
+    tolerance: float = 0.04,
+) -> CandidateScore | None:
+    pool = [s for s in ranked if s.champion_id not in seen_ids]
+    if not pool:
+        return None
+
+    pool.sort(key=lambda s: (-key_fn(s), -s.total, -s.meta_contribution))
+    best_value = key_fn(pool[0])
+    viable = [s for s in pool if best_value - key_fn(s) <= tolerance]
+
+    for require_new_role, require_new_bucket in (
+        (True, True),
+        (False, True),
+        (True, False),
+        (False, False),
+    ):
+        for s in viable:
+            champ = champions[s.champion_id]
+            role = _primary_role(champ)
+            bucket = _recommendation_bucket(champ)
+            if require_new_role and role in used_roles:
+                continue
+            if require_new_bucket and bucket in used_buckets:
+                continue
+            return s
+
+    return pool[0]
+
+
+def _pick_denial_candidate(
+    ranked: list[CandidateScore],
+    champions: dict[str, Champion],
+    seen_ids: set[str],
+    used_roles: set[str],
+    used_buckets: set[str],
+    enemy_confidence: float,
+) -> CandidateScore | None:
+    pool = [s for s in ranked if s.champion_id not in seen_ids]
+    if not pool:
+        return None
+
+    top_total = max(s.total for s in pool)
+    if enemy_confidence <= 0.34:
+        max_total_gap = 0.08
+    elif enemy_confidence <= 0.67:
+        max_total_gap = 0.12
+    else:
+        max_total_gap = 0.18
+
+    viable = [s for s in pool if top_total - s.total <= max_total_gap]
+    denial_weight = min(0.8, 0.55 + 0.25 * enemy_confidence)
+    total_weight = 1.0 - denial_weight
+    return _pick_distinct_candidate(
+        viable or pool,
+        champions,
+        seen_ids,
+        used_roles,
+        used_buckets,
+        key_fn=lambda s: denial_weight * s.denial + total_weight * s.total,
+        tolerance=0.04 + 0.04 * enemy_confidence,
+    )
+
+
+_ROLE_RATIONALE_PREFIX = {
+    "best_overall": "Best all-around fit at this point in the draft.",
+    "structural_fill": "Structural branch — patches the biggest remaining comp holes.",
+    "support_enabler": "Support branch — doubles down on enabling or protecting your carry line.",
+    "flex_branch": "Flex branch — keeps lane assignments open and preserves counterpick leverage.",
+    "best_denial": "Denial branch — pressures the enemy's currently declared line hardest.",
+    "identity_anchor": "Identity branch — stays closest to your current LS color plan.",
+    "alt": "Alternate branch — viable line if you want to pivot away from the top recommendation.",
+}
+
+
 # ---------------------------------------------------------------------------
 # Archetype bonuses — kit-based synergy and counter lookups
 # ---------------------------------------------------------------------------
@@ -226,8 +600,16 @@ def _synergy_bonus(
             continue
         allies_in = len(members & our_set)
         if allies_in >= 1:
-            # One ally present = modest bonus; two+ = noticeable.
-            bonus = min(0.20, 0.08 + 0.06 * allies_in)
+            # Archetype fit should ramp with declared support, not behave like
+            # a near-full combo reward the moment one ally happens to share a
+            # bucket. This keeps pair/archetype logic as a late shaper rather
+            # than an early anchor.
+            if allies_in == 1:
+                bonus = 0.04
+            elif allies_in == 2:
+                bonus = 0.08
+            else:
+                bonus = 0.11
             best = max(best, bonus)
     return best
 
@@ -263,6 +645,163 @@ def _counter_bonus(
     return best
 
 
+def _enemy_read_confidence(enemy_picks: list[str]) -> float:
+    """How much draft information do we actually have?
+
+    A single revealed enemy champion should not let denial/counter logic act
+    as though we fully understand the enemy's deck. Confidence ramps through
+    the draft and reaches full strength once several picks are visible.
+    """
+    if not enemy_picks:
+        return 0.0
+    return min(1.0, len(enemy_picks) / 3.0)
+
+
+def _opener_modifier(
+    cand: Champion,
+    draft_state: DraftState,
+) -> float:
+    """Reward stable early anchors, penalise setup-reliant early commits.
+
+    Early picks should usually keep the draft open and let us adapt. We give a
+    small bump to versatile/white/flex anchors and penalise picks whose value
+    depends on heavy setup (e.g. Yasuo-style airborne chains or low-frontline
+    wombo carries) before that setup exists.
+    """
+    if draft_state.action_to_take != "pick" or draft_state.phase != "pick1":
+        return 0.0
+    if len(draft_state.our_picks) >= 2:
+        return 0.0
+
+    context_scale = 1.0 if not draft_state.our_picks else 0.65
+
+    st = cand.structural_tags
+    main = set(cand.colors_main or [])
+    kit = set(cand.kit_tags or [])
+    win = set(cand.win_condition_tags or [])
+
+    bonus = 0.0
+    if "W" in main:
+        bonus += 0.03
+    if "adaptive_form" in kit:
+        bonus += 0.015
+    if len(cand.roles) >= 2:
+        bonus += 0.02
+    if st:
+        if st.frontline == "high":
+            bonus += 0.05
+        elif st.frontline == "medium":
+            bonus += 0.025
+        if st.peel == "high":
+            bonus += 0.03
+        elif st.peel == "medium":
+            bonus += 0.015
+        if st.range in ("medium", "long") and st.damage_profile in ("ad", "mixed"):
+            bonus += 0.015
+    if {"marksman", "enchanter", "engage_tank", "peel_support"} & kit:
+        bonus += 0.015
+
+    penalty = 0.0
+    if "airborne_chain" in kit:
+        penalty += 0.10
+    if "wombo" in win and st and st.frontline == "low" and st.peel == "low":
+        penalty += 0.07
+    if "engage_dive" in win and st and st.frontline == "low" and st.peel == "low":
+        penalty += 0.04
+    if "protect_the_carry" in win and st and st.frontline == "low" and not draft_state.our_picks:
+        penalty += 0.03
+    if "poke_siege" in win and st and st.frontline == "low" and st.peel == "low":
+        penalty += 0.03
+    if st and st.frontline == "low" and st.peel == "low":
+        penalty += 0.02
+    if "B" in main:
+        penalty += 0.02
+    if "B" in (cand.colors_off or []):
+        penalty += 0.01
+
+    return context_scale * (bonus - penalty)
+
+
+def _conditional_pick_modifier(
+    cand: Champion,
+    draft_state: DraftState,
+) -> float:
+    """Penalise narrow exploit picks until the draft actually justifies them.
+
+    LS-style drafting rewards stable, adaptable structure. Assassins, hard
+    counter-junglers, and other binary exploit picks should not appear as
+    generic recommendations when the enemy or our own shell is still only
+    partially declared.
+    """
+    if draft_state.action_to_take != "pick":
+        return 0.0
+
+    enemy_confidence = _enemy_read_confidence(draft_state.enemy_picks)
+    our_count = len(draft_state.our_picks)
+
+    kit = set(cand.kit_tags or [])
+    win = set(cand.win_condition_tags or [])
+    st = cand.structural_tags
+
+    penalty = 0.0
+
+    if "counter_pick_specialist" in kit:
+        penalty += 0.10 * (1.0 - enemy_confidence)
+
+    if "assassin" in kit:
+        assassin_penalty = 0.08 * (1.0 - enemy_confidence)
+        if our_count < 4:
+            assassin_penalty += 0.03
+        if "adaptive_form" in kit:
+            assassin_penalty *= 0.5
+        penalty += assassin_penalty
+
+    if {"pick", "skirmish"} & win and "high_mobility" in kit and "assassin" not in kit:
+        penalty += 0.03 * (1.0 - enemy_confidence)
+
+    # Solo-lane hyper-scalers should not anchor first rotation just because
+    # they match a blue shell on paper. LS-style drafting prefers keeping the
+    # draft open early, not revealing a weak early, XP-hungry inevitability
+    # piece before the shell is actually secured.
+    if (
+        draft_state.phase == "pick1"
+        and our_count < 3
+        and st is not None
+        and st.frontline == "low"
+        and "scaling_hyper" in kit
+        and "marksman" in kit
+        and {"top", "mid"} & set(cand.roles or [])
+    ):
+        penalty += 0.12
+
+    # Jungle-only engage tanks with very low independent utility are often
+    # hard counter tools, not generic first-line recommendations.
+    if (
+        cand.roles == ["jungle"]
+        and st is not None
+        and st.frontline == "high"
+        and st.waveclear == "low"
+        and st.peel == "low"
+        and "point_click_cc" in kit
+    ):
+        penalty += 0.06 * (1.0 - enemy_confidence)
+
+    # Reward true control/scaling mids a little once a blue shell is actually
+    # forming, so they stop losing ties to narrower exploit picks.
+    if (
+        st is not None
+        and st.range == "long"
+        and st.scaling == "late"
+        and our_count >= 2
+        and {"control_mage", "global_ult", "point_click_cc"} & kit
+    ):
+        main = set(cand.colors_main or [])
+        if {"U", "W", "G"} & main:
+            return max(-0.16, 0.03 - penalty)
+
+    return max(-0.16, -penalty)
+
+
 # ---------------------------------------------------------------------------
 # Individual axis scores
 # ---------------------------------------------------------------------------
@@ -283,32 +822,6 @@ def score_identity(
         score += weights[c]
     for c in cand_r.colors_off:
         score += OFF_COLOR_WEIGHT * weights[c]
-
-    # Colorless is a draft-definer, not a filler — treat separately.
-    if "C" in cand_r.colors_main:
-        if comp.declared_colors.get("C", 0.0) > 0:
-            score = min(1.0, score * 1.2)
-        else:
-            score = max(score, 0.45)
-
-    # Explicit synergy pairs: each ally that lists this candidate as a
-    # synergy_with partner adds a small identity bonus (+0.04, cap +0.12).
-    synergy_count = sum(
-        1 for pid in our_picks
-        if (ch := champions.get(pid)) and cand.id in ch.synergy_with
-    )
-    synergy_count += sum(1 for pid in our_picks if pid in cand.synergy_with)
-    synergy_count = min(synergy_count, len(our_picks))
-    score = min(1.0, score + synergy_count * 0.04)
-
-    # weak_with partner subtracts an identity penalty (-0.05 per bad pairing, cap -0.15).
-    weak_count = sum(
-        1 for pid in our_picks
-        if (ch := champions.get(pid)) and cand.id in ch.weak_with
-    )
-    weak_count += sum(1 for pid in our_picks if pid in cand.weak_with)
-    weak_count = min(weak_count, len(our_picks))
-    score = max(0.0, score - weak_count * 0.05)
 
     return min(1.0, score)
 
@@ -357,13 +870,15 @@ def score_denial(
     else:
         tag_score = 0.5
 
+    confidence = _enemy_read_confidence(enemy_picks)
+
     # strong_against_tags: explicit "I beat comps with these vulnerabilities"
     # bonus on top of the color-derived score. Counter-pick specialists (e.g.
     # Sona) use this to express that their value is conditional on enemy shape.
     strong_against_bonus = 0.0
     if cand_r.strong_against_tags and enemy_weaknesses:
         explicit_overlap = len(set(cand_r.strong_against_tags) & enemy_weaknesses)
-        strong_against_bonus = min(0.15, explicit_overlap * 0.05)
+        strong_against_bonus = min(0.15, explicit_overlap * 0.05) * confidence
 
     # Explicit champion counters: if any enemy pick lists this candidate in
     # their countered_by, or candidate lists that enemy in its own countered_by
@@ -375,9 +890,12 @@ def score_denial(
         enemy_ch = champions.get(pid)
         if enemy_ch and cand.id in enemy_ch.countered_by:
             counter_bonus += 0.05
-    counter_bonus = min(0.15, counter_bonus)
+    counter_bonus = min(0.15, counter_bonus) * confidence
 
-    return min(1.0, 0.65 * color_score + 0.35 * tag_score + strong_against_bonus + counter_bonus)
+    raw = 0.65 * color_score + 0.35 * tag_score + strong_against_bonus + counter_bonus
+    # Interpolate back toward neutral when the enemy's identity is still only
+    # partially revealed. This prevents "I saw one ADC, lock Yasuo" behaviour.
+    return min(1.0, max(0.0, 0.5 + confidence * (raw - 0.5)))
 
 
 def score_structural(
@@ -385,17 +903,51 @@ def score_structural(
 ) -> float:
     cand_r = contextual.resolve(cand, state)
     comp = composition.analyze(our_picks, champions, state)
+    unfilled_roles = _unfilled_roles(our_picks, champions)
 
-    # Without any tag data to reason about, stay neutral.
-    if cand_r.structural_tags is None or not comp.structural_avg:
-        return 0.5
+    # Physical damage gap: if the team has 2+ picks with no AD source, reward AD candidates.
+    ad_gap_bonus = 0.0
+    if len(our_picks) >= 2:
+        ad_count = sum(
+            1 for pid in our_picks
+            if (ch := champions.get(pid)) and
+               ch.structural_tags is not None and
+               ch.structural_tags.damage_profile in ("ad", "mixed")
+        )
+        if ad_count == 0 and cand_r.structural_tags is not None and cand_r.structural_tags.damage_profile in ("ad", "mixed"):
+            ad_gap_bonus = 0.12
+        elif ad_count == 0 and len(our_picks) >= 3 and cand_r.structural_tags is not None and cand_r.structural_tags.damage_profile in ("ad", "mixed"):
+            ad_gap_bonus = 0.12
 
-    cand_st = cand_r.structural_tags
+    bot_anchor_bonus = 0.0
+    bot_anchor_penalty = 0.0
+    if len(our_picks) >= 2 and "bot" in unfilled_roles:
+        if _is_real_bot_anchor(cand_r):
+            bot_anchor_bonus = 0.10
+        elif "bot" in (cand_r.roles or []):
+            # Candidate can technically go bot, but does not provide the kind of
+            # backline anchor the draft still lacks.
+            bot_anchor_penalty = 0.08
 
-    # AP-saturation constraint: some champions (e.g. Karthus) need to be the
-    # lone magic-damage source — picking them into an AP-heavy ally pool is a
-    # structural anti-pattern.
-    penalty = 0.0
+    support_anchor_bonus = 0.0
+    support_anchor_penalty = 0.0
+    if len(our_picks) >= 2 and "support" in unfilled_roles:
+        if _is_real_support_anchor(cand_r):
+            support_anchor_bonus = 0.08
+        elif "support" in (cand_r.roles or []):
+            support_anchor_penalty = 0.07
+
+    mid_anchor_bonus = 0.0
+    if len(our_picks) >= 2 and "mid" in unfilled_roles and _is_real_mid_anchor(cand_r):
+        blue_mass = comp.declared_colors.get("U", 0.0) + comp.declared_colors.get("W", 0.0) + comp.declared_colors.get("G", 0.0)
+        if blue_mass >= 1.35:
+            mid_anchor_bonus = 0.08
+        elif blue_mass >= 0.7:
+            mid_anchor_bonus = 0.04
+
+    # AP-saturation applies even without structural_tags on the candidate —
+    # it's a kit-tag signal, independent of the candidate's own profile.
+    solo_magic_penalty = 0.0
     if "requires_solo_magic" in (cand_r.kit_tags or []):
         ap_allies = sum(
             1 for pid in our_picks
@@ -403,9 +955,29 @@ def score_structural(
                ch.structural_tags is not None and
                ch.structural_tags.damage_profile == "ap"
         )
-        penalty = min(0.40, ap_allies * 0.20)
+        solo_magic_penalty = min(0.40, ap_allies * 0.20)
+
+    # Without any tag data to reason about, stay neutral (minus solo-magic).
+    if cand_r.structural_tags is None or not comp.structural_avg:
+        return max(
+            0.0,
+            (
+                0.5
+                - solo_magic_penalty
+                + bot_anchor_bonus
+                - bot_anchor_penalty
+                + support_anchor_bonus
+                - support_anchor_penalty
+                + mid_anchor_bonus
+            ),
+        )
+
+    cand_st = cand_r.structural_tags
 
     # Damage profile diversity: a comp should never be mono-AP or mono-AD.
+    # Penalty starts at 1 same-profile ally so the engine nudges toward diversity
+    # before the comp is already locked into a one-dimensional damage pattern.
+    diversity_penalty = 0.0
     cand_profile = cand_st.damage_profile if cand_st else None
     if cand_profile in ("ap", "ad"):
         same_profile_allies = sum(
@@ -415,11 +987,17 @@ def score_structural(
                ch.structural_tags.damage_profile == cand_profile
         )
         if same_profile_allies >= 4:
-            penalty += 0.40
+            diversity_penalty = 0.50
         elif same_profile_allies == 3:
-            penalty += 0.25
+            diversity_penalty = 0.35
         elif same_profile_allies == 2:
-            penalty += 0.10
+            diversity_penalty = 0.20
+        elif same_profile_allies == 1:
+            diversity_penalty = 0.08
+
+    # Share a cap between solo-magic and diversity — both punish AP overlap,
+    # so take the larger signal rather than stacking them.
+    penalty = max(solo_magic_penalty, diversity_penalty)
 
     # Range diversity: a comp with 3+ melee champions needs ranged coverage.
     cand_range = cand_st.range if cand_st else None
@@ -438,25 +1016,60 @@ def score_structural(
             penalty += 0.08
 
     if comp.holes:
+        # Synthetic holes for damage-shape coverage.
+        normal_holes = [f for f in comp.holes if f not in {"ad_source", "ranged_ad_source"}]
+        ad_source_hole = "ad_source" in comp.holes
+        ranged_ad_hole = "ranged_ad_source" in comp.holes
+        ad_source_fill = (
+            ad_source_hole
+            and cand_r.structural_tags is not None
+            and cand_r.structural_tags.damage_profile in ("ad", "mixed")
+        )
+        ranged_ad_fill = (
+            ranged_ad_hole
+            and cand_r.structural_tags is not None
+            and cand_r.structural_tags.damage_profile in ("ad", "mixed")
+            and cand_r.structural_tags.range in ("short", "medium", "long")
+        )
         # Use ALL_FIELD_VALUES so range holes ("melee"/"long" values) are scored correctly.
-        lvls = [ALL_FIELD_VALUES.get(getattr(cand_st, f) or "none", 0.0) for f in comp.holes]
-        coverage = sum(lvls) / len(lvls)
-        return max(0.0, min(1.0, 0.25 + 0.75 * coverage - penalty))
+        lvls = [ALL_FIELD_VALUES.get(get_structural_value(cand_r, f) or "none", 0.0) for f in normal_holes]
+        if ad_source_hole:
+            lvls.append(0.9 if ad_source_fill else 0.0)
+        if ranged_ad_hole:
+            lvls.append(0.95 if ranged_ad_fill else 0.0)
+        coverage = sum(lvls) / len(lvls) if lvls else 0.0
+        # Keep structural influential without making one "perfect" hole-filler
+        # instantly dominate the whole recommendation. This is especially
+        # important while structural data is still only partially populated.
+        score = (
+            0.40
+            + 0.45 * coverage
+            - penalty
+            + ad_gap_bonus
+            + bot_anchor_bonus
+            - bot_anchor_penalty
+            + support_anchor_bonus
+            - support_anchor_penalty
+            + mid_anchor_bonus
+        )
+        return max(0.0, min(1.0, score))
 
-    return max(0.0, 0.6 - penalty)
-
-
-def score_survivability(
-    cand: Champion, state: DraftState, meta_tiers: MetaTiers
-) -> float:
-    base = 0.5
-    for role in cand.roles:
-        tier_list = meta_tiers.tiers.get(role, [])
-        if cand.id in tier_list:
-            pos = tier_list.index(cand.id)
-            bonus = 0.5 * (1.0 - pos / max(1, len(tier_list)))
-            base = max(base, 0.5 + bonus)
-    return min(1.0, base)
+    return max(
+        0.0,
+        min(
+            1.0,
+            (
+                0.55
+                - penalty
+                + ad_gap_bonus
+                + bot_anchor_bonus
+                - bot_anchor_penalty
+                + support_anchor_bonus
+                - support_anchor_penalty
+                + mid_anchor_bonus
+            ),
+        ),
+    )
 
 
 def _meta_contribution(cand: Champion, meta_tiers: MetaTiers) -> float:
@@ -467,6 +1080,229 @@ def _meta_contribution(cand: Champion, meta_tiers: MetaTiers) -> float:
             pos = tier_list.index(cand.id)
             best = max(best, 0.5 * (1.0 - pos / max(1, len(tier_list))))
     return best
+
+
+def score_survivability(
+    cand: Champion, state: DraftState, meta_tiers: MetaTiers
+) -> float:
+    return min(1.0, 0.5 + 0.35 * _meta_contribution(cand, meta_tiers))
+
+
+def _coherence_modifier(
+    cand: Champion,
+    team_picks: list[str],
+    champions: dict[str, Champion],
+    archetypes: list[Archetype],
+) -> float:
+    """Small total-score adjustment for explicit pairing fit.
+
+    This intentionally sits outside the raw identity axis. Fivefold's thesis is
+    that drafts are not pairwise-synergy optimization problems, so pair/archetype
+    fit should shade close recommendations rather than redefine "identity".
+    """
+    if not team_picks:
+        return 0.0
+
+    if len(team_picks) == 1:
+        context_scale = 0.30
+    elif len(team_picks) == 2:
+        context_scale = 0.55
+    elif len(team_picks) == 3:
+        context_scale = 0.80
+    else:
+        context_scale = 1.0
+
+    synergy_allies = {
+        pid for pid in team_picks
+        if pid in cand.synergy_with
+        or ((ch := champions.get(pid)) and cand.id in ch.synergy_with)
+    }
+    weak_allies = {
+        pid for pid in team_picks
+        if pid in cand.weak_with
+        or ((ch := champions.get(pid)) and cand.id in ch.weak_with)
+    }
+
+    explicit = min(len(synergy_allies), 3) * 0.03 - min(len(weak_allies), 3) * 0.04
+    archetype = _synergy_bonus(cand.id, team_picks, archetypes)
+    return max(-0.08, min(0.06, context_scale * (explicit + archetype)))
+
+
+# ---------------------------------------------------------------------------
+# Rationale generation — deterministic bullets from score signals
+# ---------------------------------------------------------------------------
+def _build_rationale(
+    cand: Champion,
+    cand_r: Champion,
+    draft_state: DraftState,
+    champions: dict[str, Champion],
+    meta_tiers: MetaTiers,
+    archetypes: list[Archetype],
+    identity: float,
+    denial: float,
+    structural: float,
+    survivability: float,
+    is_ban: bool,
+) -> list[str]:
+    lines: list[str] = []
+    our_picks = draft_state.enemy_picks if is_ban else draft_state.our_picks
+    enemy_picks = draft_state.our_picks if is_ban else draft_state.enemy_picks
+
+    # --- Identity / color coherence ---
+    if not is_ban:
+        if identity >= 0.75:
+            colors = " / ".join(cand_r.colors_main)
+            lines.append(f"Strong color fit — {colors} reinforces your declared identity.")
+        elif identity >= 0.5:
+            colors = " / ".join(cand_r.colors_main)
+            lines.append(f"Partial color fit ({colors}) — adds a secondary thread to the draft.")
+        elif identity < 0.35 and our_picks:
+            lines.append("Color identity is off-theme — consider whether this is the right pick for your win condition.")
+
+    # Explicit synergy pairs
+    synergy_allies = [
+        pid for pid in our_picks
+        if pid in cand.synergy_with
+        or ((ch := champions.get(pid)) and cand.id in ch.synergy_with)
+    ]
+    if synergy_allies:
+        names = ", ".join(champions[p].name for p in synergy_allies if p in champions)
+        lines.append(f"Explicit synergy with {names}.")
+
+    weak_allies = [
+        pid for pid in our_picks
+        if pid in cand.weak_with
+        or ((ch := champions.get(pid)) and cand.id in ch.weak_with)
+    ]
+    if weak_allies:
+        names = ", ".join(champions[p].name for p in weak_allies if p in champions)
+        lines.append(f"Poor pairing with {names} — may work against your win condition.")
+
+    # Archetype synergy
+    for arch in archetypes:
+        if arch.kind != "synergy" or cand.id not in arch.members:
+            continue
+        allies_in = [p for p in our_picks if p in arch.members]
+        if allies_in:
+            names = ", ".join(champions[p].name for p in allies_in if p in champions)
+            lines.append(f"Completes {arch.name} archetype with {names}.")
+            break
+
+    # --- Denial ---
+    if is_ban:
+        if denial >= 0.70:
+            lines.append("High threat to your comp — priority ban to prevent enemy access.")
+        elif denial >= 0.50:
+            lines.append("Moderate threat — banning removes a meaningful enemy option.")
+    else:
+        if denial >= 0.70:
+            enemy_colors = []
+            if enemy_picks:
+                ec = composition.analyze(enemy_picks, champions, draft_state)
+                enemy_colors = ec.primary_colors
+            color_str = " / ".join(enemy_colors) if enemy_colors else "their identity"
+            lines.append(f"Strong counter to enemy {color_str} — directly disrupts their win condition.")
+        elif denial >= 0.50:
+            lines.append("Good denial value — colors and capabilities match up well against enemy.")
+
+    # Explicit counter pairs
+    counter_enemies = [
+        pid for pid in enemy_picks
+        if (ch := champions.get(pid)) and cand.id in ch.countered_by
+    ]
+    if counter_enemies:
+        names = ", ".join(champions[p].name for p in counter_enemies if p in champions)
+        lines.append(f"Directly counters {names}.")
+
+    # strong_against_tags hit
+    if cand_r.strong_against_tags and enemy_picks:
+        enemy_weaknesses: set[str] = set()
+        for pid in enemy_picks:
+            if ch := champions.get(pid):
+                enemy_weaknesses.update(ch.counter_tags)
+        hits = set(cand_r.strong_against_tags) & enemy_weaknesses
+        if hits:
+            lines.append(f"Specialist counter — exploits enemy vulnerability ({', '.join(sorted(hits)[:2])}).")
+
+    # --- Structural ---
+    comp = composition.analyze(our_picks if not is_ban else [], champions, draft_state)
+    ambiguous_roles = _ambiguous_roles(our_picks, champions) if not is_ban else set()
+    if comp.holes and not is_ban:
+        filled = []
+        for hole in comp.holes:
+            if hole == "ad_source":
+                if cand_r.structural_tags and cand_r.structural_tags.damage_profile in ("ad", "mixed"):
+                    filled.append("AD damage source")
+                continue
+            if hole == "ranged_ad_source":
+                if (
+                    cand_r.structural_tags
+                    and cand_r.structural_tags.damage_profile in ("ad", "mixed")
+                    and cand_r.structural_tags.range in ("short", "medium", "long")
+                ):
+                    filled.append("ranged AD damage source")
+                continue
+            val = composition.get_structural_value(cand_r, hole)
+            if val and composition.ALL_FIELD_VALUES.get(val, 0) >= 0.5:
+                filled.append(hole.replace("_", " "))
+        if "bot" in _unfilled_roles(our_picks, champions) and _is_real_bot_anchor(cand_r):
+            filled.append("bot carry anchor")
+        if "support" in _unfilled_roles(our_picks, champions) and _is_real_support_anchor(cand_r):
+            filled.append("support anchor")
+        if "mid" in _unfilled_roles(our_picks, champions) and _is_real_mid_anchor(cand_r):
+            filled.append("mid anchor")
+        if _preserves_flex_branch(cand_r, _unfilled_roles(our_picks, champions), ambiguous_roles):
+            labels = sorted((set(cand_r.roles) - _unfilled_roles(our_picks, champions)) & ambiguous_roles)
+            if labels:
+                filled.append(f"preserves {' / '.join(labels)} flex")
+        if filled:
+            lines.append(f"Fills structural hole{'s' if len(filled) > 1 else ''}: {', '.join(filled)}.")
+        elif structural < 0.45:
+            lines.append("Doesn't address current structural gaps — comp may remain incomplete.")
+
+    # Damage/range diversity warnings
+    if not is_ban and cand_r.structural_tags:
+        profile = cand_r.structural_tags.damage_profile
+        if profile in ("ap", "ad"):
+            same = sum(
+                1 for pid in our_picks
+                if (ch := champions.get(pid)) and
+                   ch.structural_tags and ch.structural_tags.damage_profile == profile
+            )
+            if same >= 3:
+                label = "AP" if profile == "ap" else "AD"
+                lines.append(f"Warning: {same} {label} allies already — damage profile is dangerously narrow.")
+            elif same == 2:
+                label = "AP" if profile == "ap" else "AD"
+                lines.append(f"Third {label} champion — watch damage profile diversity.")
+
+        rng = cand_r.structural_tags.range
+        if rng in ("melee", "short"):
+            melee = sum(
+                1 for pid in our_picks
+                if (ch := champions.get(pid)) and
+                   ch.structural_tags and ch.structural_tags.range in ("melee", "short")
+            )
+            if melee >= 3:
+                lines.append(f"Warning: {melee} melee/short-range allies — comp lacks ranged presence.")
+
+    # --- Meta / survivability ---
+    mc = _meta_contribution(cand, meta_tiers)
+    if mc >= 0.35:
+        lines.append("Strong meta pick — high win rate and priority in current patch.")
+    elif mc >= 0.15:
+        lines.append("Solid meta standing this patch.")
+
+    # --- Phase fit notes ---
+    if not is_ban and cand_r.colors_main:
+        phase = draft_state.phase if draft_state.phase in WEIGHTS_BY_PHASE else "pick2"
+        pf = _phase_fit_modifier(cand_r.colors_main, phase, "pick")
+        if pf <= -0.06:
+            lines.append("Early R commitment telegraphs your gameplan — opponent can sideboard in real time.")
+        elif pf >= 0.04:
+            lines.append("Late R pick rewards patience — closes the game without revealing your identity early.")
+
+    return lines
 
 
 # ---------------------------------------------------------------------------
@@ -502,10 +1338,20 @@ def score_candidate(
     identity = score_identity(cand, identity_for, champions, draft_state)
     denial = score_denial(cand, denial_against, champions, draft_state)
     structural = score_structural(cand, structural_for, champions, draft_state)
-    survivability = score_survivability(cand, draft_state, meta_tiers)
+    # For bans, meta should still matter as a tiebreaker, but the pick-only
+    # survivability axis ("can we execute this champ?") is semantically wrong.
+    survivability = (
+        0.5
+        if draft_state.action_to_take == "ban"
+        else score_survivability(cand, draft_state, meta_tiers)
+    )
 
-    identity = min(1.0, identity + _synergy_bonus(candidate_id, synergy_side, arch_list))
-    denial = min(1.0, denial + _counter_bonus(candidate_id, counter_target, champions, arch_list))
+    denial = min(
+        1.0,
+        denial
+        + _enemy_read_confidence(counter_target)
+        * _counter_bonus(candidate_id, counter_target, champions, arch_list),
+    )
 
     phase = draft_state.phase if draft_state.phase in WEIGHTS_BY_PHASE else "pick2"
     w = WEIGHTS_BY_PHASE[phase]
@@ -517,11 +1363,23 @@ def score_candidate(
     )
 
     cand_r = contextual.resolve(cand, draft_state)
+    coherence = _coherence_modifier(cand, synergy_side, champions, arch_list)
     total = max(0.0, min(1.0, total
+        + coherence
         + _phase_fit_modifier(cand_r.colors_main, phase, draft_state.action_to_take)
         + _b_constraint_modifier(cand_r.colors_main, phase, draft_state.action_to_take)
         + _flex_bonus(cand, draft_state)
+        + _opener_modifier(cand, draft_state)
+        + _conditional_pick_modifier(cand, draft_state)
+        + _support_unlock_modifier(cand, draft_state, champions)
+        + _side_lane_branch_modifier(cand, draft_state, champions)
     ))
+
+    is_ban = draft_state.action_to_take == "ban"
+    rationale = _build_rationale(
+        cand, cand_r, draft_state, champions, meta_tiers, arch_list,
+        identity, denial, structural, survivability, is_ban,
+    )
 
     return CandidateScore(
         champion_id=candidate_id,
@@ -531,6 +1389,7 @@ def score_candidate(
         survivability=round(survivability, 4),
         meta_contribution=round(_meta_contribution(cand, meta_tiers), 4),
         total=round(total, 4),
+        rationale=rationale,
     )
 
 
@@ -541,20 +1400,20 @@ def rank_candidates(
     meta_tiers: MetaTiers,
     top_n: int | None = None,
     archetypes: list[Archetype] | None = None,
+    diversify: bool = False,
 ) -> list[CandidateScore]:
     scores = [
         score_candidate(cid, draft_state, champions, meta_tiers, archetypes)
         for cid in candidate_ids
     ]
 
-    def sort_key(s: CandidateScore) -> tuple:
-        bucket = round(s.total / TIEBREAKER_TOLERANCE)
-        return (-bucket, -s.meta_contribution, -s.total)
-
-    scores.sort(key=sort_key)
+    scores.sort(key=lambda s: (-s.total, -s.meta_contribution))
 
     if top_n is None:
         return scores
+
+    if not diversify:
+        return scores[:top_n]
 
     # For pick actions with top_n >= 4, use categorized diversity slots so the
     # recommendations always cover different dimensions — not just five clones of
@@ -572,55 +1431,124 @@ def rank_candidates(
 
     seen: set[str] = set()
     result: list[CandidateScore] = []
+    used_roles: set[str] = set()
+    used_buckets: set[str] = set()
 
     def _add(s: CandidateScore, role: str) -> bool:
         if s.champion_id in seen:
             return False
         seen.add(s.champion_id)
+        champ = champions[s.champion_id]
+        used_roles.add(_primary_role(champ))
+        used_buckets.add(_recommendation_bucket(champ))
         s.recommendation_role = role
+        prefix = _ROLE_RATIONALE_PREFIX.get(role)
+        if prefix and (not s.rationale or s.rationale[0] != prefix):
+            s.rationale = [prefix, *s.rationale]
         result.append(s)
         return True
 
-    # Slots 0-1: best overall
-    for s in scores:
-        if len(result) >= 2:
-            break
-        _add(s, "best_overall")
+    our_picks = draft_state.our_picks
+    enemy_confidence = _enemy_read_confidence(draft_state.enemy_picks)
+    unfilled = _unfilled_roles(our_picks, champions)
+    ambiguous = _ambiguous_roles(our_picks, champions)
+    team_has_bot_anchor = any(
+        _is_real_bot_anchor(champions[pid])
+        for pid in our_picks
+        if pid in champions
+    )
+    team_has_protect_carry_thread = any(
+        "protect_the_carry" in (champions[pid].win_condition_tags or [])
+        for pid in our_picks
+        if pid in champions
+    )
 
-    # Slot 2: structural fill — highest structural, not already picked
-    structural_best = max(
-        (s for s in scores if s.champion_id not in seen),
-        key=lambda s: s.structural,
-        default=None,
+    # Slot 0: best overall
+    if scores:
+        _add(scores[0], "best_overall")
+
+    # Slot 1: structural fill — highest structural score with light diversity pressure
+    structural_best = _pick_distinct_candidate(
+        scores,
+        champions,
+        seen,
+        used_roles,
+        used_buckets,
+        key_fn=lambda s: s.structural,
+        tolerance=0.05,
     )
     if structural_best:
         _add(structural_best, "structural_fill")
 
-    # Slot 3: best denial — highest denial
-    denial_best = max(
-        (s for s in scores if s.champion_id not in seen),
-        key=lambda s: s.denial,
-        default=None,
+    # Dynamic branch slot: show either the support-enabler branch for
+    # carry-centric shells, or a flex-preserving branch when the current
+    # draft still has meaningful lane ambiguity.
+    dynamic_branch = None
+    dynamic_role = None
+    if "support" in unfilled and (team_has_bot_anchor or team_has_protect_carry_thread):
+        dynamic_branch = _pick_distinct_candidate(
+            [
+                s for s in scores
+                if s.champion_id not in seen
+                and _is_support_enabler(champions[s.champion_id])
+            ],
+            champions,
+            seen,
+            used_roles,
+            used_buckets,
+            key_fn=lambda s: s.total,
+        )
+        dynamic_role = "support_enabler"
+    elif ambiguous and unfilled:
+        dynamic_branch = _pick_distinct_candidate(
+            [
+                s for s in scores
+                if s.champion_id not in seen
+                and _preserves_flex_branch(champions[s.champion_id], unfilled, ambiguous)
+            ],
+            champions,
+            seen,
+            used_roles,
+            used_buckets,
+            key_fn=lambda s: s.total,
+        )
+        dynamic_role = "flex_branch"
+    if dynamic_branch and dynamic_role:
+        _add(dynamic_branch, dynamic_role)
+
+    # Slot 3: best denial — highest denial with light diversity pressure
+    denial_best = _pick_denial_candidate(
+        scores,
+        champions,
+        seen,
+        used_roles,
+        used_buckets,
+        enemy_confidence,
     )
     if denial_best:
         _add(denial_best, "best_denial")
 
-    # Slot 4: identity anchor — highest identity
-    identity_best = max(
-        (s for s in scores if s.champion_id not in seen),
-        key=lambda s: s.identity,
-        default=None,
+    # Slot 4: identity anchor — highest identity with light diversity pressure
+    identity_best = _pick_distinct_candidate(
+        scores,
+        champions,
+        seen,
+        used_roles,
+        used_buckets,
+        key_fn=lambda s: s.identity,
+        tolerance=0.05,
     )
     if identity_best:
         _add(identity_best, "identity_anchor")
 
-    # Pad with next-best overall if we somehow have fewer than top_n
+    # Pad with next-best if any category slot was empty. Label "alt" so the
+    # UI doesn't mis-present a fallback as a true best_overall pick.
     for s in scores:
         if len(result) >= top_n:
             break
-        _add(s, "best_overall")
+        _add(s, "alt")
 
-    return result
+    return result[:top_n]
 
 
 def eligible_candidates(
