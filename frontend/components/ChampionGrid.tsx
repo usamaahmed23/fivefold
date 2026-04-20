@@ -201,7 +201,7 @@ export function ChampionGrid({ champions, taken, portraits, onSelect, highlighte
           </button>
         </div>
       )}
-      <div className="grid flex-1 grid-cols-6 gap-0.5 overflow-y-auto pr-1 sm:grid-cols-7 md:grid-cols-8 lg:grid-cols-9 xl:grid-cols-10">
+      <div className="grid flex-1 grid-cols-4 gap-0.5 overflow-y-auto pr-1 min-[460px]:grid-cols-5 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-10">
         {filtered.map((c) => (
           <ChampionCard
             key={c.id}

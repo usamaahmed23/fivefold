@@ -7,9 +7,10 @@ interface Props {
   champions: Map<string, Champion>;
   portraits: Map<string, string>;
   onSwapPicks?: (side: Side, from: number, to: number) => void;
+  className?: string;
 }
 
-export function SideColumn({ side, state, champions, portraits, onSwapPicks }: Props) {
+export function SideColumn({ side, state, champions, portraits, onSwapPicks, className }: Props) {
   const canReorder = state.phase === "complete" && Boolean(onSwapPicks);
   const picks = side === "blue" ? state.blue_picks : state.red_picks;
 
@@ -21,7 +22,7 @@ export function SideColumn({ side, state, champions, portraits, onSwapPicks }: P
   };
 
   return (
-    <div className="flex w-28 flex-col gap-2">
+    <div className={`flex w-full flex-col gap-2 xl:w-28 ${className ?? ""}`}>
       {Array.from({ length: 5 }, (_, i) => {
         const id = picks[i];
         const champ = id ? champions.get(id) ?? null : null;

@@ -19,7 +19,7 @@ export function BanRow({ side, state, champions, portraits }: Props) {
   };
 
   return (
-    <div className="flex gap-1.5">
+    <div className="flex flex-wrap gap-1.5">
       {Array.from({ length: 5 }, (_, i) => {
         const id = bans[i];
         const champ = id ? champions.get(id) ?? null : null;

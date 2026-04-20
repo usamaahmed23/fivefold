@@ -18,7 +18,7 @@ export function PhaseProgress({ phase, turnIndex }: Props) {
   const currentIdx = PHASE_ORDER.indexOf(phase);
 
   return (
-    <div className="flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/60 px-3 py-1.5 shadow-sm backdrop-blur-sm">
+    <div className="flex min-w-max items-center gap-1 rounded-full border border-border/60 bg-surface/60 px-2 py-1.5 shadow-sm backdrop-blur-sm sm:gap-1.5 sm:px-3">
       {PHASES.map((p, i) => {
         const state =
           phase === "complete"
@@ -41,7 +41,7 @@ export function PhaseProgress({ phase, turnIndex }: Props) {
               />
             )}
             <div
-              className={`flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider transition-all ${
+              className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider transition-all sm:gap-1.5 sm:px-2.5 sm:text-[10px] ${
                 state === "active"
                   ? p.id.startsWith("ban")
                     ? "bg-rose-500/15 text-rose-600 ring-1 ring-rose-500/30 dark:bg-rose-500/20 dark:text-rose-300"

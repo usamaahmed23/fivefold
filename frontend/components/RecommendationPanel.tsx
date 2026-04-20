@@ -50,8 +50,8 @@ export function RecommendationPanel({
     [result, selectedId],
   );
   return (
-    <div className="flex min-h-[600px] flex-col rounded-xl border border-border bg-surface/80 p-4 shadow-sm backdrop-blur-sm">
-      <div className="mb-3 flex items-center justify-between">
+    <div className="flex min-h-[420px] flex-col rounded-xl border border-border bg-surface/80 p-3 shadow-sm backdrop-blur-sm sm:min-h-[520px] sm:p-4">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <h2 className="text-sm font-bold uppercase tracking-widest text-fg">
             Recommendation
@@ -176,8 +176,8 @@ export function RecommendationPanel({
                       <ChampionPortrait
                         url={portraits.get(s.champion_id) ?? null}
                         name={champion?.name ?? s.champion_id}
-                        size={42}
-                        className="h-[42px] w-[42px] object-cover"
+                        size={38}
+                        className="h-[38px] w-[38px] object-cover sm:h-[42px] sm:w-[42px]"
                       />
                     </div>
                     <span className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-[11px] font-semibold text-fg">

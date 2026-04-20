@@ -9,7 +9,7 @@ export function TurnIndicator({ state }: { state: DraftState }) {
       : "text-red-600 dark:text-red-300";
 
   return (
-    <div className="flex items-center gap-2.5 rounded-md border border-border bg-surface px-2.5 py-1 text-sm shadow-sm">
+    <div className="flex flex-wrap items-center gap-1.5 rounded-md border border-border bg-surface px-2 py-1 text-xs shadow-sm sm:gap-2.5 sm:px-2.5 sm:text-sm">
       <span className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-[11px] font-medium text-fg">
         {Math.min(state.turn_index + 1, 20)}/20
       </span>

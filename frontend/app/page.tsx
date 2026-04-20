@@ -191,10 +191,10 @@ export default function HomePage() {
     "rounded-md border border-border bg-surface px-2.5 py-1 text-xs font-medium text-muted transition hover:border-muted/60 hover:bg-surface-2 hover:text-fg disabled:cursor-not-allowed disabled:opacity-40";
 
   return (
-    <main className="mx-auto max-w-[1500px] px-6 py-6">
-      <header className="mb-5 flex flex-wrap items-center justify-between gap-4">
+    <main className="mx-auto max-w-[1500px] px-3 py-4 sm:px-4 sm:py-5 lg:px-6 lg:py-6">
+      <header className="mb-4 flex flex-wrap items-start justify-between gap-3 sm:mb-5 sm:items-center sm:gap-4">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight text-fg">
+          <h1 className="text-lg font-semibold tracking-tight text-fg sm:text-xl">
             Fivefold{" "}
             <span className="font-light text-faint">— Draft Coach</span>
           </h1>
@@ -254,14 +254,14 @@ export default function HomePage() {
         </div>
       )}
 
-      <div className="mb-3 flex items-center justify-center">
+      <div className="mb-3 flex justify-center overflow-x-auto pb-1">
         <PhaseProgress phase={state.phase} turnIndex={state.turn_index} />
       </div>
 
       <SideBanner />
 
-      <div className="mt-3 flex items-center gap-4">
-        <div className="flex-1">
+      <div className="mt-3 grid gap-3 md:grid-cols-2 md:gap-4">
+        <div className="min-w-0">
           <BanRow
             side="blue"
             state={state}
@@ -269,7 +269,7 @@ export default function HomePage() {
             portraits={portraits}
           />
         </div>
-        <div className="flex flex-1 justify-end">
+        <div className="min-w-0 md:flex md:justify-end">
           <BanRow
             side="red"
             state={state}
@@ -279,16 +279,25 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="mt-5 flex flex-col gap-4 lg:flex-row">
+      <div className="mt-5 grid grid-cols-2 gap-3 xl:grid-cols-[7rem_minmax(0,1fr)_7rem] xl:gap-4">
         <SideColumn
+          className="col-span-1 xl:col-start-1"
           side="blue"
           state={state}
           champions={championMap}
           portraits={portraits}
           onSwapPicks={onSwapPicks}
         />
-        <div className="flex flex-1 flex-col gap-4">
-          <div className="h-[500px] rounded-xl border border-border bg-surface/80 p-3 shadow-sm backdrop-blur-sm">
+        <SideColumn
+          className="col-span-1 xl:col-start-3"
+          side="red"
+          state={state}
+          champions={championMap}
+          portraits={portraits}
+          onSwapPicks={onSwapPicks}
+        />
+        <div className="col-span-2 flex min-w-0 flex-col gap-4 xl:col-start-2 xl:row-start-1">
+          <div className="h-[52svh] min-h-[340px] rounded-xl border border-border bg-surface/80 p-2.5 shadow-sm backdrop-blur-sm sm:h-[500px] sm:p-3">
             <ChampionGrid
               champions={champions}
               taken={taken}
@@ -314,16 +323,9 @@ export default function HomePage() {
             />
           </div>
         </div>
-        <SideColumn
-          side="red"
-          state={state}
-          champions={championMap}
-          portraits={portraits}
-          onSwapPicks={onSwapPicks}
-        />
       </div>
 
-      <div className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-lg border border-border/60 bg-surface/40 px-4 py-2 text-[11px] text-faint backdrop-blur-sm">
+      <div className="mx-auto mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-x-3 gap-y-2 rounded-lg border border-border/60 bg-surface/40 px-3 py-2 text-[10px] text-faint backdrop-blur-sm sm:mt-8 sm:gap-x-4 sm:px-4 sm:text-[11px]">
         {[
           ["/", "focus search"],
           ["Enter", "pick first"],

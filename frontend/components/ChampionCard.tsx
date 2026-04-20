@@ -31,9 +31,9 @@ export function ChampionCard({ champion, portrait, disabled, onSelect, highlight
         <ChampionPortrait
           url={portrait}
           name={champion.name}
-          size={60}
+          size={52}
           grayscale={disabled}
-          className="h-[60px] w-[60px] object-cover"
+          className="h-[52px] w-[52px] object-cover sm:h-[60px] sm:w-[60px]"
         />
         <div className="absolute left-0.5 bottom-0.5 flex gap-0.5">
           <ColorBadges
@@ -43,7 +43,7 @@ export function ChampionCard({ champion, portrait, disabled, onSelect, highlight
           />
         </div>
       </div>
-      <span className="w-[60px] truncate text-center text-[11px] leading-tight text-fg">
+      <span className="w-[52px] truncate text-center text-[10px] leading-tight text-fg sm:w-[60px] sm:text-[11px]">
         {champion.name}
       </span>
     </button>
