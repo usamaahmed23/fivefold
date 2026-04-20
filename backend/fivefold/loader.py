@@ -6,7 +6,28 @@ from pathlib import Path
 
 from .models import Archetype, Archetypes, Champion, MetaTiers
 
-DEFAULT_DATA_DIR = Path(__file__).resolve().parents[2] / "data"
+
+def _default_data_dir() -> Path:
+    """Find bundled data for both local dev and hosted backend deploys.
+
+    In local development the canonical files live at repo-root `data/`.
+    In hosted backend-only deploys (for example Vercel Services/FastAPI), the
+    service may only include the `backend/` subtree, so we also support a
+    colocated `backend/data/` bundle.
+    """
+    here = Path(__file__).resolve()
+    candidates = [
+        here.parents[1] / "data",  # backend/data
+        here.parents[2] / "data",  # repo-root data
+        Path.cwd() / "data",
+    ]
+    for candidate in candidates:
+        if (candidate / "champions.json").exists():
+            return candidate
+    return candidates[0]
+
+
+DEFAULT_DATA_DIR = _default_data_dir()
 
 
 def load_champions(path: Path | str | None = None) -> dict[str, Champion]:

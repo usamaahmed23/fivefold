@@ -1,0 +1,40 @@
+{
+  "_comment": "Ordered arrays per role \u2014 index 0 is strongest. Update manually each patch. Only include genuinely strong picks. IDs must match champions.json.",
+  "patch": "26.08",
+  "updated_at": "2026-04-18",
+  "tiers": {
+    "top": [
+      "zaahen",
+      "ambessa",
+      "rumble",
+      "gnar",
+      "dr_mundo"
+    ],
+    "jungle": [
+      "jarvan_iv",
+      "zaahen",
+      "dr_mundo"
+    ],
+    "mid": [
+      "ryze",
+      "ahri",
+      "anivia",
+      "orianna",
+      "karma",
+      "azir",
+      "rumble"
+    ],
+    "bot": [
+      "ashe",
+      "yunara",
+      "ezreal",
+      "varus"
+    ],
+    "support": [
+      "bard",
+      "seraphine",
+      "lulu",
+      "karma"
+    ]
+  }
+}
